@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import fakeImg1 from '../../../assets/images/png/_supreme4.png';
 import SearchWrapper from '../../../components/websiteCompoents/ReuseableFlex';
 import { FetchCartHandler } from '../../../state/slices/home/cart/fetchCart';
-import SigninPop from '../../auth/signin/Pop up';
 import { MyCheckoutItem } from '../checkout/components';
 
 const Cart = () => {
     const { userData } = useSelector((state) => state.reducer.loginReducer);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [openAdd, setOpenAdd] = useState(!userData ? true : false);
     useEffect(() => {
         userData
             ? FetchCartHandler(userData._id, dispatch, () => {})
@@ -22,7 +19,6 @@ const Cart = () => {
         (state) => state.reducer.cartedProduct
     );
     let prodState = status === 'FULFILLED' ? cartData[0] : [];
-    console.log(prodState);
     return (
         <SearchWrapper>
             <section>
@@ -43,6 +39,7 @@ const Cart = () => {
                                         name={res.result.prodName}
                                         F_qty={res.quantity}
                                         amount={res.result.prodPrice}
+                                        status={res.result.status}
                                         company={res.store}
                                         id={res._id}
                                         userId={res.userId}
@@ -83,11 +80,6 @@ const Cart = () => {
                         </div>
                     </div>
                 </div>
-                <SigninPop
-                    setOpenAdd={setOpenAdd}
-                    going={window.location.pathname}
-                    openAdd={openAdd}
-                />
             </section>
         </SearchWrapper>
     );

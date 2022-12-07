@@ -135,7 +135,7 @@ const Brand = ({ neededInfo, loadedCateg, myBrands, setShowing }) => {
                         </div>
                         <div className="w-full flex mt-3 flex-col md:flex-row items-center">
                             <div className="w-full sm:w-1/2 m-1">
-                                <CheckPicker
+                                <SelectPicker
                                     data={selectedChildren}
                                     className="w-full bg-slate-100"
                                     size="lg"

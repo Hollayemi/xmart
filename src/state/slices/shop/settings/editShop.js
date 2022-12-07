@@ -75,6 +75,7 @@ export const editShopInfo = createAsyncThunk(
 //
 export const editShopHandler = (dispatch, payload) => {
     console.log(payload);
+    console.log(editShopInfo(payload));
     dispatch(editShopInfo(payload))
         .then(unwrapResult)
         .then((shop_res) => {

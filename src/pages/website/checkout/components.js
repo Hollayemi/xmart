@@ -76,7 +76,7 @@ export const GroupCart = ({ eachStore, myPickers, userId, auth }) => {
 };
 
 export const MyCheckoutItem = (props) => {
-    const { image, name, F_qty, amount, company, id, userId } = props;
+    const { image, name, F_qty, amount, company, id, userId, status } = props;
     const [qty, setQty] = useState(F_qty);
     const dispatch = useDispatch();
     const changeQuantity = (operator) => {
@@ -107,7 +107,12 @@ export const MyCheckoutItem = (props) => {
                     />
                 </div>
                 <div className="ml-3">
-                    <h5 className="font-[500] text-lg">{name}</h5>
+                    <h5 className={
+                            `font-[500] text-[15] Lucida ${status === 'deleted' && 'line-through text-slate-400'}`
+                        }
+                    >
+                        {name}
+                    </h5>
                     <div>
                         <div className="flex mb-4 md:mb-0 mt-2 px-3 w-40 min-w-fit tracking-wide text-xs items-center bg-slate-200 rounded-sm px-1 shadow-md">
                             <h5>From:</h5>
@@ -122,23 +127,24 @@ export const MyCheckoutItem = (props) => {
                         <div className=" flex items-center bg-slate-100 tracking-widest w-24 font-bold text-gay-100 text-lg max-w-fit px-2 rounded-md shadow-md border border-ray-400">
                             <h5 className="w-8 min-w-6">{qty}</h5>
                             <div className="flex flex-col items-center ml-2">
-                                <h5
+                                <button
                                     onClick={() => changeQuantity('-')}
                                     className="cursor-pointer"
                                 >
                                     -
-                                </h5>
-                                <h5
+                                </button>
+                                <button
                                     className="cursor-pointer"
+                                    disabled={status === 'deleted'}
                                     onClick={() => changeQuantity('+')}
                                 >
                                     +
-                                </h5>
+                                </button>
                             </div>
                         </div>
                     </div>
                     <div className="w-1/2">
-                        <h5 className="font-bold tracking-wildest text-lg">
+                        <h5 className="font-bold tracking-wildest text-[15]">
                             &#x20A6;{qty * amount}
                         </h5>
                     </div>

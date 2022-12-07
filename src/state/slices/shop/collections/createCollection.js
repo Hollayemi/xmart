@@ -3,7 +3,6 @@ import { Message, toaster } from 'rsuite';
 import martApi from '../../api/baseApi';
 import { REQUEST_STATUS } from '../../constants';
 import { storeFiles } from '../display/displayAll';
-import { updateInstance } from '../settings/genApi';
 
 export const allCollections = createAsyncThunk(
     'post/allCollections',
@@ -61,12 +60,6 @@ export const createHandler = (
             },
             auth: otpData.id + ' ' + otpData.accessToken,
         };
-        const subPayload = {
-            id: shopData.id,
-            number: 1,
-            operator: '-',
-            useCase: 'categories',
-        };
         dispatch(createCollection(payload))
             .then(unwrapResult)
             .then((res) => {
@@ -78,9 +71,7 @@ export const createHandler = (
                         placement: 'topEnd',
                     }
                 );
-                if (res.type === 'success') {
-                    dispatch(updateInstance(subPayload));
-                }
+                if (res.type === 'success') {}
                 storeFiles(shopData.id, dispatch, setFiles);
                 reFetchData();
             })
@@ -113,19 +104,15 @@ export const deleteCol = (
         },
         auth: otpData.id + ' ' + otpData.accessToken,
     };
-    const subPayload = {
-        id: shopData.id,
-        operator: '+',
-        useCase: 'categories',
-        number: 1,
-    };
     // setOpen(true);
     dispatch(deleteHandler(payload))
         .then(unwrapResult)
         .then((resr) => {
+            console.log(resr);
             dispatch(getInfo(shopData.id))
                 .then(unwrapResult)
                 .then((res) => {
+                    console.log(res);
                     toaster.push(
                         <Message showIcon type={resr.type}>
                             {resr.message}
@@ -134,9 +121,6 @@ export const deleteCol = (
                             placement: 'topEnd',
                         }
                     );
-                    if (resr.type) {
-                        dispatch(updateInstance(subPayload));
-                    }
                     reFetchData();
                 });
             eventFunc('');

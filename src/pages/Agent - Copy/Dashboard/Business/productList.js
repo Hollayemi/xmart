@@ -11,9 +11,9 @@ export const ProductList = () => {
     const { adminData } = useSelector((state) => state.reducer.adminReducer);
     const verify = (arg, name) => {
         if (arg === 'approve') {
-            verifyAction(dispatch, adminData, param.nick, 1, name);
+            verifyAction(dispatch, adminData, param.nick, 'approved', name);
         } else {
-            verifyAction(dispatch, adminData, param.nick, 0, name);
+            verifyAction(dispatch, adminData, param.nick, 'rejected', name);
         }
     };
     return (

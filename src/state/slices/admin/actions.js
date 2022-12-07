@@ -25,7 +25,7 @@ export const verifyAction = (
     dispatch,
     adminData,
     store,
-    to,
+    newStatus,
     name,
     _id,
     setData
@@ -33,12 +33,13 @@ export const verifyAction = (
     const payload = {
         body: {
             store: store.toLowerCase(),
-            to: to,
+            newStatus: newStatus,
             name: name,
             _id: _id,
         },
         auth: adminData._id + ' ' + adminData.accessToken,
     };
+    console.log(payload);
     dispatch(verifyProductApi(payload))
         .then(unwrapResult)
         .then((res) => {

@@ -22,6 +22,7 @@ export const addNewOrder = (body, auth, dispatch) => {
     dispatch(addOrderApi(payload))
         .then(unwrapResult)
         .then((res) => {
+            console.log(res);
             if (res.type === 'success') {
                 toaster.push(
                     <Message showIcon type={res.type}>
@@ -58,9 +59,11 @@ export const FetchOrderHandler = (id, auth, dispatch, setState) => {
         id: id,
         auth: auth,
     };
+    console.log(payload);
     dispatch(fetchOrder(payload))
         .then(unwrapResult)
         .then((res) => {
+            console.log(res);
             if (res.type === 'success') {
                 setState && setState(res.message);
             }

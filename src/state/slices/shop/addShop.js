@@ -167,7 +167,9 @@ export const fetchShopInfo = (dispatch, id, otpData, setState) => {
     };
     dispatch(getShopInfo(payload))
         .then(unwrapResult)
-        .then((res) => setState(res.data));
+        .then((res) => {
+            res.type == 'success' && setState(res.data);
+        });
 };
 
 export const toDashboard = (userData, dispatch, navigate) => {
@@ -178,6 +180,7 @@ export const toDashboard = (userData, dispatch, navigate) => {
     dispatch(getShopInfo(payload))
         .then(unwrapResult)
         .then((res) => {
+            console.log(res);
             dispatch(otpHandler(res.id))
                 .then(unwrapResult)
                 .then((res) => {

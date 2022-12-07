@@ -191,7 +191,7 @@ const Dashboard = () => {
                         placement="bottom"
                         title="Shop Current Location"
                         size="xs"
-                        children={<SetLocation />}
+                        children={<SetLocation shopData={shopData} />}
                         backdrop={true}
                         open={OpenDrawer}
                         handleClose={() => setOpenDrawer(false)}

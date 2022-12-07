@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, Loader } from 'rsuite';
+import { Loader } from 'rsuite';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaAngleLeft, FaShoppingCart } from 'react-icons/fa';
-import fakeImg1 from '../../../../assets/images/png/_supreme4.png';
 import { useParams } from 'react-router-dom';
 import { getOneProductHandler } from '../../../../state/slices/home';
 import { ProductDisplay } from './productDisplay';
@@ -20,10 +18,8 @@ const ProductsContainer = () => {
     const [productInfo, setInfo] = useState({});
 
     useEffect(() => {
-        getOneProductHandler(dispatch, fetchPayload, setInfo);
-        userData &&
-            userData._id &&
-            FetchCartHandler(userData._id, dispatch, setAllMyCate);
+        getOneProductHandler(dispatch, fetchPayload, setInfo, true, userData);
+        userData?._id && FetchCartHandler(userData._id, dispatch, setAllMyCate);
     }, []);
     const fetchPayload = {
         store: params.shop.toLowerCase(),
@@ -56,12 +52,12 @@ const ProductsContainer = () => {
                 )}
 
                 <div className="flex flex-col md:flex-row px-1 py-6 md:px-6 border-t border-gray-100 mt-10">
-                    <SetFeedback
+                    {userData && <SetFeedback
                         username={userData.username}
                         userId={userData._id}
                         productId={productInfo._id}
                         setFeedbackState={setFeedbackState}
-                    />
+                    />}
                     {productInfo._id && (
                         <LoadReviews productId={productInfo._id} />
                     )}

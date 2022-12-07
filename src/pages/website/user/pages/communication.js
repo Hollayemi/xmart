@@ -51,7 +51,6 @@ const PhoneNumbers = () => {
             ...newValue,
         });
     };
-    console.log(formData);
     return (
         <UserWrapper type="settings">
             <section className="py-5 px-3 w-full md:max-w-[600px]">

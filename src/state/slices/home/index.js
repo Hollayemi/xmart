@@ -1,5 +1,6 @@
 import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
 import martApi from '../api/baseApi';
+import { addNewView } from './view/view';
 
 export const fetchProduct = createAsyncThunk(
     'post/fetchProduct',
@@ -54,8 +55,8 @@ export const getOneProductHandler = (
     dispatch,
     query,
     setInfo,
-    isArray,
-    myCarts
+    viewProduct,
+    userData
 ) => {
     const payload = {
         body: {
@@ -65,10 +66,9 @@ export const getOneProductHandler = (
     dispatch(getOneProduct(payload))
         .then(unwrapResult)
         .then((res) => {
-            if (isArray) {
-                setInfo(myCarts.push(res.message));
-            } else {
+            if (res.type === 'success') {
                 setInfo(res.message);
+                viewProduct && userData?._id && addNewView(res.message._id, userData, dispatch)
             }
         })
         .catch((err) => {});

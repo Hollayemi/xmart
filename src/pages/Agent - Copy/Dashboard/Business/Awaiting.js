@@ -21,10 +21,27 @@ const Awaiting = () => {
     }, []);
 
     const verify = (arg, name, store, id) => {
+        console.log(arg);
         if (arg === 'approve') {
-            verifyAction(dispatch, adminData, store, 1, name, id, setData);
+            verifyAction(
+                dispatch,
+                adminData,
+                store,
+                'approved',
+                name,
+                id,
+                setData
+            );
         } else {
-            verifyAction(dispatch, adminData, store, 0, name, id, setData);
+            verifyAction(
+                dispatch,
+                adminData,
+                store,
+                'rejected',
+                name,
+                id,
+                setData
+            );
         }
     };
     let fetchFrom = !upDatedData ? data : upDatedData;

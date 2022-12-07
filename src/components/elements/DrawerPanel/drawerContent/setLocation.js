@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAddress } from '../../../../state/slices/shop/address';
+import { editShopHandler } from '../../../../state/slices/shop/settings/editShop';
 import Loading from '../../Loading';
 
-const SetLocation = () => {
+const SetLocation = ({ shopData }) => {
     const [lat, setLat] = useState(0);
     const [lon, setLon] = useState(0);
     const [address, setAddress] = useState(null);
@@ -24,6 +25,21 @@ const SetLocation = () => {
         }
     }, []);
 
+    const payload = {
+        data: {
+            coordinate: [{
+                lat: lat,
+                lon: lon,
+                address: address,
+            }],
+        },
+        shopID: shopData.data._id,
+    };
+
+    const editShopInfo = () => {
+        editShopHandler(dispatch, payload);
+    };
+
     return (
         <div className="flex flex-col md:flex-row justify-between relative">
             <div className="w-[270px]">
@@ -41,10 +57,10 @@ const SetLocation = () => {
                     </h5>
                 </div>
             </div>
-            {!address ? (
+            {address ? (
                 <Loading speed="fast" size="md" />
             ) : (
-                <button className="px-3 h-8 py-1 bg-slate-100 w-28 text-slate-700 ml-[200px] rounded absolute top-0 right-0">
+                <button onClick={editShopInfo} className="px-3 h-8 py-1 bg-slate-100 w-28 text-slate-700 ml-[200px] rounded absolute top-0 right-0">
                     Save Address
                 </button>
             )}

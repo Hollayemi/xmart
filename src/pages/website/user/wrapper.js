@@ -11,8 +11,7 @@ import {
     StorePreview,
 } from './component';
 
-const UserWrapper = ({ children, type }) => {
-    const { userData } = useSelector((state) => state.reducer.loginReducer);
+const UserWrapper = ({ children, type, userData, fullChild }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(() => {
@@ -68,13 +67,14 @@ const UserWrapper = ({ children, type }) => {
                         <div>{children}</div>
                     </div>
                     <div className="">
-                        {userData && userData.isSeller ? (
+                        {userData?.isSeller ? (
                             <StorePreview userData={userData} />
                         ) : (
                             <NotRegPreview userData={userData} />
                         )}
                     </div>
                 </div>
+                {fullChild && fullChild}
             </section>
         </SearchWrapper>
     );

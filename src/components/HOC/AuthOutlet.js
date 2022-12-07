@@ -4,8 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { wasGoing } from '../../state/slices/auth/Login';
 import { REQUEST_STATUS } from '../../state/slices/constants';
 
-const AuthOutlet = () => {
-    let to = window.location.pathname.slice(1);
+const AuthOutlet = ({ to }) => {
     const dispatch = useDispatch();
     const { status } = useSelector((state) => state.reducer.loginReducer);
     let auth = false;

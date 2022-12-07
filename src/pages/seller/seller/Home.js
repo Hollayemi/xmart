@@ -34,7 +34,6 @@ const Home = () => {
             setshopInfo
         );
     }, [dispatch, userData]);
-    console.log(shopInfo);
     return (
         <SearchWrapper>
             <div className="p-2">
@@ -49,7 +48,7 @@ const Home = () => {
 
             <div className="w-full -mt-4 px-1 flex sm:-mt-40 md:-mt-80 opacity-[.98] md:justify-left md:ml-8">
                 <div className="w-full sm:w-[480px] h-60 bg-white border shadow-xl md:rounded-lg flex flex-col items-cnter justify-center md:mx-4 my-8 py-5">
-                    {!shopInfo._id && (
+                    {shopInfo && !shopInfo._id && (
                         <div className="px-4">
                             <div>
                                 <h5 className="font-black arial leading-9 text-[20px] md:text-[25px] mb-4 text-slate-900">

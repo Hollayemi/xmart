@@ -1,13 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { AccountAdjustment, accountLinks1, accountLinks2 } from './component';
+import RecentView from './recentView';
 import UserWrapper from './wrapper';
 
 const User = () => {
+    const { userData } = useSelector((state) => state.reducer.loginReducer);
     return (
-        <UserWrapper>
-            <div className="h-40 flex items-center justify-center ">
-                <h5>No Order Preview Available</h5>
-            </div>
+        <UserWrapper userData={userData} fullChild={<RecentView userData={userData} />}>
             <div className="w-full flex flex-col md:flex-row">
                 <AccountAdjustment
                     title="Account Settings"

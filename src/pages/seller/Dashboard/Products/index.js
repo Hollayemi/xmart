@@ -15,7 +15,6 @@ import {
     selectBrandFunc,
     updateInfoHandler,
 } from './components';
-
 //folders
 const Product = ({
     myBrandData,
@@ -52,6 +51,7 @@ const Product = ({
     const updateValue = (newVal, variable) => {
         updateInfoHandler(newVal, variable, newValue, formData, setFormData);
     };
+    console.log(formData);
 
     useEffect(() => {
         showingInfo &&
@@ -161,13 +161,14 @@ const Product = ({
                                                 ? `Brand (${formData.prodBrand})`
                                                 : 'Select Brand'
                                         }
-                                        onChange={(value) =>
-                                            selectBrandFunc(
-                                                setProductCategory,
-                                                value,
-                                                updateValue,
-                                                setProductGroup
-                                            )
+                                        onChange={(value) => {
+                                                selectBrandFunc(
+                                                    setProductCategory,
+                                                    value,
+                                                    updateValue,
+                                                    setProductGroup
+                                                )
+                                            }
                                         }
                                         onClean={() => updateValue('', 'brand')}
                                     />
@@ -175,7 +176,6 @@ const Product = ({
                                 <div className="w-full sm:w-1/2 max-w-[280px] md:w-[250px] sm:m-1">
                                     <SelectPicker
                                         data={productGroup}
-                                        label="ggj"
                                         className="w-full bg-slate-100"
                                         size="lg"
                                         disabled={formData.prodBrand === ''}

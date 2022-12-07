@@ -11,6 +11,7 @@ import myNewProduct from './slices/shop/products/productSlice';
 import cartedProduct from './slices/home/cart/fetchCart';
 import addressSlice from './slices/home/checkout/fetch';
 import feedback from './slices/home/feedback/loadFeedback';
+import viewReducer from './slices/home/view/view';
 
 export const myReducers = combineReducers({
     loginReducer: loginReducer,
@@ -25,4 +26,5 @@ export const myReducers = combineReducers({
     addressSlice: addressSlice,
     waitingProducts: waitingProducts,
     feedback: feedback,
+    viewReducer: viewReducer
 });

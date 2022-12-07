@@ -66,13 +66,13 @@ const Home = () => {
                 infoCursor && (
                     <HorizontalDisplay
                         myCarts={prodState}
-                        tag={res._id && res._id.name}
+                        tag={res._id?.name}
                         key={index}
                         products={res.detail}
                         about={HomeDisplay[infoCursor][0]}
                         image={HomeDisplay[infoCursor][1]}
                         slider={HomeDisplay[infoCursor][2]}
-                        userId={(userData && userData._id) || 'noId'}
+                        userId={(userData?._id) || 'noId'}
                     />
                 )
             );

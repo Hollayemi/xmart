@@ -85,7 +85,6 @@ const NewAgent = LazyLoading(() => import('../pages/Agent/newAgent.js'));
 const AgentDashboard = LazyLoading(() => import('../pages/Agent/Dashboard'));
 
 //
-let goingTo = window.location.pathname.slice(1);
 const AppRoutes = () => {
     let allRoutes = useRoutes([
         {
@@ -116,13 +115,6 @@ const AppRoutes = () => {
                     path: '/b/:shop/:product',
                     element: <ProdContainter />,
                 },
-                { path: '/forgot-password', element: <SignUp /> },
-            ],
-        },
-        {
-            path: '/',
-            element: <AuthOutlet />,
-            children: [
                 {
                     path: '/checkout',
                     element: <Checkout />,
@@ -135,11 +127,12 @@ const AppRoutes = () => {
                     path: '/my-orders',
                     element: <MyOrders />,
                 },
+                { path: '/forgot-password', element: <SignUp /> },
             ],
         },
         {
             path: '/site',
-            element: <AuthOutlet />,
+            element: <AuthOutlet to="site/user/account" />,
             children: [
                 { element: <Redirect to="/site/user/account" />, index: true },
                 { path: 'user/account', element: <UserDashboard /> },
@@ -164,7 +157,7 @@ const AppRoutes = () => {
         },
         {
             path: '/seller',
-            element: <AuthOutlet />,
+            element: <AuthOutlet to="seller" />,
             children: [
                 { element: <Sell />, index: true },
                 {
@@ -183,7 +176,7 @@ const AppRoutes = () => {
         },
         {
             path: '/agent',
-            element: <AuthOutlet />,
+            element: <AuthOutlet to="agent" />,
             children: [
                 { element: <Agent />, index: true },
                 {

@@ -51,12 +51,6 @@ export const createBrand = (formData, neededInfo, dispatch) => {
             },
             auth: neededInfo.otpData.id + ' ' + neededInfo.otpData.accessToken,
         };
-        const subPayload = {
-            id: neededInfo.shopData.id,
-            useCase: 'brands',
-            number: 1,
-            operator: '-',
-        };
         dispatch(createBrandApi(payload))
             .then(unwrapResult)
             .then((res) => {
@@ -69,9 +63,7 @@ export const createBrand = (formData, neededInfo, dispatch) => {
                     }
                 );
                 neededInfo.reFetchData();
-                if (res.type === 'success') {
-                    dispatch(updateInstance(subPayload));
-                }
+                if (res.type === 'success') {}
             })
             .catch((e) => {
                 console.log(e);
@@ -98,22 +90,18 @@ export const deleteBrand = (
         body: {
             delCase: 'brand',
             _id: splited[2],
+            name: splited[0],
         },
         auth: otpData.id + ' ' + otpData.accessToken,
-    };
-    const subPayload = {
-        id: shopData.id,
-        number: 1,
-        useCase: 'brands',
-        operator: '+',
     };
     dispatch(deleteHandler(payload))
         .then(unwrapResult)
         .then((resr) => {
+            console.log(resr);
             dispatch(getInfo(shopData.id))
                 .then(unwrapResult)
                 .then((res) => {
-                    console.log(resr);
+                    console.log(res);
                     toaster.push(
                         <Message showIcon type={resr.type}>
                             {resr.message}
@@ -122,9 +110,6 @@ export const deleteBrand = (
                             placement: 'topEnd',
                         }
                     );
-                    if (resr.type) {
-                        dispatch(updateInstance(subPayload));
-                    }
                     reFetchData();
                 });
             eventFunc('');
@@ -164,6 +149,7 @@ export const loadCategories = (cate) => {
             const holl = {
                 label: array[i].value,
                 value: array[i].value,
+                spec: array[i].spec,
             };
             theArray.push(holl);
         }
@@ -181,7 +167,7 @@ export const loadSubCategories = (cate, subCategory) => {
     const forArr = (array) => {
         for (let i = 0; i < array.length; i++) {
             const holl = {
-                label: array[i].value,
+                label: array[i].label,
                 value: array[i].value,
             };
             theArray.push(holl);

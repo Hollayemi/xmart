@@ -112,66 +112,79 @@ export const martCategories = [
                             {
                                 label: 'Knitwear',
                                 value: 'Knitwear',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Trousers & Chinos',
                                 value: 'Trousers & Chinos',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Swimwear',
                                 value: 'Swimwear',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'T-Shirts',
                                 value: 'T-Shirts',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Underwear',
                                 value: 'Underwear',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Suits',
                                 value: 'Suits',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Skirts',
                                 value: 'Skirts',
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Shorts',
                                 value: 'Shorts',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Sleep & Lounge',
                                 value: 'Sleep & Lounge',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Jumpsuits, Rompers & Overalls',
                                 value: 'Jumpsuits, Rompers & Overalls',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Leggings',
                                 value: 'Leggings',
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Undies',
                                 value: 'Undies',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Maternity',
                                 value: 'Maternity',
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                         ],
@@ -183,41 +196,49 @@ export const martCategories = [
                             {
                                 label: 'Belts',
                                 value: 'Belts',
+                                spec: ['size', 'color', 'texture'],
                                 children: [],
                             },
                             {
                                 label: 'Hats & Caps',
                                 value: 'Hats & Caps',
+                                spec: ['size', 'color', 'texture'],
                                 children: [],
                             },
                             {
                                 label: 'Bags',
                                 value: 'Bags',
+                                spec: ['size', 'color', 'texture'],
                                 children: [],
                             },
                             {
                                 label: 'Sunglasses',
                                 value: 'Sunglasses',
+                                spec: ['size', 'color', 'type'],
                                 children: [],
                             },
                             {
                                 label: 'Watches & Eyewear',
                                 value: 'Watches & Eyewear',
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Scarves & head ties',
                                 value: 'Scarves & head ties',
+                                spec: ['size', 'color', 'length'],
                                 children: [],
                             },
                             {
                                 label: 'Ladies Wrist Wear',
                                 value: 'Ladies Wrist Wear',
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Wallets',
                                 value: 'Wallets',
+                                spec: ['size', 'color', 'spaces'],
                                 children: [],
                             },
                         ],
@@ -229,26 +250,31 @@ export const martCategories = [
                             {
                                 label: 'Hair Care',
                                 value: 'Hair Care',
+                                spec: ['size', 'color', 'measurement'],
                                 children: [],
                             },
                             {
                                 label: 'Skincare',
                                 value: 'Skincare',
+                                spec: ['size', 'color', 'measurement'],
                                 children: [],
                             },
                             {
                                 label: 'Make-up & Nails',
                                 value: 'Make-up & Nails',
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Fragrances',
                                 value: 'Fragrances',
+                                spec: ['size', 'color', 'measurement'],
                                 children: [],
                             },
                             {
                                 label: 'Body, Bath & Shower',
                                 value: 'Body, Bath & Shower',
+                                spec: ['size', 'color', 'quantity'],
                                 children: [],
                             },
                         ],
@@ -260,26 +286,31 @@ export const martCategories = [
                             {
                                 label: 'Boot Shoes',
                                 value: 'Boot Shoes',
+                                spec: ['size', 'color', 'texture'],
                                 children: [],
                             },
                             {
                                 label: 'Flat Shoes',
                                 value: 'Flat Shoes',
+                                spec: ['size', 'color', 'texture'],
                                 children: [],
                             },
                             {
                                 label: 'Heels',
                                 value: 'Heels',
+                                spec: ['size', 'color', 'texture'],
                                 children: [],
                             },
                             {
                                 label: 'Sandals',
                                 value: 'Sandals',
+                                spec: ['size', 'color', 'texture'],
                                 children: [],
                             },
                             {
                                 label: 'Sneakers & Canvas',
                                 value: 'Sneakers & Canvas',
+                                spec: ['size', 'color', 'texture', 'gender'],
                                 children: [],
                             },
                         ],
@@ -293,50 +324,60 @@ export const martCategories = [
                     {
                         label: 'Clothing',
                         value: 'Clothing',
+                        spec: ['size', 'color', 'gender'],
                         children: [
                             {
                                 label: 'Knitwear',
                                 value: 'Knitwear',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Trousers & Chinos',
                                 value: 'Trousers & Chinos',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Swimwear',
                                 value: 'Swimwear',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Jeans',
                                 value: 'Jeans',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'T-Shirts',
                                 value: 'T-Shirts',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Underwear',
                                 value: 'Underwear',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Suits',
                                 value: 'Suits',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Socks',
                                 value: 'Socks',
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Shorts',
                                 value: 'Shorts',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
@@ -347,6 +388,7 @@ export const martCategories = [
                             {
                                 label: 'Jumpsuits, Rompers & Overalls',
                                 value: 'Jumpsuits, Rompers & Overalls',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                         ],
@@ -358,31 +400,37 @@ export const martCategories = [
                             {
                                 label: 'Belts',
                                 value: 'Belts',
+                                spec: ['size', 'color',],
                                 children: [],
                             },
                             {
                                 label: 'Jewellery',
                                 value: 'Jewellery',
+                                spec: ['size', 'color',],
                                 children: [],
                             },
                             {
                                 label: 'Hats & Caps',
                                 value: 'Hats & Caps',
+                                spec: ['size', 'color', 'texture'],
                                 children: [],
                             },
                             {
                                 label: 'Bags',
                                 value: 'Bags',
+                                spec: ['size', 'color', 'texrure'],
                                 children: [],
                             },
                             {
                                 label: 'Sunglasses',
                                 value: 'Sunglasses',
+                                spec: ['size', 'color',],
                                 children: [],
                             },
                             {
                                 label: 'Watches & Eyewear',
                                 value: 'Watches & Eyewear',
+                                spec: ['size', 'color',],
                                 children: [],
                             },
                             {
@@ -393,11 +441,13 @@ export const martCategories = [
                             {
                                 label: 'Men Wrist Wear',
                                 value: 'Men Wrist Wear',
+                                spec: ['size', 'color',],
                                 children: [],
                             },
                             {
                                 label: 'Wallets',
                                 value: 'Wallets',
+                                spec: ['size', 'color', 'spaces'],
                                 children: [],
                             },
                         ],
@@ -409,26 +459,31 @@ export const martCategories = [
                             {
                                 label: 'Hair Care',
                                 value: 'Hair Care',
+                                spec: ['size', 'color', "measurement"],
                                 children: [],
                             },
                             {
                                 label: 'Skincare',
                                 value: 'Skincare',
+                                spec: ['size', 'color', "measurement"],
                                 children: [],
                             },
                             {
                                 label: 'Shaving',
                                 value: 'Shaving',
+                                spec: ['size', 'color', 'Blades'],
                                 children: [],
                             },
                             {
                                 label: 'Fragrances',
                                 value: 'Fragrances',
+                                spec: ['size', 'color', "measurement"],
                                 children: [],
                             },
                             {
                                 label: 'Body, Bath & Shower',
                                 value: 'Body, Bath & Shower',
+                                spec: ['size', 'color',],
                                 children: [],
                             },
                         ],
@@ -440,31 +495,37 @@ export const martCategories = [
                             {
                                 label: 'Boots',
                                 value: 'Boots',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Casual Shoes',
                                 value: 'Casual Shoes',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Formal Shoes',
                                 value: 'Formal Shoes',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Slippers & Flip-flops',
                                 value: 'Slippers & Flip-flops',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Sneakers & Canvas',
                                 value: 'Sneakers & Canvas',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Sport Shoes',
                                 value: 'Sport Shoes',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                         ],
@@ -482,16 +543,19 @@ export const martCategories = [
                             {
                                 label: 'T-shirt',
                                 value: 'T-shirt',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Polo',
                                 value: 'Polo',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                             {
                                 label: 'Jeans',
                                 value: 'Jeans',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                         ],
@@ -503,16 +567,19 @@ export const martCategories = [
                             {
                                 label: 'School Bags',
                                 value: 'School Bags',
+                                spec: ['size', 'color', 'texture'],
                                 children: [],
                             },
                             {
                                 label: 'Baby care & Nursery',
                                 value: 'Baby care & Nursery',
+                                spec: ['size', 'color', 'weight'],
                                 children: [],
                             },
                             {
                                 label: 'Changing & Feeding',
                                 value: 'Changing & Feeding',
+                                spec: ['size', 'color', 'gender'],
                                 children: [],
                             },
                         ],
@@ -530,51 +597,61 @@ export const martCategories = [
                             {
                                 label: 'Tecno',
                                 value: 'Tecno',
+                                spec: ['model no', 'phoneSpec', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Infinix',
                                 value: 'Infinix',
+                                spec: ['model no', 'phoneSpec', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Gionee',
                                 value: 'Gionee',
+                                spec: ['model no', 'phoneSpec', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Redmi',
                                 value: 'Redmi',
+                                spec: ['model no', 'phoneSpec', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Samsung',
                                 value: 'Samsung',
+                                spec: ['model no', 'phoneSpec', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Xiaomi',
                                 value: 'Xiaomi',
+                                spec: ['model no', 'phoneSpec', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Apple',
                                 value: 'Apple',
+                                spec: ['model no', 'phoneSpec', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Huawei',
                                 value: 'Huawei',
+                                spec: ['model no', 'phoneSpec', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Hisense',
                                 value: 'Hisense',
+                                spec: ['model no', 'phoneSpec', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Nokia',
                                 value: 'Nokia',
+                                spec: ['model no', 'phoneSpec', 'color'],
                                 children: [],
                             },
                         ],
@@ -582,65 +659,78 @@ export const martCategories = [
                     {
                         label: 'Cellular Accessories',
                         value: 'Cellular Accessories',
+                        spec: ['size', 'color', 'gender'],
                         children: [
                             {
                                 label: 'Android Cord',
                                 value: 'Android Cord',
+                                spec: ['length', 'speed', 'color', 'thickness'],
                                 children: [],
                             },
                             {
                                 label: 'Phone Pouch',
                                 value: 'Phone Pouch',
+                                spec: ['Phone', 'phoneSpec', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Power Bank',
                                 value: 'Power Bank',
+                                spec: ['capacity', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Type C Charger',
                                 value: 'Type C Charger',
+                                spec: ['length', 'speed', 'color', 'thickness'],
                                 children: [],
                             },
                             {
                                 label: 'iPhone Charger',
                                 value: 'iPhone Charger',
+                                spec: ['length', 'speed', 'color', 'thickness'],
                                 children: [],
                             },
                             {
                                 label: 'Case',
                                 value: 'Case',
+                                spec: ['length', 'speed', 'color', 'thickness'],
                                 children: [],
                             },
                             {
                                 label: 'Earpiece',
                                 value: 'Earpiece',
+                                spec: ['color', 'thickness', 'plug'],
                                 children: [],
                             },
                             {
                                 label: 'Phone Glass Protector',
                                 value: 'Phone Glass Protector',
+                                spec: ['Phone',],
                                 children: [],
                             },
                             {
                                 label: 'Phone Stand Tripod',
                                 value: 'Phone Stand Tripod',
+                                spec: ['height', 'color', ],
                                 children: [],
                             },
                             {
                                 label: 'Selfie Stick',
                                 value: 'Selfie Stick',
+                                spec: ['height', 'controller', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Earbuds',
                                 value: 'Earbuds',
+                                spec: ['fingerprint', 'color', 'sound'],
                                 children: [],
                             },
                             {
                                 label: 'Headphones',
                                 value: 'Headphones',
+                                spec: ['fingerprint', 'color', 'sound', 'bluetooth'],
                                 children: [],
                             },
                             {
@@ -658,30 +748,36 @@ export const martCategories = [
                     {
                         label: 'Smartwatches',
                         value: 'Smartwatches',
+                        spec: ['color', 'watchSpec', 'size'],
                         children: [
                             {
                                 label: 'Luxury Smartwatch',
                                 value: 'Luxury Smartwatch',
+                                spec: ['color', 'watchSpec', 'size'],
                                 children: [],
                             },
                             {
                                 label: 'Budget Smartwatch',
                                 value: 'Budget Smartwatch',
+                                spec: ['color', 'watchSpec', 'size'],
                                 children: [],
                             },
                             {
                                 label: 'GPS Smartwatch',
                                 value: 'GPS Smartwatch',
+                                spec: ['color', 'watchSpec', 'size'],
                                 children: [],
                             },
                             {
                                 label: 'Hybrid Smartwatch',
                                 value: 'Hybrid Smartwatch',
+                                spec: ['color', 'watchSpec', 'size'],
                                 children: [],
                             },
                             {
                                 label: 'Fitness Tracker',
                                 value: 'Fitness Tracker',
+                                spec: ['color', 'watchSpec', 'size'],
                                 children: [],
                             },
                         ],
@@ -725,26 +821,31 @@ export const martCategories = [
                             {
                                 label: 'Hp',
                                 value: 'Hp',
-                                children: [],
+                                spec: ['computerSpec'],
+                                children: []
                             },
                             {
                                 label: 'Acer',
                                 value: 'Acer',
+                                spec: ['computerSpec'],
                                 children: [],
                             },
                             {
                                 label: 'Dell',
                                 value: 'Dell',
+                                spec: ['computerSpec'],
                                 children: [],
                             },
                             {
                                 label: 'Zinox',
                                 value: 'Zinox',
+                                spec: ['computerSpec'],
                                 children: [],
                             },
                             {
                                 label: 'Macbook',
                                 value: 'Macbook',
+                                spec: ['computerSpec'],
                                 children: [],
                             },
                         ],
@@ -761,6 +862,7 @@ export const martCategories = [
                             {
                                 label: 'Monitors',
                                 value: 'Monitors',
+                                spec: ['monitorSpec'],
                                 children: [],
                             },
                             {
@@ -776,6 +878,7 @@ export const martCategories = [
                             {
                                 label: 'Storage Devices',
                                 value: 'Storage Devices',
+                                spec: ['size'],
                                 children: [],
                             },
                         ],
@@ -787,6 +890,7 @@ export const martCategories = [
                             {
                                 label: 'Battery',
                                 value: 'Battery',
+                                spec: ['capacity'],
                                 children: [],
                             },
                             {
@@ -892,26 +996,31 @@ export const martCategories = [
                     {
                         label: 'Beer & Ciders',
                         value: 'Beer & Ciders',
+                        spec: ['Alcohol Percentage', 'sugar', 'Caffine'],
                         children: [],
                     },
                     {
                         label: 'Gin',
                         value: 'Gin',
+                        spec: ['Alcohol Percentage', 'sugar', 'Caffine'],
                         children: [],
                     },
                     {
                         label: 'Whisky & Bourbon',
                         value: 'Whisky & Bourbon',
+                        spec: ['Alcohol Percentage', 'sugar', 'Caffine'],
                         children: [],
                     },
                     {
                         label: 'Wine',
                         value: 'Wine',
+                        spec: ['Alcohol Percentage', 'sugar', 'Caffine'],
                         children: [],
                     },
                     {
                         label: 'Non-alcoholic',
                         value: 'Non-alcoholic',
+                        spec: ['sugar', 'Caffine'],
                         children: [],
                     },
                     {
@@ -932,16 +1041,19 @@ export const martCategories = [
                             {
                                 label: 'Accessories',
                                 value: 'Accessories',
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Bath Rug',
                                 value: 'Bath Rug',
+                                spec: ['size', 'color', 'thickness'],
                                 children: [],
                             },
                             {
                                 label: 'Towel',
                                 value: 'Towel',
+                                spec: ['size', 'color', 'thickness'],
                                 children: [],
                             },
                             {
@@ -954,30 +1066,36 @@ export const martCategories = [
                     {
                         label: 'Bedroom',
                         value: 'Bedroom',
+                        spec: ['size', 'color'],
                         children: [
                             {
                                 label: 'Bedspreads, Coverlets & Duvets',
                                 value: 'Bedspreads, Coverlets & Duvets',
+                                spec: ['size', 'color', 'thickness'],
                                 children: [],
                             },
                             {
                                 label: 'Blankets & Throws',
                                 value: 'Blankets & Throws',
+                                spec: ['size', 'color', 'thickness'],
                                 children: [],
                             },
                             {
                                 label: 'Decorative Pillows, Inserts & Covers',
                                 value: 'Decorative Pillows, Inserts & Covers',
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Kids Bedding',
                                 value: 'Kids Bedding',
+                                spec: ['width', 'height'],
                                 children: [],
                             },
                             {
                                 label: 'Mattress Pads & Protectors',
                                 value: 'Mattress Pads & Protectors',
+
                                 children: [],
                             },
                             {
@@ -1009,11 +1127,13 @@ export const martCategories = [
                             {
                                 label: 'Sink',
                                 value: 'Sink',
+                                spec: ['phase', 'color', 'size'],
                                 children: [],
                             },
                             {
                                 label: 'Shelves & Racks',
                                 value: 'Shelves & Racks',
+                                spec: ['color', 'size'],
                                 children: [],
                             },
                             {
@@ -1046,6 +1166,7 @@ export const martCategories = [
                     {
                         label: 'Indoor Decor',
                         value: 'Indoor Decor',
+                        spec: ['size', 'color'],
                         children: [
                             {
                                 label: 'Area Rugs, Runners & Pads',
@@ -1118,6 +1239,7 @@ export const martCategories = [
                     {
                         label: 'Suitcases',
                         value: 'Suitcases',
+                        spec: ['color'],
                         children: [
                             {
                                 label: 'Set',
@@ -1144,6 +1266,7 @@ export const martCategories = [
                     {
                         label: 'Business Bags',
                         value: 'Business Bags',
+                        spec: ['size', 'color', 'texture'],
                         children: [
                             {
                                 label: 'Business Bags',
@@ -1558,6 +1681,7 @@ export const martCategories = [
                             {
                                 label: 'Sanitize & First Aid',
                                 value: 'Sanitize & First Aid',
+                                spec: ['size', 'color', 'measurement'],
                                 children: [],
                             },
                             {
@@ -1585,11 +1709,13 @@ export const martCategories = [
                             {
                                 label: 'Natural Care',
                                 value: 'Natural Care',
+                                spec: ['size', 'color', 'measurement'],
                                 children: [],
                             },
                             {
                                 label: 'Lip & Skin Care',
                                 value: 'Lip & Skin Care',
+                                spec: ['size', 'color', 'measurement'],
                                 children: [],
                             },
                         ],
