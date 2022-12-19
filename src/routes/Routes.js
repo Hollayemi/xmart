@@ -50,6 +50,9 @@ const MyOrders = LazyLoading(() =>
 // auth Routes
 const SignUp = LazyLoading(() => import('../pages/auth/signup/SignUp'));
 const SignIn = LazyLoading(() => import('../pages/auth/signin'));
+const ForgotPass = LazyLoading(() => import('../pages/auth/forgot-password'));
+const ResetPassword = LazyLoading(() => import('../pages/auth/resetPassword'));
+const EmailSent = LazyLoading(() => import('../pages/auth/forgot-password/successMessage'));
 const Sell = LazyLoading(() => import('../pages/seller/seller/Home'));
 const Agent = LazyLoading(() => import('../pages/Agent/website/Home'));
 
@@ -98,6 +101,18 @@ const AppRoutes = () => {
                 {
                     path: '/signup',
                     element: <SignUp />,
+                },
+                {
+                    path: '/forgot-password',
+                    element: <ForgotPass />,
+                },
+                {
+                    path: '/email-sent',
+                    element: <EmailSent />,
+                },
+                {
+                    path: '/resetpassword',
+                    element: <ResetPassword />,
                 },
                 {
                     path: '/s/:category',

@@ -19,7 +19,8 @@ const RecentView = ({ userData }) => {
         pauseOnHover: true,
     };
     const dispatch = useDispatch();
-    const { myViews } = useSelector((state) => state.reducer.viewReducer);
+    const { myViews, ...viewInfo } = useSelector((state) => state.reducer.viewReducer);
+    console.log(myViews);
     const { cartData, status } = useSelector(
         (state) => state.reducer.cartedProduct
     );
@@ -27,40 +28,45 @@ const RecentView = ({ userData }) => {
     useEffect(() => {
         userData?._id && recentlyViewed(userData, dispatch)
     }, [])
-    let products = myViews?.length > 0 ? myViews.map((each, index) => {
-         let starSum = 0;
-            each.product.rate.map((res) => {
-                starSum = starSum + parseInt(res);
-            });
-            return (
-                <Product
-                    key={index}
-                    id={each.product._id}
-                    userId={userData._id}
-                    img={fakeImages['fakeImg' + (index + 1)]}
-                    sellingPrice={each.product.prodPrice}
-                    originalPrice={each.product.prodPrice}
-                    store={each.product.store}
-                    name={each.product.prodName}
-                    styles="w-48"
-                    myCarts={prodState}
-                    totReview={each.product.rate.length}
-                    star={parseInt(starSum / each.product.rate.length)}
-                    distance={each.product.distance ? each.product.distance.toFixed(2) + ' km' : ''}
-                />
-            );
-    }) : (
-            <Loader />
-        );
-    
+    console.log(myViews);
+    let products = 
+        myViews?.length > 0 ? myViews.map((each, index) => {
+            let starSum = 0;
+                each.product.rate.map((res) => {
+                    starSum = starSum + parseInt(res);
+                });
+                return (
+                    <Product
+                        key={index}
+                        id={each.product._id}
+                        userId={userData._id}
+                        img={fakeImages['fakeImg' + (index + 1)]}
+                        sellingPrice={each.product.prodPrice}
+                        originalPrice={each.product.prodPrice}
+                        store={each.product.store}
+                        name={each.product.prodName}
+                        styles="w-48"
+                        myCarts={prodState}
+                        totReview={each.product.rate.length}
+                        star={parseInt(starSum / each.product.rate.length)}
+                        distance={each.product.distance ? each.product.distance.toFixed(2) + ' km' : ''}
+                    />
+                );
+        }) : (
+                <div>No Order Preview Available</div>
+            )
+        
     return (
         <>
-            <h5>No Order Preview Available</h5>
             <div className="flex items-center justify-center">
                 <div className=" py-3 border-y-2 border-white bg-slate-100 w-11/12 ">
-                    <Slider {...settings}>
-                        {products}
-                    </Slider>
+                    {viewInfo.status === 'FULFILLED' ?
+                        <Slider {...settings} className="w-full">
+                            {products}
+                        </Slider>
+                    : (
+                        <div className="w-full text-center"><Loader /></div>
+                    )}
                 </div>
             </div>
         </>

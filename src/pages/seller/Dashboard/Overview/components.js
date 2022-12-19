@@ -1,9 +1,10 @@
+import React from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 import { Placeholder } from 'rsuite';
 
 export const SmallCard = ({ total, icon, info }) => {
     return (
-        <div className="w-52 mx-2 my-3 h-20 shadow-md rounded flex items-center justify-evenly cursor-pointer hover:bg-gray-50 bg-white">
+        <div className="w-56 mx-2 my-3 h-24 shadow-md rounded flex items-center justify-evenly cursor-pointer hover:bg-gray-50 bg-white">
             <i className="w-10 h-10 text-2xl ll rounded-full flex items-center justify-center bg-blue-100 text-blue-400">
                 {icon}
             </i>
@@ -16,11 +17,11 @@ export const SmallCard = ({ total, icon, info }) => {
 };
 
 export const ChangeTime = ({ prevDate }) => {
-    let at = prevDate.split('T')[1].split(':');
-    const exactTime = at[0] + ':' + at[1];
+    const at = prevDate.split('T')[1].split(':');
+    const exactTime = `${at[0]}:${at[1]}`;
     prevDate = new Date(prevDate);
-    let newDate = new Date();
-    let timeDiff = newDate.getTime() - prevDate.getTime();
+    const newDate = new Date();
+    const timeDiff = newDate.getTime() - prevDate.getTime();
     let period = Math.floor(timeDiff / (1000 * 60));
 
     let realTime;
@@ -28,28 +29,21 @@ export const ChangeTime = ({ prevDate }) => {
         period = Math.floor(timeDiff / (1000 * 3600));
         if (period > 23) {
             if (period > 720) {
-                realTime = Math.floor(period / 30) + ' months ago';
+                realTime = `${Math.floor(period / 30)} months ago`;
+            } else if (Math.floor(Math.floor(period) / 24) > 1) {
+                realTime = `${Math.floor(Math.floor(period) / 24)} days ago`;
             } else {
-                if (Math.floor(Math.floor(period) / 24) > 1) {
-                    realTime =
-                        Math.floor(Math.floor(period) / 24) + ' days ago';
-                } else {
-                    realTime = `yesterday at ${exactTime}`;
-                }
+                realTime = `yesterday at ${exactTime}`;
             }
         } else {
-            realTime = Math.floor(period) + ' hours ago';
+            realTime = `${Math.floor(period)} hours ago`;
         }
+    } else if (Math.floor(period) > 59) {
+        realTime = `${Math.floor(period / 60)} hours ago`;
+    } else if (Math.floor(period) > 0) {
+        realTime = `${Math.floor(period)} minutes ago`;
     } else {
-        if (Math.floor(period) > 59) {
-            realTime = Math.floor(period / 60) + ' hours ago';
-        } else {
-            if (Math.floor(period) > 0) {
-                realTime = Math.floor(period) + ' minutes ago';
-            } else {
-                realTime = ' Just now';
-            }
-        }
+        realTime = ' Just now';
     }
 
     return realTime;
@@ -77,14 +71,14 @@ export const Activities = ({ activities, header, title, shopOwner }) => {
                             >
                                 You {res.event}d a{' '}
                                 {res.event !== 'delete'
-                                    ? 'new ' + res.action
+                                    ? `new ${res.action}`
                                     : res.action}{' '}
-                                {<ChangeTime prevDate={res.createdAt} />}
+                                <ChangeTime prevDate={res.createdAt} />
                             </h5>
                         ) : (
                             <h5 className="text-md text-slate-500 text-md">
                                 Last Login was{' '}
-                                {<ChangeTime prevDate={res.createdAt} />}
+                                <ChangeTime prevDate={res.createdAt} />
                             </h5>
                         )}
                     </div>

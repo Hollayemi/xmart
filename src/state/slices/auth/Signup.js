@@ -7,11 +7,13 @@ export const RegNewUser = createAsyncThunk(
     async (payload) => {
         console.log(payload);
         const { data } = await martApi
-            .post('/createAcc', { payload }, {})
+            .post('/user/createAcc', payload, {})
             .then((e) => {
+                console.log(e);
                 return e;
             })
             .catch((err) => {
+                console.log(err);
                 return err.response;
             });
         return data;

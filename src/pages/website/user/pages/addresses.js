@@ -6,7 +6,7 @@ import UserWrapper from '../wrapper';
 const MyAdresses = () => {
     const { userData } = useSelector((state) => state.reducer.loginReducer);
     return (
-        <UserWrapper>
+        <UserWrapper userData={userData}>
             <div className="w-full">
                 <AddressBook userId={userData._id} setAddress={() => {}} />
             </div>

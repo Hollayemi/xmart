@@ -99,7 +99,7 @@ export const SignInForm = ({ going, popUp }) => {
                             placeholder="**********"
                         />
                     </Row>
-                    <HelperText linkText="Forgot Password?" />
+                    <HelperText linkTo="/forgot-password" linkText="Forgot Password?" />
                     <Row className="relative bottom-0 mt-auto">
                         <Button
                             onClick={loginHandler}

@@ -11,9 +11,10 @@ const Analytics = ({ neededInfo, token }) => {
     const { userData } = useSelector((state) => state.reducer.loginReducer);
     const [tools, setTools] = useState('');
     useEffect(() => {
-        const { userId, _id } = neededInfo;
-        getMyTools(dispatch, _id, userData.accessToken, userData._ID, setTools);
+        const { id } = neededInfo.shopData;
+        getMyTools(dispatch, id, userData, setTools);
     }, []);
+    console.log(tools);
     return (
         <main className="w-full bg-gray-50">
             <div className="flex items-center flex-wrap mx-2 justify-center">

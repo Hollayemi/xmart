@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { TopTitle } from '../../../../components/SellerComponents/Dashboard/topTitle';
 import { getActivities } from '../../../../state/slices/shop/overview';
 import { Activities } from '../Overview/components';
 
 const ActivitiesPage = ({ neededInfo }) => {
-    console.log(neededInfo);
     const dispatch = useDispatch();
     const [activities, setActivities] = useState();
     console.log(activities);
@@ -18,8 +18,13 @@ const ActivitiesPage = ({ neededInfo }) => {
     }, []);
 
     return (
-        <section className="bg-white mt-3 px-2 md:px-5 lg:w-[calc(100%-280px)] h-[90vh] w-full min-w-[80px] overflow-auto">
-            <div className="w-full">
+        <section className="px-6 md:px-5 lg:w-[calc(100%-280px)] h-[90vh] w-full min-w-[80px] overflow-auto">
+            <TopTitle
+                header="Information"
+                title="Activities"
+                info="Most Recent List Of Activitie"
+            />
+            <div className="w-full mt-6">
                 <Activities
                     activities={activities}
                     header="Recent Activities"

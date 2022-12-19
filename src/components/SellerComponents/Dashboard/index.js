@@ -476,7 +476,7 @@ const DashboardWrapper = ({ ...props }) => {
                                     open={open}
                                 />
                             </div>
-                            <div className="w-full z-30 bg-slate-100 mt-16">
+                            <div className="w-full z-30 bg-slate-100 mt-14">
                                 {props.children}
                             </div>
                             {showing !== '0_Analytics' &&

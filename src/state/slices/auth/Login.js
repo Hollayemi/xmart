@@ -4,9 +4,10 @@ import martApi from '../api/baseApi';
 import { Message, toaster } from 'rsuite';
 
 const kem_signin = createAsyncThunk('post/kem_signin', async (payload) => {
+    console.log(payload);
     const { data } = await martApi
-        .post('/signin', {
-            payload,
+        .post('/user/login', {
+            ...payload,
         })
         .then((res) => {
             return res;
@@ -46,7 +47,7 @@ const UserSlice = createSlice({
         [kem_signin.fulfilled]: (state, { payload }) => {
             return {
                 ...initialState,
-                userData: payload,
+                userData: {...payload.user},
                 status: REQUEST_STATUS.FULFILLED,
                 loading: false,
             };
@@ -79,6 +80,7 @@ export const myLogin = (formData, navigate, dispatch, wasGoing) => {
     dispatch(kem_signin(formData))
         .then(unwrapResult)
         .then((res) => {
+            console.log(res);
             toaster.push(
                 <Message showIcon type={res.type}>
                     {res.message}

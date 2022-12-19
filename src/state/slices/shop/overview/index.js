@@ -20,7 +20,7 @@ export const myActivities = createAsyncThunk(
 
 export const myTools = createAsyncThunk('post/myTools', async (payload) => {
     const { data } = await martApi
-        .patch(`/myTools/` + payload.id, payload.body, {
+        .patch(`/myTools/` + payload.body.shopId, payload.body, {
             headers: { auth: payload.auth },
         })
         .then((res) => {
@@ -42,6 +42,7 @@ export const getActivities = (dispatch, shopID, otpData, setState) => {
     dispatch(myActivities(payload))
         .then(unwrapResult)
         .then((res) => {
+            console.log(res);
             setState(res);
         })
         .catch((err) => {
@@ -49,17 +50,17 @@ export const getActivities = (dispatch, shopID, otpData, setState) => {
         });
 };
 
-export const getMyTools = (dispatch, shopId, token, id, setState) => {
+export const getMyTools = (dispatch, shopId, userData, setState) => {
     const payload = {
-        id: shopId,
         body: {
             shopId: shopId,
         },
-        auth: id + ' ' + token,
+        auth: userData._id + ' ' + userData.accessToken,
     };
     dispatch(myTools(payload))
         .then(unwrapResult)
         .then((res) => {
+            console.log(res);
             res.type !== 'error' && setState(res.message[0]);
         })
         .catch((err) => {

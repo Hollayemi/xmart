@@ -17,7 +17,7 @@ import PurchaseProduct from './xtar/X_product';
 import Unsupplied from './Status/Unsupplied';
 import Carted from './Status/Carted';
 import Supplied from './Status/Supplied';
-import Setting from './Settings';
+import StoreProfile from './Settings/profile';
 import Analytics from './Analytics';
 import Overview from './Overview';
 import EntryMode from './Settings/entryMode';
@@ -88,6 +88,78 @@ const Dashboard = () => {
             return true;
         });
     }
+
+    let displaying = <Overview neededInfo={neededInfo} />;
+    switch (splitedShowing[1]) {
+        case "Dashboard":
+            displaying = <Overview neededInfo={neededInfo} />;
+            break;
+        case "Analytics":
+            displaying = <Analytics neededInfo={neededInfo} />;
+            break;
+        case "Brands":
+            displaying = <Brand
+                neededInfo={neededInfo}
+                myBrands={files.myBrand}
+                loadedCateg={files.myCategories}
+                setShowing={setShowing}
+            />;
+            break;
+        case "Collections":
+            displaying = <Collections
+                collections={files.myCategories}
+                neededInfo={neededInfo}
+            />;
+            break;
+        case "Products":
+            displaying = <Products
+                myBrandData={myBrandData}
+                dispatch={dispatch}
+                allProducts={files.allProducts}
+                neededInfo={neededInfo}
+                showingInfo={showingInfo}
+            />;
+            break;
+        case "My store":
+            displaying = <EditProduct
+                setShowing={setShowing}
+                store={neededInfo.shopData.data.store}
+                setShowingInfo={setShowingInfo}
+            />;
+            break;
+        case "Xtra Brand":
+            displaying = <PurchaseBrand shopData={shopData} />;
+            break;
+        case "Xtra Product":
+            displaying = <PurchaseProduct shopData={shopData} />;
+            break;
+        case "Xtra Collection":
+            displaying = <PurchaseCollection shopData={shopData} />;
+            break;
+        case "Unsupplied Products":
+            displaying = <Unsupplied />;
+            break;
+        case "Carted Products":
+            displaying = <Carted />;
+            break;
+        case "Supplied Products":
+            displaying = <Supplied />;
+            break;
+        case "Edit Store Info":
+            displaying = <StoreProfile neededInfo={neededInfo} />;
+            break;
+        case "Entry Mode":
+            displaying = <EntryMode neededInfo={neededInfo} />;
+            break;
+        case "Reference Keys":
+            displaying = <ReferenceKey id={shopData.id}/>;
+            break;
+        case "Activities":
+            displaying = <ActivitiesPage neededInfo={neededInfo} />;
+            break;
+        default:
+            break;
+    }
     return (
         <div className="bg-slate-300">
             <DashboardWrapper
@@ -99,70 +171,7 @@ const Dashboard = () => {
                 otpData={otpData}
                 prodNum={files.allProducts && files.allProducts.message.length}
             >
-                {showing === 'Dashboard' && (
-                    <Overview neededInfo={neededInfo} />
-                )}
-                {splitedShowing[1] === 'Analytics' && (
-                    <Analytics neededInfo={neededInfo} />
-                )}
-                {splitedShowing[1] === 'Brands' && (
-                    <Brand
-                        neededInfo={neededInfo}
-                        myBrands={files.myBrand}
-                        loadedCateg={files.myCategories}
-                        setShowing={setShowing}
-                    />
-                )}
-                {splitedShowing[1] === 'Collections' && (
-                    <Collections
-                        collections={files.myCategories}
-                        neededInfo={neededInfo}
-                    />
-                )}
-                {splitedShowing[1] === 'Products' && (
-                    <Products
-                        myBrandData={myBrandData}
-                        dispatch={dispatch}
-                        allProducts={files.allProducts}
-                        neededInfo={neededInfo}
-                        showingInfo={showingInfo}
-                    />
-                )}
-                {splitedShowing[1] === 'My store' && (
-                    <EditProduct
-                        setShowing={setShowing}
-                        store={neededInfo.shopData.data.store}
-                        setShowingInfo={setShowingInfo}
-                    />
-                )}
-                {splitedShowing[1] === 'Xtra Brand' && (
-                    <PurchaseBrand shopData={shopData} />
-                )}
-                {splitedShowing[1] === 'Xtra Product' && (
-                    <PurchaseProduct shopData={shopData} />
-                )}
-                {splitedShowing[1] === 'Xtra Collection' && (
-                    <PurchaseCollection shopData={shopData} />
-                )}
-                {splitedShowing[1] === 'Unsupplied Products' && <Unsupplied />}
-                {splitedShowing[1] === 'Carted Products' && <Carted />}
-                {splitedShowing[1] === 'Supplied Products' && <Supplied />}
-                {splitedShowing[1] === 'Edit Store Info' && (
-                    <Setting neededInfo={neededInfo} />
-                )}
-                {splitedShowing[1] === 'Entry Mode' && (
-                    <EntryMode neededInfo={neededInfo} />
-                )}
-                {splitedShowing[1] === 'Reference Keys' && (
-                    <ReferenceKey id={shopData.id} />
-                )}
-                {splitedShowing[1] === 'Activities' && (
-                    <ActivitiesPage neededInfo={neededInfo} />
-                )}
-
-                {/*  */}
-                {/*  */}
-                {/*  */}
+                {displaying}
                 {otpStatus !== REQUEST_STATUS.VERIFIED && (
                     <ModalPanel
                         title="Dashboard Authorization"

@@ -20,7 +20,7 @@ export const NotRegPreview = ({ userData }) => {
                     <>
                         <div className="border relative rounded-full w-24 h-24 py-2">
                             <img
-                                src={userData && userData.avatar.display}
+                                src={userData?.avatar?.display}
                                 alt="avartar"
                                 className="w-full h-full rounded-full border"
                             />

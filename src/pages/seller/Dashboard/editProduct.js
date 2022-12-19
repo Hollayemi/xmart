@@ -26,7 +26,7 @@ const EditProduct = ({ store, setShowing, setShowingInfo, verify }) => {
     }, []);
 
     return (
-        <section className="min-h-screen pb-10 lg:w-[calc(100%-280px)]">
+        <section className="min-h-screen pb-10 pt-4 lg:w-[calc(100%-280px)]">
             {allProducts.map((res, index) => {
                 return (
                     <section className="px-4 mt-8" key={index}>

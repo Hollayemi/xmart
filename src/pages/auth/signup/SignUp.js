@@ -56,7 +56,7 @@ const KemSignUp = () => {
     const submitButton = () => {
         if (formData.password === formData.conf_pass) {
             const { conf_pass, ...others } = formData;
-            dispatch(RegNewUser({ ...others, isSeller: false }))
+            dispatch(RegNewUser(others))
                 .then(unwrapResult)
                 .then((res) => {
                     res.type &&
