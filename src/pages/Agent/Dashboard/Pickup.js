@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaUser, FaUserEdit } from 'react-icons/fa';
+import { TopTitle } from '../../../components/SellerComponents/Dashboard/topTitle';
 import {
     DatePicker,
     IconButton,
@@ -44,8 +45,13 @@ const Pickup = () => {
         setStep(nextStep < 0 ? 0 : nextStep > 3 ? 3 : nextStep);
     };
     return (
-        <section className="bg-white overflow-x-auto">
-            <div className="flex flex-col min-w-[270px] md:justify-center md:justify-evenly md:flex-row mx-1 md:mx-5 my-6 rounded-md">
+        <section className="bg-white px-7 py-3 overflow-x-auto">
+            <TopTitle
+                header="Reward"
+                title="Bank Details"
+                info="Kindly submit your bank info"
+            />
+            <div className="flex bg-slate-50 mt-4 flex-col min-w-[270px] md:justify-center md:justify-evenly md:flex-row mx-1 py-8 my-6 rounded-md">
                 <div className="flex justify-center w-full mb-6 md:mb-2 md:w-2/5">
                     <img src={PickupImage} alt={'nairaImage'} width="h-auto" />
                 </div>

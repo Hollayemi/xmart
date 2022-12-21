@@ -7,6 +7,7 @@ import PlaceholderGrid from 'rsuite/esm/Placeholder/PlaceholderGrid';
 import Loading from '../../../components/elements/Loading';
 import { Verification } from '../../../components/SellerComponents/Dashboard/RecentInfo';
 import { fetchShopInfo, toDashboard } from '../../../state/slices/shop/addShop';
+import { logout } from '../../../state/slices/auth/Login';
 import { getMyTools } from '../../../state/slices/shop/overview';
 import { Graph2 } from '../../seller/Dashboard/Analytics/components';
 
@@ -85,7 +86,7 @@ export const StorePreview = ({ userData }) => {
                         <div className="w-full">
                             <ShopAnalytics
                                 userData={userData}
-                                shopID={data._id}
+                                shopId={data._id}
                             />
                         </div>
                     </>
@@ -115,8 +116,7 @@ export const ShopAnalytics = ({ userData, shopId }) => {
         getMyTools(
             dispatch,
             shopId,
-            userData.accessToken,
-            userData._id,
+            userData,
             setTools
         );
     }, [shopId, userData, dispatch]);
@@ -175,7 +175,9 @@ export const ShopAnalytics = ({ userData, shopId }) => {
             </div>
         </section>
     ) : (
-        <Loading speed="fast" />
+        <div className="w-full flex justify-center mt-5">
+            <Loading speed="fast" />
+        </div>
     );
 };
 
@@ -204,7 +206,6 @@ export const accountLinks1 = [
     'Communication Preferences',
     'Notifications',
     'Change Account Information',
-    'Logout',
 ];
 export const accountLinks2 = ['Change Your Password', 'Email Addresses'];
 
@@ -229,6 +230,12 @@ export const AccountAdjustment = ({ title, links }) => {
                         </div>
                     </Link>
                 ))}
+                <div onClick={logout} className="flex hover:text-blue-600 items-center justify-between px-2 py-1">
+                    <h5>Logout</h5>
+                    <i>
+                        <FaAngleRight />
+                    </i>
+                </div>
             </div>
         </section>
     );

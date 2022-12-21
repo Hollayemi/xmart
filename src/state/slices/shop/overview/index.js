@@ -42,12 +42,9 @@ export const getActivities = (dispatch, shopID, otpData, setState) => {
     dispatch(myActivities(payload))
         .then(unwrapResult)
         .then((res) => {
-            console.log(res);
             setState(res);
         })
-        .catch((err) => {
-            console.log(err.response);
-        });
+        .catch((err) => {});
 };
 
 export const getMyTools = (dispatch, shopId, userData, setState) => {
@@ -60,12 +57,9 @@ export const getMyTools = (dispatch, shopId, userData, setState) => {
     dispatch(myTools(payload))
         .then(unwrapResult)
         .then((res) => {
-            console.log(res);
             res.type !== 'error' && setState(res.message[0]);
         })
-        .catch((err) => {
-            console.log(err.response);
-        });
+        .catch((err) => {});
 };
 /*
 
@@ -177,5 +171,42 @@ export const storeCarts = (dispatch, store, otpData, setState) => {
     dispatch(storeCartsApi(payload))
         .then(unwrapResult)
         .then((res) => res.type === 'success' && setState(res.message))
+        .catch((err) => {});
+};
+
+
+//
+//
+//
+//
+//
+//
+export const storeOrdersApi = createAsyncThunk(
+    'post/fetchStoreCarts',
+    async (payload) => {
+        const { data } = await martApi
+            .post('/store/order-request', payload.body, {
+                headers: { auth: payload.auth },
+            })
+            .then((res) => {
+                return res;
+            })
+            .catch((e) => {
+                return e.response;
+            });
+        return data;
+    }
+);
+
+export const OrderRequestsHandler = (dispatch, store, otpData, setState) => {
+    const payload = {
+        body: {
+            store: store,
+        },
+        auth: otpData.id + ' ' + otpData.accessToken,
+    };
+    dispatch(storeOrdersApi(payload))
+        .then(unwrapResult)
+        .then((res) => res.type === 'success' && setState(res.data))
         .catch((err) => {});
 };

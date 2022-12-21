@@ -164,6 +164,7 @@ const Checkout = () => {
                                             myPickers={myPickers}
                                             userId={userData._id}
                                             auth={auth}
+                                            shippingAddress={address}
                                         />
                                     );
                                 })}

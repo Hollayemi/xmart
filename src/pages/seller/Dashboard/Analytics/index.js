@@ -14,7 +14,6 @@ const Analytics = ({ neededInfo, token }) => {
         const { id } = neededInfo.shopData;
         getMyTools(dispatch, id, userData, setTools);
     }, []);
-    console.log(tools);
     return (
         <main className="w-full bg-gray-50">
             <div className="flex items-center flex-wrap mx-2 justify-center">

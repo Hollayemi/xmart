@@ -5,28 +5,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Placeholder, Table } from 'rsuite';
 import { TopTitle } from '../../../../components/SellerComponents/Dashboard/topTitle';
 import {
-    getActivities,
     getMyTools,
+    OrderRequestsHandler,
 } from '../../../../state/slices/shop/overview';
 import { SmallCard } from './components';
 
 const Overview = ({ neededInfo }) => {
     const { userData } = useSelector((state) => state.reducer.loginReducer);
-    console.log(neededInfo.shopData.id);
+    const {shopData, otpData} = neededInfo;
     const dispatch = useDispatch();
-    const [activities, setActivities] = useState();
+    const [OrderRequest, setOrders] = useState(null);
     const [tools, setTools] = useState('');
-    console.log(activities);
+    const [activeTab, setActiveTab] = useState('Pending');
+    const StatusTab = ({ name, showing}) => (
+        <h5 onClick={() => setActiveTab(name)}
+            className={`text-sm py-2 cursor-pointer font-[400] text-slat-800 px-4 rounded-t-md ${showing && 'bg-white text-slate-800'}`}
+        >
+            {name}
+        </h5>
+    )
+    console.log(shopData.data.store);
     useEffect(() => {
-        getActivities(
-            dispatch,
-            neededInfo.shopData.id,
-            neededInfo.otpData,
-            setActivities
-        );
-        getMyTools(dispatch, neededInfo.shopData.id, userData, setTools);
+        getMyTools(dispatch, shopData.id, userData, setTools);
+        OrderRequestsHandler(dispatch, shopData.data.store, otpData, setOrders)
     }, []);
-    console.log(tools);
+    console.log(OrderRequest);
     return (
         <section className="min-h-[100vh] p-3">
             <div className="m-2 md:m-5 mt-16">
@@ -92,34 +95,41 @@ const Overview = ({ neededInfo }) => {
                 </div>
             </div> */}
             <div className="flex flex-col justify-center mt-10 w-full bg-slate-50">
-                <h5 className="text-md py-3 font-bold text-slat-800 px-2">Order Status</h5>
+                <div className="flex items-center justify-between mr-3 w-full">
+                    <h5 className="text-md py-2 font-bold text-slat-800 px-2 pt-3">Order Request</h5>
+                    <div className="flex items-center ml-16 mt-2">
+                        <StatusTab name="Pending" showing={activeTab === 'Pending'} />
+                        <StatusTab name="Delivered" showing={activeTab === 'Delivered'} />
+                        <StatusTab name="Cancelled" showing={activeTab === 'Cancelled'} />
+                    </div>
+                </div>
                 <div className="w-full md:full shadow-lg">
                     <Table height={400} data={[]} onRowClick={(info) => {}}>
                         <Table.Column width={50} fixed>
                             <Table.HeaderCell>s/n</Table.HeaderCell>
                             <Table.Cell dataKey="id" />
                         </Table.Column>
-                        <Table.Column width={100} fixed>
-                            <Table.HeaderCell>Name</Table.HeaderCell>
+                        <Table.Column width={200} fixed>
+                            <Table.HeaderCell>Picker Name</Table.HeaderCell>
                             <Table.Cell dataKey="name" />
                         </Table.Column>
 
                         <Table.Column width={200}>
-                            <Table.HeaderCell>Event</Table.HeaderCell>
+                            <Table.HeaderCell>Order ID</Table.HeaderCell>
                             <Table.Cell dataKey="event" />
                         </Table.Column>
 
                         <Table.Column width={200}>
-                            <Table.HeaderCell>Action</Table.HeaderCell>
+                            <Table.HeaderCell>Description</Table.HeaderCell>
                             <Table.Cell dataKey="action" />
                         </Table.Column>
 
-                        <Table.Column width={200}>
-                            <Table.HeaderCell>Status</Table.HeaderCell>
+                        <Table.Column width={100}>
+                            <Table.HeaderCell>Quantity</Table.HeaderCell>
                             <Table.Cell dataKey="status" />
                         </Table.Column>
-                        <Table.Column width={300}>
-                            <Table.HeaderCell>Info</Table.HeaderCell>
+                        <Table.Column width={200}>
+                            <Table.HeaderCell>Action</Table.HeaderCell>
                             <Table.Cell dataKey="info" />
                         </Table.Column>
                         <Table.Column width={200} fixed="right">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaUserEdit } from 'react-icons/fa';
 import onlinePayment from '../../../assets/images/png/onlinePayment.png';
 import InputGroup from '../../../components/elements/Input/InputGroup';
+import { TopTitle } from '../../../components/SellerComponents/Dashboard/topTitle';
 import Footer from '../../../components/websiteCompoents/Footer';
 const Reward = ({ data }) => {
     console.log(data);
@@ -25,8 +26,13 @@ const Reward = ({ data }) => {
         });
     }
     return (
-        <section className="bg-white overflow-x-auto">
-            <div className="flex flex-col min-w-[270px] md:flex-row mx-1 md:mx-5 my-6 rounded-md">
+        <section className="bg-white overflow-x-auto p-3 px-5">
+            <TopTitle
+                header="Reward"
+                title="Bank Details"
+                info="Kindly submit your bank info"
+            />
+            <div className="flex bg-slate-50 mt-4 flex-col min-w-[270px] md:flex-row mx-1 py-4 y-6 rounded-md">
                 <div className="flex justify-center w-full mb-6 md:mb-2 md:w-2/5">
                     <img src={onlinePayment} alt={'nairaImage'} />
                 </div>

@@ -35,6 +35,10 @@ const UserSlice = createSlice({
         wasGoing: (state, { payload }) => {
             return { ...initialState, wasGoing: payload };
         },
+        logout: () => {
+            alert('here');
+            return initialState;
+        }
     },
     extraReducers: {
         [kem_signin.pending]: (state) => {
@@ -62,7 +66,7 @@ const UserSlice = createSlice({
     },
 });
 
-export const { setUsers, wasGoing } = UserSlice.actions;
+export const { setUsers, wasGoing, logout } = UserSlice.actions;
 
 // export states
 export default UserSlice.reducer;

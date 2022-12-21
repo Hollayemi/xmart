@@ -9,17 +9,34 @@ import {
 } from '../../../state/slices/home/cart/function';
 import { addNewOrder } from '../../../state/slices/home/order';
 
-export const GroupCart = ({ eachStore, myPickers, userId, auth }) => {
+export const GroupCart = (prop) => {
+    const { eachStore, myPickers, userId, auth, shippingAddress } = prop
     const [picker, setPicker] = useState(null);
     const dispatch = useDispatch();
-    let storeCart = eachStore.group.map((eachCart) => eachCart._id);
+    let storeProducts = eachStore.group.map((eachCart) => { 
+        return {
+            name: eachCart.result.prodName,
+            id: eachCart._id,
+            quantity: eachCart.quantity
+        }
+    });
+    console.log("eachStore", eachStore);
+    console.log("address", shippingAddress);
+    const paymentInfo = {
+        redirurl: 'redirurl',
+        txnId: 'txnId',
+        tnxref: 'tnxref',
+    }
 
     const body = {
-        storeCart: storeCart,
-        userId: userId,
-        picker: picker,
+        storeProducts: storeProducts,
+        paymentInfo,
+        userId,
+        picker,
+        shippingAddress,
         store: eachStore._id.store,
         size: eachStore.group.length,
+        totalAmount: eachStore.storeCheckout,
     };
     return (
         <section className="mb-6 shadow mt-2">

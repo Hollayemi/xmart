@@ -180,7 +180,6 @@ export const toDashboard = (userData, dispatch, navigate) => {
     dispatch(getShopInfo(payload))
         .then(unwrapResult)
         .then((res) => {
-            console.log(res);
             dispatch(otpHandler(res.id))
                 .then(unwrapResult)
                 .then((res) => {
