@@ -113,12 +113,7 @@ export const ShopAnalytics = ({ userData, shopId }) => {
     const dispatch = useDispatch();
     const [tools, setTools] = useState(null);
     useEffect(() => {
-        getMyTools(
-            dispatch,
-            shopId,
-            userData,
-            setTools
-        );
+        getMyTools(dispatch, shopId, userData, setTools);
     }, [shopId, userData, dispatch]);
     return tools ? (
         <section className="flex justify-center mt-6 items-center w-full h-20 w-full">
@@ -230,7 +225,10 @@ export const AccountAdjustment = ({ title, links }) => {
                         </div>
                     </Link>
                 ))}
-                <div onClick={logout} className="flex hover:text-blue-600 items-center justify-between px-2 py-1">
+                <div
+                    onClick={logout}
+                    className="flex hover:text-blue-600 items-center justify-between px-2 py-1"
+                >
                     <h5>Logout</h5>
                     <i>
                         <FaAngleRight />

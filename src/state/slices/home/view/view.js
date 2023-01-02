@@ -22,14 +22,10 @@ export const addNewView = (productId, userData, dispatch) => {
             userId: userData._id,
         },
         auth: userData._id + ' ' + userData.accessToken,
-    }
+    };
     dispatch(newView(payload))
         .then(unwrapResult)
-        .then(
-            (res) =>
-                res.type === 'success' &&
-                console.log('added')
-        )
+        .then((res) => res.type === 'success' && console.log('added'))
         .catch((e) => {});
 };
 
@@ -38,16 +34,19 @@ export const addNewView = (productId, userData, dispatch) => {
 //
 //
 
-
 const getViewApi = createAsyncThunk('post/recentlyViewed', async (payload) => {
     const { data } = await martApi
-        .patch('/recentlyView/' + payload.userId, {}, { headers: { auth: payload.auth } })
+        .patch(
+            '/recentlyView/' + payload.userId,
+            {},
+            { headers: { auth: payload.auth } }
+        )
         .then((e) => {
             console.log(e);
             return e;
         })
         .catch((e) => {
-            console.log(e.response)
+            console.log(e.response);
             return e.response;
         });
     return data;
@@ -56,7 +55,6 @@ const getViewApi = createAsyncThunk('post/recentlyViewed', async (payload) => {
 const initialState = {
     myViews: {},
 
-    
     status: 'idle',
     error: '',
 };
@@ -88,7 +86,7 @@ export const recentlyViewed = (userData, dispatch) => {
     const payload = {
         userId: userData._id,
         auth: userData._id + ' ' + userData.accessToken,
-    }
+    };
     console.log(payload);
     dispatch(getViewApi(payload));
 };

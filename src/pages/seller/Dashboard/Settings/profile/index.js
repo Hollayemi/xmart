@@ -8,7 +8,8 @@ import { TopTitle } from '../../../../../components/SellerComponents/Dashboard/t
 import { editShopHandler } from '../../../../../state/slices/shop/settings/editShop';
 const StoreProfile = ({ neededInfo }) => {
     const { shopData } = useSelector((state) => state.reducer.setShopReducer);
-    const {_id, isVerified, shopName, shopEmail, shopLine, Location,} = shopData?.data;
+    const { _id, isVerified, shopName, shopEmail, shopLine, Location } =
+        shopData?.data;
     const [edit, setEdit] = useState(false);
     console.log(shopData);
     const [formData, setFormData] = useState({
@@ -88,7 +89,10 @@ const StoreProfile = ({ neededInfo }) => {
                                         disabled={!edit}
                                         required={edit}
                                         onChange={(e) =>
-                                            updateValue(e.target.value, 'shop_name')
+                                            updateValue(
+                                                e.target.value,
+                                                'shop_name'
+                                            )
                                         }
                                     />
                                 </div>
@@ -121,7 +125,10 @@ const StoreProfile = ({ neededInfo }) => {
                                         disabled={!edit}
                                         required={edit}
                                         onChange={(e) =>
-                                            updateValue(e.target.value, 'buzz_line')
+                                            updateValue(
+                                                e.target.value,
+                                                'buzz_line'
+                                            )
                                         }
                                     />
                                 </div>
@@ -153,7 +160,10 @@ const StoreProfile = ({ neededInfo }) => {
                                         disabled={!edit}
                                         required={edit}
                                         onChange={(e) =>
-                                            updateValue(e.target.value, 'buzz_city')
+                                            updateValue(
+                                                e.target.value,
+                                                'buzz_city'
+                                            )
                                         }
                                     />
                                 </div>
@@ -202,7 +212,10 @@ const StoreProfile = ({ neededInfo }) => {
                                         required={edit}
                                         value={formData.street}
                                         onChange={(e) =>
-                                            updateValue(e.target.value, 'Location')
+                                            updateValue(
+                                                e.target.value,
+                                                'Location'
+                                            )
                                         }
                                     />
                                 </div>
@@ -219,19 +232,33 @@ const StoreProfile = ({ neededInfo }) => {
                         </div>
                     </div>
                     <div className="w-full xl:w-2/5 mb-5 bg-slate-50 xl:ml-5 rounded-md p-2 py-4 ">
-                        <h5 className="font-bold text-black text-md">Your Account Status</h5>
+                        <h5 className="font-bold text-black text-md">
+                            Your Account Status
+                        </h5>
                         <div className="w-full flex flex-row xl:flex-col flex-wrap mt-4">
                             <div className="w-40 mb-3">
-                                <h5 className="text-slate-600 text-md mb-1">Store</h5>
+                                <h5 className="text-slate-600 text-md mb-1">
+                                    Store
+                                </h5>
                                 <div
-                                    className={`h-8 w-full rounded-md px-3 flex items-center justify-center bg-${isVerified ? 'green' : 'red'}-500 text-white`}
+                                    className={`h-8 w-full rounded-md px-3 flex items-center justify-center bg-${
+                                        isVerified ? 'green' : 'red'
+                                    }-500 text-white`}
                                 >
-                                    {isVerified ? 'Store Verified' : 'Store Not Verified'}
+                                    {isVerified
+                                        ? 'Store Verified'
+                                        : 'Store Not Verified'}
                                 </div>
                             </div>
                             <div className="mb-3 ml-3 xl:ml-0">
-                                <h5 className="text-slate-600 text-md mb-1">Store Rating</h5>
-                                <Rate defaultValue={4} size="xs" onChangeActive={()=>{}} />{' '}
+                                <h5 className="text-slate-600 text-md mb-1">
+                                    Store Rating
+                                </h5>
+                                <Rate
+                                    defaultValue={4}
+                                    size="xs"
+                                    onChangeActive={() => {}}
+                                />{' '}
                                 <span>( {texts[4]} )</span>
                             </div>
                         </div>

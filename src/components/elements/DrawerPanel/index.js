@@ -42,7 +42,7 @@ const DrawerPanel = ({
                     !light
                         ? 'bg-slate-900 text-slate-100'
                         : 'bg-slate-50 text-slate-800'
-                } px-5`}
+                } px-2`}
             >
                 {children}
             </Drawer.Body>

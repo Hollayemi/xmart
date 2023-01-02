@@ -7,7 +7,7 @@ const verifyProductApi = createAsyncThunk(
     'post/verifyProduct',
     async (payload) => {
         const { data } = await martApi
-            .post(`/verifyProduct`, payload.body, {
+            .post('/verifyProduct', payload.body, {
                 headers: { auth: payload.auth },
             })
             .then((res) => {

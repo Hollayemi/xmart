@@ -3,13 +3,14 @@ import { Message, toaster } from 'rsuite';
 import { martCategories } from '../../../../components/SellerComponents/Info/Categories';
 import martApi from '../../api/baseApi';
 import { REQUEST_STATUS } from '../../constants';
+import { myBusinessFiles, storeFiles } from '../display/displayAll';
 import { updateInstance } from '../settings/genApi';
 
 export const createBrandApi = createAsyncThunk(
     'post/createBrand',
     async (payload) => {
         const { data } = await martApi
-            .post(`/newBrand/` + payload.id, payload.body, {
+            .post('/newBrand/' + payload.id, payload.body, {
                 headers: { auth: payload.auth },
             })
             .then((res) => {
@@ -63,11 +64,10 @@ export const createBrand = (formData, neededInfo, dispatch) => {
                     }
                 );
                 neededInfo.reFetchData();
-                if (res.type === 'success') {}
+                if (res.type === 'success') {
+                }
             })
-            .catch((e) => {
-                console.log(e);
-            });
+            .catch((e) => {});
     }
 };
 
@@ -80,7 +80,6 @@ export const deleteBrand = (
     splited,
     neededInfo,
     deleteHandler,
-    getInfo,
     eventFunc,
     dispatch
 ) => {
@@ -97,11 +96,9 @@ export const deleteBrand = (
     dispatch(deleteHandler(payload))
         .then(unwrapResult)
         .then((resr) => {
-            console.log(resr);
-            dispatch(getInfo(shopData.id))
+            dispatch(myBusinessFiles({ id: shopData.id, auth: payload.auth }))
                 .then(unwrapResult)
                 .then((res) => {
-                    console.log(res);
                     toaster.push(
                         <Message showIcon type={resr.type}>
                             {resr.message}
@@ -114,9 +111,7 @@ export const deleteBrand = (
                 });
             eventFunc('');
         })
-        .catch((e) => {
-            console.log(e);
-        });
+        .catch((e) => {});
 };
 
 export const loadChildren = (cate) => {

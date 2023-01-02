@@ -4,7 +4,7 @@ import { REQUEST_STATUS } from '../constants';
 
 const Overview = createAsyncThunk('post/xmartOverview', async (payload) => {
     const { data } = await martApi
-        .post(`/xmartOverview/`, payload.body, {
+        .post('/xmartOverview/', payload.body, {
             headers: { auth: payload.auth },
         })
         .then((res) => {
@@ -43,7 +43,7 @@ const awaitingProducts = createAsyncThunk(
     'post/xmartOverview',
     async (payload) => {
         const { data } = await martApi
-            .post(`/awaitingProducts`, payload.body, {
+            .post('/awaitingProducts', payload.body, {
                 headers: { auth: payload.auth },
             })
             .then((res) => {

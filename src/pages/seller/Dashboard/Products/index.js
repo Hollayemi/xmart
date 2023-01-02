@@ -51,8 +51,6 @@ const Product = ({
     const updateValue = (newVal, variable) => {
         updateInfoHandler(newVal, variable, newValue, formData, setFormData);
     };
-    console.log(formData);
-
     useEffect(() => {
         showingInfo &&
             setProductGroup(
@@ -74,21 +72,18 @@ const Product = ({
         );
     };
 
-    let folders = null;
-    folders =
-        allProducts.type === 'success' &&
-        (folders = allProducts.message.map((each, index) => {
-            return (
-                <Folders
-                    key={index}
-                    name={each.prodName}
-                    id={each._id}
-                    price={each.prodPrice}
-                    prodImage={each.images}
-                    neededInfo={neededInfo}
-                />
-            );
-        }));
+    const folders = allProducts?.map((each, index) => {
+        return (
+            <Folders
+                key={index}
+                name={each.prodName}
+                id={each._id}
+                price={each.prodPrice}
+                prodImage={each.images}
+                neededInfo={neededInfo}
+            />
+        );
+    });
 
     return (
         <>
@@ -162,14 +157,13 @@ const Product = ({
                                                 : 'Select Brand'
                                         }
                                         onChange={(value) => {
-                                                selectBrandFunc(
-                                                    setProductCategory,
-                                                    value,
-                                                    updateValue,
-                                                    setProductGroup
-                                                )
-                                            }
-                                        }
+                                            selectBrandFunc(
+                                                setProductCategory,
+                                                value,
+                                                updateValue,
+                                                setProductGroup
+                                            );
+                                        }}
                                         onClean={() => updateValue('', 'brand')}
                                     />
                                 </div>

@@ -38,7 +38,7 @@ const UserSlice = createSlice({
         logout: () => {
             alert('here');
             return initialState;
-        }
+        },
     },
     extraReducers: {
         [kem_signin.pending]: (state) => {
@@ -51,7 +51,7 @@ const UserSlice = createSlice({
         [kem_signin.fulfilled]: (state, { payload }) => {
             return {
                 ...initialState,
-                userData: {...payload.user},
+                userData: { ...payload.user },
                 status: REQUEST_STATUS.FULFILLED,
                 loading: false,
             };

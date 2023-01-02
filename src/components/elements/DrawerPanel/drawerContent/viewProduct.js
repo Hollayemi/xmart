@@ -7,6 +7,7 @@ import img1 from '../../../../assets/images/png/_supreme.png';
 import img2 from '../../../../assets/images/png/_supreme3.png';
 import { getOnebyId } from '../../../../state/slices/home';
 import Loading from '../../Loading';
+import ActionBtn from '../../Button/actions';
 
 const ViewProduct = ({ id, verify }) => {
     const dispatch = useDispatch();
@@ -50,8 +51,8 @@ const ViewProduct = ({ id, verify }) => {
                         </Slider>
                         {verify && (
                             <div className="absolute b-0 mt-5 flex justify-center items-center w-full">
-                                <button
-                                    onClick={() =>
+                                <ActionBtn
+                                    func={() =>
                                         verify(
                                             'approve',
                                             info.prodName,
@@ -59,9 +60,33 @@ const ViewProduct = ({ id, verify }) => {
                                             info._id
                                         )
                                     }
+                                    label="Approve"
+                                    type="success"
+                                />
+                                <ActionBtn
+                                    func={() =>
+                                        verify(
+                                            'reject',
+                                            info.prodName,
+                                            info.store,
+                                            info._id
+                                        )
+                                    }
+                                    label="Reject"
+                                    type="error"
+                                />
+                                {/* <button
+                                    onClick={() =>
+                                        verify(
+                                            'reject',
+                                            info.prodName,
+                                            info.store,
+                                            info._id
+                                        )
+                                    }
                                     className="px-4 py-1 mx-3 font-bold bg-white text-slate-800 Lucida rounded-sm"
                                 >
-                                    Approve
+                                    Reject
                                 </button>
                                 <button
                                     onClick={() =>
@@ -75,7 +100,7 @@ const ViewProduct = ({ id, verify }) => {
                                     className="px-4 py-1 mx-3 font-bold bg-red-500 text-white Lucida rounded-sm"
                                 >
                                     Reject
-                                </button>
+                                </button> */}
                             </div>
                         )}
                     </div>

@@ -9,14 +9,12 @@ import { ResetPasswordHandler } from '../../../state/slices/auth/resetPassword';
 
 export const ResetForm = ({ going, popUp }) => {
     const queryParams = new URLSearchParams(window.location.search);
-    const [formData, setFormData] = useState(
-        { 
-            email: queryParams.get('email'),
-            token: queryParams.get('token'),
-            password: '',
-            conf_pass: '',
-        }
-    );
+    const [formData, setFormData] = useState({
+        email: queryParams.get('email'),
+        token: queryParams.get('token'),
+        password: '',
+        conf_pass: '',
+    });
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
     const toggleShowPassword = () => {
@@ -53,10 +51,14 @@ export const ResetForm = ({ going, popUp }) => {
         <>
             <div
                 className={`w-full ${
-                    !popUp ? 'md:w-3/5 min-w-[330px]' : 'max-w-450 min-w-[300px] lg:ml-5'
+                    !popUp
+                        ? 'md:w-3/5 min-w-[330px]'
+                        : 'max-w-450 min-w-[300px] lg:ml-5'
                 } my-3`}
             >
-                <h1 className="font-black text-black text-4xl ">Reset Password</h1>
+                <h1 className="font-black text-black text-4xl ">
+                    Reset Password
+                </h1>
                 <p className="text-gray-500 leading-7 mx-1 mt-3 w-full md:w-4/5">
                     Let's get you set up so you can verify your account and
                     start your journey with kemon market
@@ -71,16 +73,16 @@ export const ResetForm = ({ going, popUp }) => {
                 <form className="my-4 h-4/6 flex flex-col w-full max-w-[450px] items-stretch pt-4">
                     <Row>
                         <InputAddon
-                             suffix
-                             icon={showPassword ? <FaEyeSlash /> : <FaEye />}
-                             label="Password"
-                             type={showPassword ? 'text' : 'password'}
-                             onClick={toggleShowPassword}
-                             onChange={(e) =>
-                                 updateValue(e.target.value, 'password')
-                             }
-                             name="password"
-                             placeholder="*******"
+                            suffix
+                            icon={showPassword ? <FaEyeSlash /> : <FaEye />}
+                            label="Password"
+                            type={showPassword ? 'text' : 'password'}
+                            onClick={toggleShowPassword}
+                            onChange={(e) =>
+                                updateValue(e.target.value, 'password')
+                            }
+                            name="password"
+                            placeholder="*******"
                         />
                     </Row>
                     <Row>

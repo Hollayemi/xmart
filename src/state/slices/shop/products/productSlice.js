@@ -126,7 +126,7 @@ export const createProductHandler = (formData, dispatch, neededInfo) => {
 
 export const removeBg = (imgUrl, setImgData) => {
     axios({
-        url: `https://api.remove.bg/v1.0/removebg`,
+        url: 'https://api.remove.bg/v1.0/removebg',
         method: 'post',
         data: {
             image_url: imgUrl,

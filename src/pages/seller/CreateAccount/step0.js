@@ -12,9 +12,7 @@ export const Step0 = ({ updateValue, formData }) => {
                         value={formData.store}
                         placeholder="e.g xmart (a word)"
                         required={true}
-                        onChange={(e) =>
-                            updateValue(e.target.value, 'store')
-                        }
+                        onChange={(e) => updateValue(e.target.value, 'store')}
                     />
                 </div>
                 <div className="w-2/4 m-1">

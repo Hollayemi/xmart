@@ -5,13 +5,14 @@ import { wasGoing } from '../../state/slices/auth/Login';
 import { REQUEST_STATUS } from '../../state/slices/constants';
 
 const AuthOutlet = ({ to }) => {
+    let redir = to ? to : '/';
     const dispatch = useDispatch();
     const { status } = useSelector((state) => state.reducer.loginReducer);
     let auth = false;
     if (status === REQUEST_STATUS.FULFILLED) {
         auth = true;
     } else {
-        dispatch(wasGoing('/' + to));
+        dispatch(wasGoing('/' + redir));
     }
     return auth ? <Outlet /> : <Navigate to="/signin" />;
 };

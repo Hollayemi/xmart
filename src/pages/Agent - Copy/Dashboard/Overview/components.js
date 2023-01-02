@@ -5,7 +5,7 @@ import { Placeholder } from 'rsuite';
 export const SmallCard = ({ total, icon, info, link }) => {
     return (
         <Link to={link ? link : '/admin/dashboard'}>
-            <div className="w-40 sm:w-52 border-l-4 border-blue-100 mx-1.5 md:mx-2 my-3 h-20 shadow-md rounded flex items-center justify-evenly cursor-pointer hover:bg-gray-50 bg-white">
+            <div className="w-full px-1 sm:w-52 border-l-4 border-blue-100 mx-1.5 md:mx-2 my-3 h-20 shadow-md rounded flex items-center justify-evenly cursor-pointer hover:bg-gray-50 bg-white">
                 <i className="w-10 h-10 text-2xl rounded-full flex items-center justify-center bg-blue-100 text-blue-400">
                     {icon}
                 </i>

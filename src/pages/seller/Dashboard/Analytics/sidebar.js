@@ -31,7 +31,7 @@ const Sidebar = () => {
                         <i className="pr-4">
                             <FaChartPie />
                         </i>
-                      Reconcilled Payments
+                        Reconcilled Payments
                     </li>
                 </ul>
             </div>

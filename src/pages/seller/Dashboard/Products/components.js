@@ -147,7 +147,6 @@ export function updateInfoHandler(
     formData,
     setFormData
 ) {
-    console.log(newVal);
     variable === 'name' && (newValue = { prodName: newVal });
     variable === 'price' && (newValue = { prodPrice: newVal });
     variable === 'reference' && (newValue = { prodKey: newVal });

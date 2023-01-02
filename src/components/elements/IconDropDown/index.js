@@ -30,10 +30,14 @@ const IconDropdown = ({ Icon, Content, onSelect, className, ref }) => {
         <>
             <ButtonToolbar>
                 <Whisper
-                    placement="bottomStart"
+                    placement="leftStart"
                     trigger="click"
                     speaker={
-                        <Popover ref={ref} className={className} full>
+                        <Popover
+                            ref={ref}
+                            className={`w-fit ${className}`}
+                            full
+                        >
                             <Dropdown.Menu onSelect={handleSelect}>
                                 {myContent}
                             </Dropdown.Menu>

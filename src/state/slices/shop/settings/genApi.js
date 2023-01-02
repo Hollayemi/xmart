@@ -5,7 +5,7 @@ export const updateInstance = createAsyncThunk(
     'post/collectionInstance',
     async (payload) => {
         const { data } = await martApi
-            .post(`/use`, payload, {})
+            .post('/use', payload, {})
             .then((res) => {
                 return res;
             })

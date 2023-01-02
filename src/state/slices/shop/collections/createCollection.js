@@ -2,13 +2,13 @@ import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
 import { Message, toaster } from 'rsuite';
 import martApi from '../../api/baseApi';
 import { REQUEST_STATUS } from '../../constants';
-import { storeFiles } from '../display/displayAll';
+import { myBusinessFiles, storeFiles } from '../display/displayAll';
 
 export const allCollections = createAsyncThunk(
     'post/allCollections',
     async (payload) => {
         const { data } = martApi
-            .post(`/newCollection/` + payload.id, {}, { auth: payload.auth })
+            .post('/newCollection/' + payload.id, {}, { auth: payload.auth })
             .then((res) => {
                 return res.response;
             })
@@ -23,7 +23,7 @@ export const createCollection = createAsyncThunk(
     'post/createCollection',
     async (payload) => {
         const { data } = await martApi
-            .post(`/newCollection/` + payload.id, payload.body, {
+            .post('/newCollection/' + payload.id, payload.body, {
                 headers: { auth: payload.auth },
             })
             .then((res) => {
@@ -71,13 +71,12 @@ export const createHandler = (
                         placement: 'topEnd',
                     }
                 );
-                if (res.type === 'success') {}
-                storeFiles(shopData.id, dispatch, setFiles);
+                if (res.type === 'success') {
+                }
+                storeFiles(shopData.id, otpData, dispatch, setFiles);
                 reFetchData();
             })
-            .catch((e) => {
-                console.log(e.response);
-            });
+            .catch((e) => {});
     }
 };
 
@@ -91,7 +90,6 @@ export const deleteCol = (
     splited,
     dispatch,
     deleteHandler,
-    getInfo,
     eventFunc,
     reFetchData
 ) => {
@@ -108,11 +106,9 @@ export const deleteCol = (
     dispatch(deleteHandler(payload))
         .then(unwrapResult)
         .then((resr) => {
-            console.log(resr);
-            dispatch(getInfo(shopData.id))
+            dispatch(myBusinessFiles({ id: shopData.id, auth: payload.auth }))
                 .then(unwrapResult)
                 .then((res) => {
-                    console.log(res);
                     toaster.push(
                         <Message showIcon type={resr.type}>
                             {resr.message}

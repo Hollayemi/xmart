@@ -6,7 +6,7 @@ export const fetchProduct = createAsyncThunk(
     'post/fetchProduct',
     async (payload) => {
         const { data } = await martApi
-            .patch(`/fetchProducts`, payload.body, {})
+            .patch('/fetchProducts', payload.body, {})
             .then((res) => {
                 return res;
             })
@@ -41,7 +41,7 @@ export const getProduct = (dispatch, Query, space, setState) => {
 
 const getOneProduct = createAsyncThunk('post/fetchProduct', async (payload) => {
     const { data } = await martApi
-        .post(`/getOneProduct`, payload.body, {})
+        .post('/getOneProduct', payload.body, {})
         .then((res) => {
             return res;
         })
@@ -68,7 +68,9 @@ export const getOneProductHandler = (
         .then((res) => {
             if (res.type === 'success') {
                 setInfo(res.message);
-                viewProduct && userData?._id && addNewView(res.message._id, userData, dispatch)
+                viewProduct &&
+                    userData?._id &&
+                    addNewView(res.message._id, userData, dispatch);
             }
         })
         .catch((err) => {});
@@ -100,7 +102,7 @@ this is for shortcut links
 
 const homeSliderLink = createAsyncThunk('post/homeSliderLink', async () => {
     const { data } = await martApi
-        .post(`/homeSliderLink`, {})
+        .post('/homeSliderLink', {})
         .then((res) => {
             return res;
         })

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Placeholder, Table } from 'rsuite';
 import DashboardWrapper from '../../../../components/AdminComponents';
+import { TopTitle } from '../../../../components/SellerComponents/Dashboard/topTitle';
 import {
     getAwaitingProducts,
     xmartOverview,
@@ -30,7 +31,14 @@ const Overview = () => {
 
     return (
         <DashboardWrapper>
-            <section className="min-h-[100vh]">
+            <section className="px-2 md:px-5 h-[500px] min-h-screen w-full min-w-[290px]">
+                <div className="md:p-3 pt-5 w-full">
+                    <TopTitle
+                        header="Dashboard"
+                        title={`Welcome Back, xMart Admin`}
+                        info="We showcase products and locate store"
+                    />
+                </div>
                 {data ? (
                     <div className="md:px-6 flex flex-wrap items-center">
                         <SmallCard
@@ -92,8 +100,13 @@ const Overview = () => {
                         </div>
                     </div>
                 )}
-                <div className="flex justify-center mt-10 w-full">
-                    <div className="w-full md:w-11/12 shadow-lg">
+                <div className="flex flex-col justify-center mt-10 w-full bg-slate-50">
+                    <div className="flex items-center justify-between sm:mr-3 w-full">
+                        <h5 className="text-xs sm:text-md py-2 font-bold text-slat-800 sm:px-2 pt-3">
+                            Order Request
+                        </h5>
+                    </div>
+                    <div className="w-full md:full shadow-lg">
                         <Table height={400} data={[]} onRowClick={(info) => {}}>
                             <Table.Column width={50} fixed>
                                 <Table.HeaderCell>s/n</Table.HeaderCell>

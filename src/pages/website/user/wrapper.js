@@ -16,7 +16,7 @@ const UserWrapper = ({ children, type, fullChild }) => {
     const { userData } = useSelector((state) => state.reducer.loginReducer);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const queryParam = new URLSearchParams(window.location.search)
+    const queryParam = new URLSearchParams(window.location.search);
     const toVerify = queryParam.get('verify');
     const toToken = queryParam.get('token');
     useEffect(() => {
@@ -51,28 +51,36 @@ const UserWrapper = ({ children, type, fullChild }) => {
                             >
                                 Open Store
                             </div>
+                        ) : userData.isActive ? (
+                            <Link to="/seller/create-account/new/0">
+                                <div className="border border-slate-150 rounded-md shadow px-3 py-1">
+                                    Create New Store
+                                </div>
+                            </Link>
                         ) : (
-                            userData.isActive ? (
-                                <Link to="/seller/create-account/new/0">
-                                    <div className="border border-slate-150 rounded-md shadow px-3 py-1">
-                                        Create New Store
-                                    </div>
-                                </Link>
-                            ):(
-                                <h5 className="text-red-500">Account Not Activated</h5>
-                            )
-                            )
-                        }
+                            <h5 className="text-red-500">
+                                Account Not Activated
+                            </h5>
+                        )}
                     </div>
                 </div>
-                {toVerify && toToken && <div className="w-full flex justify-center items-center h-16 bg-slate-100">
-                    <button
-                        onClick={() => VerifyHandler(userData.email, toToken, navigate, dispatch)}
-                        className="h-10 w-36 font-bold rounded-md shadow text-white bg-green-500"
-                    >
-                        Activate Account
-                    </button>
-                </div>}
+                {toVerify && toToken && (
+                    <div className="w-full flex justify-center items-center h-16 bg-slate-100">
+                        <button
+                            onClick={() =>
+                                VerifyHandler(
+                                    userData.email,
+                                    toToken,
+                                    navigate,
+                                    dispatch
+                                )
+                            }
+                            className="h-10 w-36 font-bold rounded-md shadow text-white bg-green-500"
+                        >
+                            Activate Account
+                        </button>
+                    </div>
+                )}
                 <div className="flex flex-col lg:flex-row">
                     <div className=" flex flex-col flex-col-reverse sm:flex-row md:px-10 w-full md:w-[500px] lg:w-[calc(100%_-_400px)]">
                         {type === 'settings' && (
@@ -91,7 +99,7 @@ const UserWrapper = ({ children, type, fullChild }) => {
                         )}
                     </div>
                 </div>
-              {fullChild && fullChild}
+                {fullChild && fullChild}
             </section>
         </SearchWrapper>
     );

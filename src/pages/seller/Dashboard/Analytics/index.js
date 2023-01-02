@@ -15,7 +15,7 @@ const Analytics = ({ neededInfo, token }) => {
         getMyTools(dispatch, id, userData, setTools);
     }, []);
     return (
-        <main className="w-full bg-gray-50">
+        <main className="w-full bg-gray-50 min-w-[290px] pt-4">
             <div className="flex items-center flex-wrap mx-2 justify-center">
                 {tools && (
                     <>

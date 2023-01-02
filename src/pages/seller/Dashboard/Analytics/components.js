@@ -5,14 +5,16 @@ ChartJS.register(...registerables);
 
 export const TransacChart = ({ chartLoader, title, all, left }) => {
     return (
-        <div className="bg-white m-2 rounded py-1 shadow w-60 h-16 flex items-center px-3">
+        <div className="bg-white sm:m-2 rounded mt-2 py-1 shadow w-1/2 sm:w-60 h-16 flex justify-between items-center px-3">
             <div className="w-32">
                 <p className="text-gray-300 text-xs">{title}</p>
                 <h5>
                     {left} of {all}
                 </h5>
             </div>
-            <div className="w-36 max-w-[100px] h-full">{chartLoader}</div>
+            <div className="w-32 max-w-[60px] md:max-w-[100px]  h-full">
+                {chartLoader}
+            </div>
         </div>
     );
 };

@@ -29,7 +29,9 @@ export const BigHeader = ({ sideBarState, cartItems, setSearch, search }) => {
     };
     return (
         <div
-            className={`container-fluid fixed top-0 z-50 w-full top-0 bg-slate-700 shadow-sm h-28`}
+            className={
+                'container-fluid fixed top-0 z-50 w-full top-0 bg-slate-700 shadow-sm h-28'
+            }
         >
             <div className="flex justify-between py-2 border-b border-slate-600 px-10 text-white items-center h-12">
                 <Link to="/">
@@ -179,17 +181,19 @@ export const SmallHeader = ({
                 </Link>
             </div>
             <div
-                className={`block md:hidden sticky top-0 flex justify-between items-center py-1  px-4 sm:px-10 w-full`}
+                className={
+                    'block md:hidden sticky top-0 flex justify-between items-center py-1  px-4 sm:px-10 w-full'
+                }
             >
                 <div>
                     <i
-                        className={`text-2xl text-slate-400`}
+                        className={'text-2xl text-slate-400'}
                         onClick={() => setOpen(!open)}
                     >
                         {!open ? <FaBars /> : <FaTimes />}
                     </i>
                 </div>
-                <div className={``}>
+                <div className={''}>
                     <img src={myLogo} alt="logo" width={80} />
                     {/* <h3 className="font-bold text-xl text-slate-400">xMart</h3> */}
                 </div>

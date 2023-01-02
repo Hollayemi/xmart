@@ -27,11 +27,13 @@ const SetLocation = ({ shopData }) => {
 
     const payload = {
         data: {
-            coordinate: [{
-                lat: lat,
-                lon: lon,
-                address: address,
-            }],
+            coordinate: [
+                {
+                    lat: lat,
+                    lon: lon,
+                    address: address,
+                },
+            ],
         },
         shopID: shopData.data._id,
     };
@@ -60,7 +62,10 @@ const SetLocation = ({ shopData }) => {
             {address ? (
                 <Loading speed="fast" size="md" />
             ) : (
-                <button onClick={editShopInfo} className="px-3 h-8 py-1 bg-slate-100 w-28 text-slate-700 ml-[200px] rounded absolute top-0 right-0">
+                <button
+                    onClick={editShopInfo}
+                    className="px-3 h-8 py-1 bg-slate-100 w-28 text-slate-700 ml-[200px] rounded absolute top-0 right-0"
+                >
                     Save Address
                 </button>
             )}

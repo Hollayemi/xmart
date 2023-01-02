@@ -20,7 +20,7 @@ export const otpHandler = createAsyncThunk(
 
 export const getOTP = createAsyncThunk('post/getotp', async (payload) => {
     const { data } = await martApi
-        .post(`/getOTP`, payload, {})
+        .post('/getOTP', payload, {})
         .then((res) => {
             return res;
         })

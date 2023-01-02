@@ -3,7 +3,7 @@ import martApi from '../../api/baseApi';
 
 const homeSearch = createAsyncThunk('post/aggrSearch', async (payload) => {
     const { data } = await martApi
-        .post(`/searchByQuery`, payload, {})
+        .post('/searchByQuery', payload, {})
         .then((res) => {
             return res;
         })

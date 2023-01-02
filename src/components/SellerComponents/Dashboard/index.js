@@ -22,9 +22,11 @@ import {
     FaCog,
     FaMoneyBill,
     FaBell,
+    FaFile,
 } from 'react-icons/fa';
 import RecentInfo from './RecentInfo';
 import DrawerPanel from '../../elements/DrawerPanel';
+import { MartCategories } from '../Info/Categories';
 
 const NavToggle = ({ expand, onChange }) => {
     return (
@@ -330,7 +332,7 @@ const DashboardWrapper = ({ ...props }) => {
                                                 )
                                             }
                                         >
-                                            Edit Store Info
+                                            Store Profile
                                         </Dropdown.Item>
                                         <Dropdown.Item
                                             active={
@@ -364,12 +366,48 @@ const DashboardWrapper = ({ ...props }) => {
                                             }
                                             onClick={() =>
                                                 setShowing(
-                                                    'Setting_Reference Keys'
+                                                    'Setting_Transactions'
                                                 )
                                             }
                                         >
-                                            Reference Keys
+                                            Transactions
                                         </Dropdown.Item>
+                                    </Dropdown>
+                                    <Dropdown
+                                        eventKey="8"
+                                        trigger="click"
+                                        title={
+                                            <div className="h-5 min-w-[100%]">
+                                                <div className="flex items-center h-full">
+                                                    <i className="text-lg">
+                                                        <FaFile />
+                                                    </i>
+                                                    <span className="px-5">
+                                                        Template
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        }
+                                        icon={<FaToolbox />}
+                                        placement="leftStart"
+                                    >
+                                        {MartCategories.map((cate, i) => (
+                                            <Dropdown.Item
+                                                active={
+                                                    showing.split('_')[1] ===
+                                                        cate && true
+                                                }
+                                                key={i}
+                                                eventKey={`temp_for${i}`}
+                                                onClick={() =>
+                                                    setShowing(
+                                                        `Product Template_${cate}`
+                                                    )
+                                                }
+                                            >
+                                                {cate}
+                                            </Dropdown.Item>
+                                        ))}
                                     </Dropdown>
                                     <Dropdown
                                         eventKey="7"
@@ -478,6 +516,20 @@ const DashboardWrapper = ({ ...props }) => {
                             </div>
                             <div className="w-full z-30 bg-slate-100 mt-14">
                                 {props.children}
+                                <div className="mt-5 w-full md:px-10 flex justify-between items-center h-10">
+                                    <h5>Copyright @ xmart 2022</h5>
+                                    <div className="flex items-center">
+                                        <h5 className="mx-2 p-2 text-slate-500">
+                                            Products
+                                        </h5>
+                                        <h5 className="mx-2 p-2 text-slate-500">
+                                            Services
+                                        </h5>
+                                        <h5 className="mx-2 p-2 text-slate-500">
+                                            About
+                                        </h5>
+                                    </div>
+                                </div>
                             </div>
                             {showing !== '0_Analytics' &&
                                 showing !== 'Dashboard' && (
@@ -494,7 +546,7 @@ const DashboardWrapper = ({ ...props }) => {
             </Container>
             <DrawerPanel
                 placement="right"
-                light={true}
+                light
                 title="Notification"
                 size="xs"
                 children={

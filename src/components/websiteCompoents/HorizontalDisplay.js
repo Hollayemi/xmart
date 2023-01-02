@@ -54,7 +54,9 @@ const HorizontalDisplay = (props) => {
                     myCarts={myCarts}
                     totReview={each.rate.length}
                     star={parseInt(starSum / each.rate.length)}
-                    distance={each.distance ? each.distance.toFixed(2) + ' km' : ''}
+                    distance={
+                        each.distance ? each.distance.toFixed(2) + ' km' : ''
+                    }
                 />
             );
         });

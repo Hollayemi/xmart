@@ -12,14 +12,12 @@ import QuickPickers from './QuickPickers';
 const AdminDashboard = () => {
     const param = useParams();
     const { adminData } = useSelector((state) => state.reducer.adminReducer);
-
     console.log(param);
 
     return (
         <DashboardWrapper>
             {param.section === 'Overview' && <Overview />}
             {param.section === 'agents' && <Agent />}
-            {param.section === 'stores' && <Busineses />}
             {param.section === 'pickers' && <QuickPickers />}
             {param.section === 'Logout' && <Logout />}
         </DashboardWrapper>

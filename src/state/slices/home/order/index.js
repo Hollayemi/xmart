@@ -70,3 +70,71 @@ export const FetchOrderHandler = (id, auth, dispatch, setState) => {
         })
         .catch((e) => {});
 };
+
+const continueOrderApi = createAsyncThunk(
+    'post/continueOrder',
+    async (payload) => {
+        const { data } = await martApi
+            .patch(
+                `/continueOrder/${payload.orderId}`,
+                {},
+                { headers: { auth: payload.auth } }
+            )
+            .then((e) => {
+                return e;
+            })
+            .catch((e) => {
+                return e.response;
+            });
+        return data;
+    }
+);
+
+export const continueOrder = (orderId, auth, dispatch) => {
+    const payload = {
+        orderId,
+        auth: auth,
+    };
+    dispatch(continueOrderApi(payload))
+        .then(unwrapResult)
+        .then((res) => {
+            if (res.type === 'success') {
+                window.location.reload();
+            }
+        })
+        .catch((e) => {});
+};
+
+const cancelOrderApi = createAsyncThunk(
+    'patch/cancelOrder',
+    async (payload) => {
+        const { data } = await martApi
+            .patch(
+                `/cancelOrder/${payload.orderId}`,
+                {},
+                { headers: { auth: payload.auth } }
+            )
+            .then((e) => {
+                return e;
+            })
+            .catch((e) => {
+                return e.response;
+            });
+        return data;
+    }
+);
+
+export const cancelOrder = (orderId, auth, dispatch) => {
+    const payload = {
+        orderId,
+        auth: auth,
+    };
+    dispatch(cancelOrderApi(payload))
+        .then(unwrapResult)
+        .then((res) => {
+            if (res.type === 'success') {
+                window.location.reload();
+            }
+        })
+        .catch((e) => {});
+};

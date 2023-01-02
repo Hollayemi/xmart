@@ -27,17 +27,18 @@ import EditProduct from './editProduct';
 import { useNavigate } from 'react-router-dom';
 import DrawerPanel from '../../../components/elements/DrawerPanel';
 import SetLocation from '../../../components/elements/DrawerPanel/drawerContent/setLocation';
+import { Loader } from 'rsuite';
 
 const Dashboard = () => {
+    const loadThisPage =
+        localStorage.getItem('save_page_for_later') || '0_Analytics';
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [agreedToTerms, setAgreedToTerms] = useState(true);
-    const [showing, setShowing] = useState('0_Analytics');
+    const [showing, pageSetter] = useState(loadThisPage);
     const [showingInfo, setShowingInfo] = useState(null);
-    const fakeData = { myCategories: { type: 'empty' } };
-    const [files, setFiles] = useState(fakeData);
+    const [files, setFiles] = useState(null);
     const [OpenDrawer, setOpenDrawer] = useState(true);
-
     const splitedShowing = showing.split('_');
     let myBreadcrumb = [
         { name: 'Dashboard', link: '/' },
@@ -56,15 +57,18 @@ const Dashboard = () => {
     const { shopData } = useSelector((state) => state.reducer.setShopReducer);
 
     const reLoad = () => {
-        storeFiles(shopData.id, dispatch, setFiles);
+        storeFiles(shopData.id, otpData, dispatch, setFiles);
     };
     useEffect(() => {
         if (!shopData) {
             navigate('/seller');
         }
-        reLoad();
+        reLoad(setFiles);
     }, []);
-
+    const setShowing = (page) => {
+        localStorage.setItem('save_page_for_later', page);
+        pageSetter(page);
+    };
     const neededInfo = {
         otpStatus: otpStatus,
         otpData: otpData,
@@ -73,88 +77,106 @@ const Dashboard = () => {
         reFetchData: reLoad,
     };
     const myBrandData = [];
-    if (files.myBrand) {
-        files.myBrand.message.map((res) => {
-            let myBrand = {
-                value:
-                    res.brandName +
-                    '$$' +
-                    res.brandCollection +
-                    '$$' +
-                    res.sub_category,
-                label: res.brandName,
-            };
-            myBrandData.push(myBrand);
-            return true;
-        });
-    }
+    files?.myBrands?.map((res) => {
+        let myBrand = {
+            value:
+                res.brandName +
+                '$$' +
+                res.brandCollection +
+                '$$' +
+                res.sub_category,
+            label: res.brandName,
+        };
+        myBrandData.push(myBrand);
+        return true;
+    });
+    const MyLoader = () => (
+        <div className="w-full h-[400px] flex justify center items-center">
+            <Loader />
+        </div>
+    );
 
     let displaying = <Overview neededInfo={neededInfo} />;
+
     switch (splitedShowing[1]) {
-        case "Dashboard":
+        case 'Dashboard':
             displaying = <Overview neededInfo={neededInfo} />;
             break;
-        case "Analytics":
+        case 'Analytics':
             displaying = <Analytics neededInfo={neededInfo} />;
             break;
-        case "Brands":
-            displaying = <Brand
-                neededInfo={neededInfo}
-                myBrands={files.myBrand}
-                loadedCateg={files.myCategories}
-                setShowing={setShowing}
-            />;
+        case 'Brands':
+            displaying = files ? (
+                <Brand
+                    neededInfo={neededInfo}
+                    myBrands={files.myBrands}
+                    loadedCateg={files.myCategories}
+                    setShowing={setShowing}
+                />
+            ) : (
+                <MyLoader />
+            );
             break;
-        case "Collections":
-            displaying = <Collections
-                collections={files.myCategories}
-                neededInfo={neededInfo}
-            />;
+        case 'Collections':
+            displaying = files ? (
+                <Collections
+                    collections={files.myCategories}
+                    neededInfo={neededInfo}
+                />
+            ) : (
+                <MyLoader />
+            );
             break;
-        case "Products":
-            displaying = <Products
-                myBrandData={myBrandData}
-                dispatch={dispatch}
-                allProducts={files.allProducts}
-                neededInfo={neededInfo}
-                showingInfo={showingInfo}
-            />;
+        case 'Products':
+            displaying = files ? (
+                <Products
+                    myBrandData={myBrandData}
+                    dispatch={dispatch}
+                    allProducts={files.myProducts}
+                    neededInfo={neededInfo}
+                    showingInfo={showingInfo}
+                />
+            ) : (
+                <MyLoader />
+            );
             break;
-        case "My store":
-            displaying = <EditProduct
-                setShowing={setShowing}
-                store={neededInfo.shopData.data.store}
-                setShowingInfo={setShowingInfo}
-            />;
+        case 'My store':
+            displaying = (
+                <EditProduct
+                    setShowing={setShowing}
+                    store={neededInfo.shopData.data.store}
+                    setShowingInfo={setShowingInfo}
+                />
+            );
             break;
-        case "Xtra Brand":
+        case 'Xtra Brand':
             displaying = <PurchaseBrand shopData={shopData} />;
             break;
-        case "Xtra Product":
+        case 'Xtra Product':
             displaying = <PurchaseProduct shopData={shopData} />;
             break;
-        case "Xtra Collection":
+        case 'Xtra Collection':
             displaying = <PurchaseCollection shopData={shopData} />;
             break;
-        case "Unsupplied Products":
+        case 'Unsupplied Products':
             displaying = <Unsupplied />;
             break;
-        case "Carted Products":
+        case 'Carted Products':
             displaying = <Carted />;
             break;
-        case "Supplied Products":
+        case 'Supplied Products':
             displaying = <Supplied />;
             break;
-        case "Edit Store Info":
+        case 'Edit Store Info':
             displaying = <StoreProfile neededInfo={neededInfo} />;
             break;
-        case "Entry Mode":
+        case 'Entry Mode':
             displaying = <EntryMode neededInfo={neededInfo} />;
             break;
-        case "Reference Keys":
-            displaying = <ReferenceKey id={shopData.id}/>;
+        case 'Transactions':
+            displaying = <ReferenceKey id={shopData.id} />;
             break;
-        case "Activities":
+        case 'Activities':
             displaying = <ActivitiesPage neededInfo={neededInfo} />;
             break;
         default:
@@ -169,9 +191,9 @@ const Dashboard = () => {
                 showing={showing}
                 shopInfo={shopData.data}
                 otpData={otpData}
-                prodNum={files.allProducts && files.allProducts.message.length}
+                prodNum={files?.allProducts?.length}
             >
-                {displaying}
+                {files && displaying}
                 {otpStatus !== REQUEST_STATUS.VERIFIED && (
                     <ModalPanel
                         title="Dashboard Authorization"

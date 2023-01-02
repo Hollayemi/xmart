@@ -6,8 +6,11 @@ import { Message, toaster } from 'rsuite';
 const verifyApi = createAsyncThunk('post/VA', async (payload) => {
     console.log(payload);
     const { data } = await martApi
-        .patch(`/user/verify-account?token=${payload.token}&email=${payload.email}`,
-        {}, {})
+        .patch(
+            `/user/verify-account?token=${payload.token}&email=${payload.email}`,
+            {},
+            {}
+        )
         .then((res) => {
             return res;
         })
@@ -19,7 +22,7 @@ const verifyApi = createAsyncThunk('post/VA', async (payload) => {
 });
 
 export const VerifyHandler = (email, token, navigate, dispatch) => {
-    dispatch(verifyApi({email, token}))
+    dispatch(verifyApi({ email, token }))
         .then(unwrapResult)
         .then((res) => {
             console.log(res);
@@ -34,7 +37,6 @@ export const VerifyHandler = (email, token, navigate, dispatch) => {
                     placement: 'topCenter',
                 }
             );
-            
         })
         .catch((err) => {
             toaster.push(

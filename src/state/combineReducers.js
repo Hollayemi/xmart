@@ -26,5 +26,5 @@ export const myReducers = combineReducers({
     addressSlice: addressSlice,
     waitingProducts: waitingProducts,
     feedback: feedback,
-    viewReducer: viewReducer
+    viewReducer: viewReducer,
 });

@@ -1,26 +1,23 @@
 import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
 import martApi from '../../api/baseApi';
 
-export const myActivities = createAsyncThunk(
-    'post/myActivities',
-    async (payload) => {
-        const { data } = await martApi
-            .post('/myActivities', payload.body, {
-                headers: { auth: payload.auth },
-            })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
-        return data;
-    }
-);
-
-export const myTools = createAsyncThunk('post/myTools', async (payload) => {
+const myActivities = createAsyncThunk('post/myActivities', async (payload) => {
     const { data } = await martApi
-        .patch(`/myTools/` + payload.body.shopId, payload.body, {
+        .post('/myActivities', payload.body, {
+            headers: { auth: payload.auth },
+        })
+        .then((res) => {
+            return res;
+        })
+        .catch((e) => {
+            return e.response;
+        });
+    return data;
+});
+
+const myTools = createAsyncThunk('post/myTools', async (payload) => {
+    const { data } = await martApi
+        .patch('/myTools/' + payload.body.shopId, payload.body, {
             headers: { auth: payload.auth },
         })
         .then((res) => {
@@ -76,7 +73,7 @@ delet notifications
 
 */
 
-export const notificationApi = createAsyncThunk(
+const notificationApi = createAsyncThunk(
     'post/fetchNotification',
     async (payload) => {
         const { data } = await martApi
@@ -144,7 +141,7 @@ export const deleteNotifications = (dispatch, otpData, store) => {
 //
 //
 //
-export const storeCartsApi = createAsyncThunk(
+const storeCartsApi = createAsyncThunk(
     'post/fetchStoreCarts',
     async (payload) => {
         const { data } = await martApi
@@ -174,14 +171,13 @@ export const storeCarts = (dispatch, store, otpData, setState) => {
         .catch((err) => {});
 };
 
-
 //
 //
 //
 //
 //
 //
-export const storeOrdersApi = createAsyncThunk(
+const storeOrdersApi = createAsyncThunk(
     'post/fetchStoreCarts',
     async (payload) => {
         const { data } = await martApi
@@ -206,6 +202,44 @@ export const OrderRequestsHandler = (dispatch, store, otpData, setState) => {
         auth: otpData.id + ' ' + otpData.accessToken,
     };
     dispatch(storeOrdersApi(payload))
+        .then(unwrapResult)
+        .then((res) => res.type === 'success' && setState(res.data))
+        .catch((err) => {});
+};
+
+//
+//
+//
+//
+//
+//
+const listOrdersItemsApi = createAsyncThunk(
+    'post/listOrdersItems',
+    async (payload) => {
+        const { data } = await martApi
+            .post(
+                '/store/order/' + payload.orderId,
+                {},
+                {
+                    headers: { auth: payload.auth },
+                }
+            )
+            .then((res) => {
+                return res;
+            })
+            .catch((e) => {
+                return e.response;
+            });
+        return data;
+    }
+);
+
+export const listOrdersItems = (dispatch, orderId, otpData, setState) => {
+    const payload = {
+        orderId,
+        auth: otpData.id + ' ' + otpData.accessToken,
+    };
+    dispatch(listOrdersItemsApi(payload))
         .then(unwrapResult)
         .then((res) => res.type === 'success' && setState(res.data))
         .catch((err) => {});

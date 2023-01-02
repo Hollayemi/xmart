@@ -4,10 +4,11 @@ import { storeFiles } from '../display/displayAll';
 import { updateInstance } from '../settings/genApi';
 
 export const deleteProd = (body, neededInfo, eventFunc, dispatch) => {
+    const { otpData, shopData } = neededInfo;
     const payload = {
         shopID: neededInfo.shopData.id,
         body: body,
-        auth: neededInfo.otpData.id + ' ' + neededInfo.otpData.accessToken,
+        auth: otpData.id + ' ' + otpData.accessToken,
     };
     const subPayload = {
         id: neededInfo.shopData.id,
@@ -18,7 +19,7 @@ export const deleteProd = (body, neededInfo, eventFunc, dispatch) => {
     dispatch(deleteHandler(payload))
         .then(unwrapResult)
         .then((resr) => {
-            storeFiles(neededInfo.shopData.id, dispatch, neededInfo.setFiles);
+            storeFiles(shopData.id, dispatch, otpData, setFiles);
             if (resr.type) {
                 dispatch(updateInstance(subPayload));
             }

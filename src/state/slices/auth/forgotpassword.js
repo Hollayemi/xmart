@@ -6,7 +6,7 @@ import { Message, toaster } from 'rsuite';
 const forgotPasswordApi = createAsyncThunk('post/FP', async (payload) => {
     console.log(payload);
     const { data } = await martApi
-        .post('/user/forgot-password',payload, {})
+        .post('/user/forgot-password', payload, {})
         .then((res) => {
             return res;
         })
@@ -18,12 +18,12 @@ const forgotPasswordApi = createAsyncThunk('post/FP', async (payload) => {
 });
 
 export const ForgotPasswordHandler = (email, navigate, dispatch) => {
-    dispatch(forgotPasswordApi({email: email}))
+    dispatch(forgotPasswordApi({ email: email }))
         .then(unwrapResult)
         .then((res) => {
             console.log(res);
             if (res.type === 'success') {
-                localStorage.setItem('sending-email-to', email)
+                localStorage.setItem('sending-email-to', email);
                 navigate('/email-sent');
             }
         })

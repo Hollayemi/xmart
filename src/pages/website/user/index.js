@@ -7,7 +7,10 @@ import UserWrapper from './wrapper';
 const User = () => {
     const { userData } = useSelector((state) => state.reducer.loginReducer);
     return (
-        <UserWrapper userData={userData} fullChild={<RecentView userData={userData} />}>
+        <UserWrapper
+            userData={userData}
+            fullChild={<RecentView userData={userData} />}
+        >
             <div className="w-full flex flex-col md:flex-row">
                 <AccountAdjustment
                     title="Account Settings"

@@ -19,19 +19,22 @@ const RecentView = ({ userData }) => {
         pauseOnHover: true,
     };
     const dispatch = useDispatch();
-    const { myViews, ...viewInfo } = useSelector((state) => state.reducer.viewReducer);
+    const { myViews, ...viewInfo } = useSelector(
+        (state) => state.reducer.viewReducer
+    );
     console.log(myViews);
     const { cartData, status } = useSelector(
         (state) => state.reducer.cartedProduct
     );
     let prodState = status === 'FULFILLED' ? cartData[2] : ['0'];
     useEffect(() => {
-        userData?._id && recentlyViewed(userData, dispatch)
-    }, [])
+        userData?._id && recentlyViewed(userData, dispatch);
+    }, []);
     console.log(myViews);
-    let products = 
-        myViews?.length > 0 ? myViews.map((each, index) => {
-            let starSum = 0;
+    let products =
+        myViews?.length > 0 ? (
+            myViews.map((each, index) => {
+                let starSum = 0;
                 each.product.rate.map((res) => {
                     starSum = starSum + parseInt(res);
                 });
@@ -49,28 +52,35 @@ const RecentView = ({ userData }) => {
                         myCarts={prodState}
                         totReview={each.product.rate.length}
                         star={parseInt(starSum / each.product.rate.length)}
-                        distance={each.product.distance ? each.product.distance.toFixed(2) + ' km' : ''}
+                        distance={
+                            each.product.distance
+                                ? each.product.distance.toFixed(2) + ' km'
+                                : ''
+                        }
                     />
                 );
-        }) : (
-                <div>No Order Preview Available</div>
-            )
-        
+            })
+        ) : (
+            <div>No Order Preview Available</div>
+        );
+
     return (
         <>
             <div className="flex items-center justify-center">
                 <div className=" py-3 border-y-2 border-white bg-slate-100 w-11/12 ">
-                    {viewInfo.status === 'FULFILLED' ?
+                    {viewInfo.status === 'FULFILLED' ? (
                         <Slider {...settings} className="w-full">
                             {products}
                         </Slider>
-                    : (
-                        <div className="w-full text-center"><Loader /></div>
+                    ) : (
+                        <div className="w-full text-center">
+                            <Loader />
+                        </div>
                     )}
                 </div>
             </div>
         </>
     );
-}
+};
 
-export default RecentView
+export default RecentView;

@@ -1,6 +1,6 @@
 import { Navigate as Redirect, useRoutes } from 'react-router-dom';
 import LazyLoading from '../components/LazyLoading';
-import Activities from '../pages/Agent - Copy/Dashboard/Business/Activities';
+import Activities from '../pages/Agent - Copy/Dashboard/Accounts/stores/Activities';
 import RandomSearch from '../pages/website/containers/randomSearch';
 
 const NotFound = LazyLoading(() => import('../pages/NotFound'));
@@ -52,7 +52,9 @@ const SignUp = LazyLoading(() => import('../pages/auth/signup/SignUp'));
 const SignIn = LazyLoading(() => import('../pages/auth/signin'));
 const ForgotPass = LazyLoading(() => import('../pages/auth/forgot-password'));
 const ResetPassword = LazyLoading(() => import('../pages/auth/resetPassword'));
-const EmailSent = LazyLoading(() => import('../pages/auth/forgot-password/successMessage'));
+const EmailSent = LazyLoading(() =>
+    import('../pages/auth/forgot-password/successMessage')
+);
 const Sell = LazyLoading(() => import('../pages/seller/seller/Home'));
 const Agent = LazyLoading(() => import('../pages/Agent/website/Home'));
 
@@ -68,14 +70,31 @@ const AdminForgotPassword = LazyLoading(() =>
     import('../pages/Agent - Copy/website/ForgotPass')
 );
 const AdminGen = LazyLoading(() => import('../pages/Agent - Copy/Dashboard'));
-const AdminProdList = LazyLoading(() =>
-    import('../pages/Agent - Copy/Dashboard/Business/productList')
-);
 const AwaitingProduct = LazyLoading(() =>
     import('../pages/Agent - Copy/Dashboard/Business/Awaiting')
 );
+const AllOrder = LazyLoading(() =>
+    import('../pages/Agent - Copy/Dashboard/Orders')
+);
 const XmartOverview = LazyLoading(() =>
     import('../pages/Agent - Copy/Dashboard/Overview')
+);
+const AllStores = LazyLoading(() =>
+    import('../pages/Agent - Copy/Dashboard/Accounts/stores')
+);
+const StoreInfo = LazyLoading(() =>
+    import('../pages/Agent - Copy/Dashboard/Accounts/stores/details')
+);
+const AdminProdList = LazyLoading(() =>
+    import('../pages/Agent - Copy/Dashboard/Accounts/stores/productList')
+);
+
+const AllUsers = LazyLoading(() =>
+    import('../pages/Agent - Copy/Dashboard/Accounts/users')
+);
+
+const AllAgents = LazyLoading(() =>
+    import('../pages/Agent - Copy/Dashboard/Accounts/agents')
 );
 
 // sellerPage
@@ -83,6 +102,8 @@ const CreateAccount = LazyLoading(() =>
     import('../pages/seller/CreateAccount')
 );
 const SellerDashboard = LazyLoading(() => import('../pages/seller/Dashboard'));
+const Activation = LazyLoading(() => import('../pages/Agent - Copy/Dashboard/activation'));
+const Confirmation = LazyLoading(() => import('../pages/Agent - Copy/Dashboard/Accounts/agents/confirmation'));
 // Agent Page
 const NewAgent = LazyLoading(() => import('../pages/Agent/newAgent.js'));
 const AgentDashboard = LazyLoading(() => import('../pages/Agent/Dashboard'));
@@ -130,6 +151,13 @@ const AppRoutes = () => {
                     path: '/b/:shop/:product',
                     element: <ProdContainter />,
                 },
+                { path: '/forgot-password', element: <SignUp /> },
+            ],
+        },
+        {
+            path: '/',
+            element: <AuthOutlet />,
+            children: [
                 {
                     path: '/checkout',
                     element: <Checkout />,
@@ -142,7 +170,6 @@ const AppRoutes = () => {
                     path: '/my-orders',
                     element: <MyOrders />,
                 },
-                { path: '/forgot-password', element: <SignUp /> },
             ],
         },
         {
@@ -226,15 +253,43 @@ const AppRoutes = () => {
                             index: true,
                         },
                         {
+                            element: <Activation />,
+                            path: '/admin/dashboard/activation',
+                        },
+                        {
+                            path: '/admin/dashboard/confirmation',
+                            element: <Confirmation />
+                        },
+                        {
                             path: '/admin/dashboard/:section',
                             element: <AdminGen />,
                         },
                         {
-                            path: '/admin/dashboard/stores/:nick',
+                            path: '/admin/dashboard/stores/product-list',
                             element: <AdminProdList />,
                         },
                         {
-                            path: '/admin/dashboard/stores/activities/:id',
+                            path: '/admin/dashboard/stores/store-info',
+                            element: <StoreInfo />,
+                        },
+                        {
+                            path: '/admin/dashboard/stores',
+                            element: <AllStores />,
+                        },
+                        {
+                            path: '/admin/dashboard/users',
+                            element: <AllUsers />,
+                        },
+                        {
+                            path: '/admin/dashboard/agents',
+                            element: <AllAgents />,
+                        },
+                        {
+                            path: '/admin/dashboard/all-orders',
+                            element: <AllOrder />,
+                        },
+                        {
+                            path: '/admin/dashboard/stores/activities',
                             element: <Activities />,
                         },
                         {

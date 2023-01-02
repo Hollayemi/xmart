@@ -61,7 +61,9 @@ const Home = () => {
 
     const HomePreview = homeProduct ? (
         homeProduct.map((res, index) => {
+            console.log(res);
             let infoCursor = res._id.name.split(' ')[0].split(',')[0];
+            console.log(infoCursor, res._id.name);
             return (
                 infoCursor && (
                     <HorizontalDisplay
@@ -72,7 +74,7 @@ const Home = () => {
                         about={HomeDisplay[infoCursor][0]}
                         image={HomeDisplay[infoCursor][1]}
                         slider={HomeDisplay[infoCursor][2]}
-                        userId={(userData?._id) || 'noId'}
+                        userId={userData?._id || 'noId'}
                     />
                 )
             );

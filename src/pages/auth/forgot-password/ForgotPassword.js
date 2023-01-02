@@ -10,7 +10,7 @@ import HelperText from '../../../components/elements/Input/HelperText';
 
 export const ForgotPassword = ({ going, popUp }) => {
     const [email, setEmail] = useState('');
-    
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const fireAction = () => {
@@ -18,19 +18,20 @@ export const ForgotPassword = ({ going, popUp }) => {
     };
     return (
         <>
-            
             <div
                 className={`w-full ${
                     !popUp ? 'md:w-3/5' : 'max-w-450  ml-5'
                 } my-3`}
             >
-                <h5 
+                <h5
                     className="text-blue-500 absolute cursor-pointer top-4 left-4 flex items-center justify-center"
                     onClick={() => window.history.back()}
                 >
                     <FaAngleLeft className=" -mt-1 mr-3" /> Back to Home
                 </h5>
-                <h1 className="font-black text-black text-4xl ">Forgot Password</h1>
+                <h1 className="font-black text-black text-4xl ">
+                    Forgot Password
+                </h1>
             </div>
             <div
                 className={`w-full ${

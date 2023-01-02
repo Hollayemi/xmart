@@ -12,7 +12,6 @@ import {
 } from '../../../state/slices/shop/brands/brands';
 import ModalPanel from '../../../components/elements/ModalPanel';
 import { deleteHandler } from '../../../state/slices/shop/delete';
-import { myBusinessFiles } from '../../../state/slices/shop/display/displayAll';
 import { REQUEST_STATUS } from '../../../state/slices/constants';
 import { useDispatch } from 'react-redux';
 
@@ -48,36 +47,30 @@ const Brand = ({ neededInfo, loadedCateg, myBrands, setShowing }) => {
             ...newValue,
         });
     }
-    let folders = null;
-    if (myBrands && myBrands.type === 'success') {
-        folders = myBrands.message.map((each, index) => {
-            return (
-                <Folders
-                    name={each.brandName}
-                    num={each.brandCollection}
-                    key={index}
-                    id={each._id}
-                    neededInfo={neededInfo}
-                    dispatch={dispatch}
-                    setShowing={setShowing}
-                />
-            );
-        });
-    }
+
+    const folders = myBrands?.map((each, index) => {
+        return (
+            <Folders
+                name={each.brandName}
+                num={each.brandCollection}
+                key={index}
+                id={each._id}
+                neededInfo={neededInfo}
+                dispatch={dispatch}
+                setShowing={setShowing}
+            />
+        );
+    });
 
     const myAvailableCate = [];
-    if (
-        otpStatus === REQUEST_STATUS.VERIFIED &&
-        loadedCateg &&
-        loadedCateg.type !== 'not ready'
-    ) {
-        loadedCateg.message.map((res, index) => {
-            myAvailableCate.push({
-                label: res.collectionName,
-                value: res.category,
-            });
+
+    loadedCateg?.map((res, index) => {
+        myAvailableCate.push({
+            label: res.collectionName,
+            value: res.category,
         });
-    }
+    });
+
     const selectCateFunc = (e) => {
         updateValue(e, 'category');
         setChildren(loadCategories(e));
@@ -189,14 +182,7 @@ const Folders = ({ name, num, id, neededInfo, dispatch, setShowing }) => {
     const [open, setOpen] = useState(true);
 
     const deleteBrandHandler = () => {
-        deleteBrand(
-            splited,
-            neededInfo,
-            deleteHandler,
-            myBusinessFiles,
-            eventFunc,
-            dispatch
-        );
+        deleteBrand(splited, neededInfo, deleteHandler, eventFunc, dispatch);
     };
 
     return (

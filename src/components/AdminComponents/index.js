@@ -5,6 +5,7 @@ import {
     Content,
     Sidebar,
     Navbar,
+    Dropdown,
     Nav,
     Sidenav,
 } from 'rsuite';
@@ -19,6 +20,8 @@ import {
     FaUserShield,
     FaSignOutAlt,
     FaHome,
+    FaShoppingBag,
+    FaUsers,
 } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import profPic from '../../assets/images/avatar/avatar2.png';
@@ -132,44 +135,95 @@ const DashboardWrapper = ({ ...props }) => {
                                             </div>
                                         </div>
                                     </Nav.Item>
-
-                                    <Nav.Item
-                                        eventKey="2"
-                                        active={showing === 'stores' && true}
-                                        onClick={() =>
-                                            navigate('/admin/dashboard/stores')
-                                        }
-                                    >
-                                        <div className="h-5 ml-2 min-w-[100%]">
-                                            <div className="flex items-center h-full">
-                                                <i className="text-lg">
-                                                    <FaDumpster />
-                                                </i>
-                                                <span className="px-3">
-                                                    Stores
-                                                </span>
+                                    <Dropdown
+                                        eventKey="3"
+                                        trigger="click"
+                                        title={
+                                            <div className="h-5 min-w-[100%]">
+                                                <div className="flex items-center h-full">
+                                                    <i className="text-lg">
+                                                        <FaShoppingBag />
+                                                    </i>
+                                                    <span className="px-5">
+                                                        Orders
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Nav.Item>
-
-                                    <Nav.Item
-                                        eventKey="2"
-                                        active={showing === 'agents' && true}
-                                        onClick={() =>
-                                            navigate('/admin/dashboard/agents')
                                         }
+                                        icon={<FaShoppingBag />}
+                                        placement="leftStart"
                                     >
-                                        <div className="h-5 ml-2 min-w-[100%]">
-                                            <div className="flex items-center h-full">
-                                                <i className="text-lg">
-                                                    <FaUserShield />
-                                                </i>
-                                                <span className="px-3">
-                                                    Agents
-                                                </span>
+                                        <Dropdown.Item
+                                            eventKey="1-0"
+                                            active={
+                                                showing ===
+                                                    'Orders_All Orders' && true
+                                            }
+                                            onClick={() =>
+                                                navigate(
+                                                    '/admin/dashboard/all-orders'
+                                                )
+                                            }
+                                        >
+                                            All Orders
+                                        </Dropdown.Item>
+                                    </Dropdown>
+                                    <Dropdown
+                                        eventKey="4"
+                                        trigger="click"
+                                        title={
+                                            <div className="h-5 min-w-[100%]">
+                                                <div className="flex items-center h-full">
+                                                    <i className="text-lg">
+                                                        <FaUsers />
+                                                    </i>
+                                                    <span className="px-5">
+                                                        Accounts
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Nav.Item>
+                                        }
+                                        icon={<FaUsers />}
+                                        placement="leftStart"
+                                    >
+                                        <Dropdown.Item
+                                            eventKey="2-1"
+                                            active={showing === 'users' && true}
+                                            onClick={() =>
+                                                navigate(
+                                                    '/admin/dashboard/users'
+                                                )
+                                            }
+                                        >
+                                            Users
+                                        </Dropdown.Item>
+                                        <Dropdown.Item
+                                            eventKey="2-2"
+                                            active={
+                                                showing === 'agents' && true
+                                            }
+                                            onClick={() =>
+                                                navigate(
+                                                    '/admin/dashboard/agents'
+                                                )
+                                            }
+                                        >
+                                            Agents
+                                        </Dropdown.Item>
+                                        <Dropdown.Item
+                                            eventKey="2-3"
+                                            active={
+                                                showing === 'stores' && true
+                                            }
+                                            onClick={() =>
+                                                navigate(
+                                                    '/admin/dashboard/stores'
+                                                )
+                                            }
+                                        >
+                                            Stores
+                                        </Dropdown.Item>
+                                    </Dropdown>
                                     <Nav.Item
                                         eventKey="2"
                                         active={showing === 'pickers' && true}
@@ -249,7 +303,7 @@ const DashboardWrapper = ({ ...props }) => {
                                 // agentDetails={props.agentDetails}
                                 />
                             </div>
-                            <div className="w-full bg-slate-50">
+                            <div className="w-full bg-slate-100">
                                 {props.children}
                             </div>
                         </Content>

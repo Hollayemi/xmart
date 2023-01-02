@@ -38,10 +38,11 @@ const Checkout = () => {
             navigate('/signin');
         }
     }, [userData, dispatch, navigate]);
+    console.log(getPickers);
     let myPickers = [];
     myPickers = getPickers
         ? getPickers.map((each) => ({
-              value: each._id,
+              value: `${each._id}---${each.surname} ${each.last_name} (${each.relationship})`,
               label: `${each.surname} ${each.last_name} (${each.relationship})`,
           }))
         : [];

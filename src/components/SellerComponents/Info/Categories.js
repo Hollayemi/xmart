@@ -89,6 +89,11 @@ export const HomeDisplay = {
         MenImage,
         <SliderImages images={['shopDrinks', 'kitchenEquipment']} />,
     ],
+    Pets: [
+        'Order for men jacket today, look different today',
+        MenImage,
+        <SliderImages images={['shopDrinks', 'kitchenEquipment']} />,
+    ],
     Tv: [
         'High quality of leader shoes from xmart',
         FootImage,
@@ -400,13 +405,13 @@ export const martCategories = [
                             {
                                 label: 'Belts',
                                 value: 'Belts',
-                                spec: ['size', 'color',],
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Jewellery',
                                 value: 'Jewellery',
-                                spec: ['size', 'color',],
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
@@ -424,13 +429,13 @@ export const martCategories = [
                             {
                                 label: 'Sunglasses',
                                 value: 'Sunglasses',
-                                spec: ['size', 'color',],
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
                                 label: 'Watches & Eyewear',
                                 value: 'Watches & Eyewear',
-                                spec: ['size', 'color',],
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
@@ -441,7 +446,7 @@ export const martCategories = [
                             {
                                 label: 'Men Wrist Wear',
                                 value: 'Men Wrist Wear',
-                                spec: ['size', 'color',],
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                             {
@@ -459,13 +464,13 @@ export const martCategories = [
                             {
                                 label: 'Hair Care',
                                 value: 'Hair Care',
-                                spec: ['size', 'color', "measurement"],
+                                spec: ['size', 'color', 'measurement'],
                                 children: [],
                             },
                             {
                                 label: 'Skincare',
                                 value: 'Skincare',
-                                spec: ['size', 'color', "measurement"],
+                                spec: ['size', 'color', 'measurement'],
                                 children: [],
                             },
                             {
@@ -477,13 +482,13 @@ export const martCategories = [
                             {
                                 label: 'Fragrances',
                                 value: 'Fragrances',
-                                spec: ['size', 'color', "measurement"],
+                                spec: ['size', 'color', 'measurement'],
                                 children: [],
                             },
                             {
                                 label: 'Body, Bath & Shower',
                                 value: 'Body, Bath & Shower',
-                                spec: ['size', 'color',],
+                                spec: ['size', 'color'],
                                 children: [],
                             },
                         ],
@@ -706,13 +711,13 @@ export const martCategories = [
                             {
                                 label: 'Phone Glass Protector',
                                 value: 'Phone Glass Protector',
-                                spec: ['Phone',],
+                                spec: ['Phone'],
                                 children: [],
                             },
                             {
                                 label: 'Phone Stand Tripod',
                                 value: 'Phone Stand Tripod',
-                                spec: ['height', 'color', ],
+                                spec: ['height', 'color'],
                                 children: [],
                             },
                             {
@@ -730,7 +735,12 @@ export const martCategories = [
                             {
                                 label: 'Headphones',
                                 value: 'Headphones',
-                                spec: ['fingerprint', 'color', 'sound', 'bluetooth'],
+                                spec: [
+                                    'fingerprint',
+                                    'color',
+                                    'sound',
+                                    'bluetooth',
+                                ],
                                 children: [],
                             },
                             {
@@ -822,7 +832,7 @@ export const martCategories = [
                                 label: 'Hp',
                                 value: 'Hp',
                                 spec: ['computerSpec'],
-                                children: []
+                                children: [],
                             },
                             {
                                 label: 'Acer',

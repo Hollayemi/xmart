@@ -6,7 +6,7 @@ import { Message, toaster } from 'rsuite';
 const resetPasswordApi = createAsyncThunk('post/RP', async (payload) => {
     console.log(payload);
     const { data } = await martApi
-        .patch('/user/reset-password',payload, {})
+        .patch('/user/reset-password', payload, {})
         .then((res) => {
             return res;
         })

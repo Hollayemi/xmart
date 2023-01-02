@@ -20,38 +20,38 @@ const ReferenceKey = ({ id }) => {
                 title="Reference Keys"
                 info="Transactions are kept for reference purposes"
             />
-            <div className="flex bg-slate-50 rounded-md justify-center mt-6 w-full min-w-[280px]">
-                <div className="w-full">
-                    <Table height={600} data={data}>
+            <div className="w-full bg-slate-50 rounded-md mt-6 w-full min-w-[280px]">
+                <div className="flex items-center justify-between mr-3 w-full">
+                    <h5 className="text-md py-2 font-bold text-slat-800 px-2 pt-3">
+                        Transactions
+                    </h5>
+                    <></>
+                </div>
+                <div className="w-full md:full shadow-lg">
+                    <Table height={400} data={data}>
                         <Table.Column width={50} fixed>
                             <Table.HeaderCell>s/n</Table.HeaderCell>
                             <Table.Cell dataKey={1} />
                         </Table.Column>
                         <Table.Column width={200}>
-                            <Table.HeaderCell>Product</Table.HeaderCell>
-                            <Table.Cell dataKey="product" />
+                            <Table.HeaderCell>Transaction Key</Table.HeaderCell>
+                            <Table.Cell dataKey="txnId" />
                         </Table.Column>
-                        <Table.Column width={200}>
+                        <Table.Column width={200} resizable>
                             <Table.HeaderCell>Message</Table.HeaderCell>
                             <Table.Cell dataKey="message" />
                         </Table.Column>
-                        <Table.Column width={200}>
+                        <Table.Column width={200} resizable>
                             <Table.HeaderCell>Status</Table.HeaderCell>
                             <Table.Cell dataKey="status" />
                         </Table.Column>
-                        <Table.Column width={200}>
+                        <Table.Column width={200} resizable>
                             <Table.HeaderCell>Reference key</Table.HeaderCell>
-                            <Table.Cell dataKey="reference" />
+                            <Table.Cell dataKey="tnxref" />
                         </Table.Column>
-
-                        <Table.Column width={200}>
-                            <Table.HeaderCell>Transaction</Table.HeaderCell>
-                            <Table.Cell dataKey="transaction" />
-                        </Table.Column>
-
                         <Table.Column width={200}>
                             <Table.HeaderCell>Date</Table.HeaderCell>
-                            <Table.Cell dataKey="date" />
+                            <Table.Cell dataKey="createdAt" />
                         </Table.Column>
                     </Table>
                 </div>

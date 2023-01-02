@@ -12,16 +12,13 @@ import {
 } from '../../../state/slices/shop/collections/createCollection';
 import ModalPanel from '../../../components/elements/ModalPanel';
 import { deleteHandler } from '../../../state/slices/shop/delete';
-import {
-    myBusinessFiles,
-    storeFiles,
-} from '../../../state/slices/shop/display/displayAll';
+import { storeFiles } from '../../../state/slices/shop/display/displayAll';
 //
 
 const Collections = ({ collections, neededInfo }) => {
-    const { reFetchData, otpStatus, setFiles } = neededInfo;
+    const { reFetchData, otpStatus, otpData, setFiles } = neededInfo;
     useEffect(() => {
-        storeFiles(shopData.data._id, dispatch, reFetchData);
+        storeFiles(shopData.data._id, otpData, dispatch, reFetchData);
     }, []);
 
     const [formData, setFormData] = useState({
@@ -39,27 +36,26 @@ const Collections = ({ collections, neededInfo }) => {
         });
     }
     const { shopData } = useSelector((state) => state.reducer.setShopReducer);
-    const { otpData } = useSelector((state) => state.reducer.setOtpReducer);
+    // const { otpData } = useSelector((state) => state.reducer.setOtpReducer);
 
     //
     //
-    let folders = null;
-    if (collections.type === 'success') {
-        folders = collections.message.map((each, index) => {
-            return (
-                <Folders
-                    name={each.collectionName}
-                    num="1"
-                    key={index}
-                    id={each._id}
-                    otpData={otpData}
-                    shopData={shopData}
-                    reFetchData={reFetchData}
-                    category={each.category}
-                />
-            );
-        });
-    }
+
+    const folders = collections?.map((each, index) => {
+        return (
+            <Folders
+                name={each.collectionName}
+                num="1"
+                key={index}
+                id={each._id}
+                otpData={otpData}
+                shopData={shopData}
+                reFetchData={reFetchData}
+                category={each.category}
+            />
+        );
+    });
+    //
     //
 
     //
@@ -198,7 +194,6 @@ const Folders = ({
             splited,
             dispatch,
             deleteHandler,
-            myBusinessFiles,
             eventFunc,
             reFetchData
         );

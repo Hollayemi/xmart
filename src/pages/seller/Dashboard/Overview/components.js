@@ -4,7 +4,7 @@ import { Placeholder } from 'rsuite';
 
 export const SmallCard = ({ total, icon, info }) => {
     return (
-        <div className="w-56 mx-2 my-3 h-24 shadow-md rounded flex items-center justify-evenly cursor-pointer hover:bg-gray-50 bg-white">
+        <div className="w-1/2 md:w-56 md:mx-2 my-3 h-24 shadow-md rounded flex items-center justify-evenly cursor-pointer hover:bg-gray-50 bg-white">
             <i className="w-10 h-10 text-2xl ll rounded-full flex items-center justify-center bg-blue-100 text-blue-400">
                 {icon}
             </i>

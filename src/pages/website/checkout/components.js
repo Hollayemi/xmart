@@ -10,23 +10,27 @@ import {
 import { addNewOrder } from '../../../state/slices/home/order';
 
 export const GroupCart = (prop) => {
-    const { eachStore, myPickers, userId, auth, shippingAddress } = prop
+    const { eachStore, myPickers, userId, auth, shippingAddress } = prop;
     const [picker, setPicker] = useState(null);
     const dispatch = useDispatch();
-    let storeProducts = eachStore.group.map((eachCart) => { 
+    let storeProducts = eachStore.group.map((eachCart) => {
         return {
             name: eachCart.result.prodName,
-            id: eachCart._id,
-            quantity: eachCart.quantity
-        }
+            id: eachCart.productId,
+            quantity: eachCart.quantity,
+            color: eachCart.color,
+            size: eachCart.size,
+            variations: eachCart.variations,
+        };
     });
-    console.log("eachStore", eachStore);
-    console.log("address", shippingAddress);
+    console.log('eachStore', eachStore);
+    console.log('address', shippingAddress);
+    console.log(picker);
     const paymentInfo = {
         redirurl: 'redirurl',
         txnId: 'txnId',
         tnxref: 'tnxref',
-    }
+    };
 
     const body = {
         storeProducts: storeProducts,
@@ -48,7 +52,7 @@ export const GroupCart = (prop) => {
                     <h5 className="mr-3 font-black">Select Picker:</h5>
                     <div>
                         <SelectPicker
-                            label=" "
+                            label="Picker"
                             data={myPickers}
                             className="w-full bg-slate-100"
                             size="sm"
@@ -124,9 +128,11 @@ export const MyCheckoutItem = (props) => {
                     />
                 </div>
                 <div className="ml-3">
-                    <h5 className={
-                            `font-[500] text-[15] Lucida ${status === 'deleted' && 'line-through text-slate-400'}`
-                        }
+                    <h5
+                        className={`font-[500] text-[15] Lucida ${
+                            status === 'deleted' &&
+                            'line-through text-slate-400'
+                        }`}
                     >
                         {name}
                     </h5>
