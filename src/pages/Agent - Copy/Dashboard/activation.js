@@ -12,6 +12,8 @@ const Activation = () => {
     const dispatch = useDispatch();
     const { adminData } = useSelector((state) => state.reducer.adminReducer);
 
+
+    
     const deactivate = () => {
         activation(dispatch, data, adminData);
     };

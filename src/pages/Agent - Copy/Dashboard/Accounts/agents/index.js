@@ -1,7 +1,5 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { FaEllipsisH } from 'react-icons/fa';

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import Slider from 'react-slick';
 import LadiesImage from '../../../assets/images/png/purchase.png';
 import MenImage from '../../../assets/images/png/Landing/main5.jpg';

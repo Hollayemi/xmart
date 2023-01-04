@@ -172,6 +172,7 @@ const StoreDetails = () => {
                                                                 }
                                                                 eventKey={`col${i}`}
                                                                 id={`col${i}`}
+                                                                key={i}
                                                             >
                                                                 <Listing
                                                                     title="category"
@@ -200,6 +201,7 @@ const StoreDetails = () => {
                                                                 }
                                                                 eventKey={`brand${i}`}
                                                                 id={`brand${i}`}
+                                                                key={i}
                                                             >
                                                                 <Listing
                                                                     title="Collection"

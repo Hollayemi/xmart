@@ -10,5 +10,15 @@ module.exports = {
         sourceType: 'module',
     },
     plugins: ['react'],
-    rules: {},
+    rules: {
+        "react/prop-types": "off",
+        "no-unused-vars": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/no-unescaped-entities": "off",
+        "no-undef": "off",
+        "react/no-children-prop": "off",
+        "no-empty": "off",
+        "no-unsafe-optional-chaining": "off"
+    },
 };
