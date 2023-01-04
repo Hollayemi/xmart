@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAddress } from '../../../../state/slices/shop/address';
 import { editShopHandler } from '../../../../state/slices/shop/settings/editShop';
@@ -12,7 +11,7 @@ const SetLocation = ({ shopData }) => {
     const dispatch = useDispatch();
     useEffect(() => {
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(function (position) {
+            navigator.geolocation.watchPosition((position) => {
                 setLat(position.coords.latitude);
                 setLon(position.coords.longitude);
                 const data = {
@@ -29,9 +28,9 @@ const SetLocation = ({ shopData }) => {
         data: {
             coordinate: [
                 {
-                    lat: lat,
-                    lon: lon,
-                    address: address,
+                    lat,
+                    lon,
+                    address,
                 },
             ],
         },
@@ -52,8 +51,14 @@ const SetLocation = ({ shopData }) => {
                     </h5>
                 </div>
                 <div className="mt-5 text-slate-400 w-full">
-                    <h5 className="mt-2">Latitude: {lat}</h5>
-                    <h5 className="mt-2">Longitude: {lon}</h5>
+                    <h5 className="mt-2">
+                        Latitude:
+                        {lat}
+                    </h5>
+                    <h5 className="mt-2">
+                        Longitude:
+                        {lon}
+                    </h5>
                     <h5 className="mt-2">
                         Address: {address && address.formatted}
                     </h5>

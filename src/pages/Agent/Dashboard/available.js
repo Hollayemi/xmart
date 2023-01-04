@@ -3,11 +3,11 @@ import { Table } from 'rsuite';
 import NotReady from '../../../components/unavailablePages';
 
 const AvailablePickup = () => {
-    let notReady = true;
+    const notReady = true;
     return !notReady ? (
         <section className="flex justify-center min-h-[80vh] p-4">
             <div className="w-full md:w-5/6 shadow-lg">
-                <Table height={420} data={''}>
+                <Table height={420} data="">
                     <Table.Column width={100} align="center" resizable>
                         <Table.HeaderCell>Item</Table.HeaderCell>
                         <Table.Cell dataKey="item" />

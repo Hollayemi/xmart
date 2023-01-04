@@ -8,12 +8,8 @@ export const otpHandler = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post(`/setOTP/${payload}`, {}, {})
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -21,12 +17,8 @@ export const otpHandler = createAsyncThunk(
 export const getOTP = createAsyncThunk('post/getotp', async (payload) => {
     const { data } = await martApi
         .post('/getOTP', payload, {})
-        .then((res) => {
-            return res;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((res) => res)
+        .catch((e) => e.response);
     return data;
 });
 
@@ -40,31 +32,31 @@ const setOtp = createSlice({
     name: 'newOtp',
     initialState,
     reducers: {
-        defaultOTP: (state, { payload }) => {
+        defaultOTP: (state, { payload }) =>
             // state.wasGoing = payload;
-            return { ...initialState, wasGoing: REQUEST_STATUS.NOT_VERIFIED };
-        },
+            ({ ...initialState, wasGoing: REQUEST_STATUS.NOT_VERIFIED }),
     },
     extraReducers: {
-        [otpHandler.pending]: (state) => {
-            return { ...initialState, otpStatus: REQUEST_STATUS.PENDING };
-        },
-        [otpHandler.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                SetOTP: payload,
-                otpStatus: REQUEST_STATUS.NOT_VERIFIED,
-            };
-        },
-        [otpHandler.rejected]: (state) => {
-            return { ...initialState, otpStatus: REQUEST_STATUS.REJECTED };
-        },
+        [otpHandler.pending]: (state) => ({
+            ...initialState,
+            otpStatus: REQUEST_STATUS.PENDING,
+        }),
+        [otpHandler.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            SetOTP: payload,
+            otpStatus: REQUEST_STATUS.NOT_VERIFIED,
+        }),
+        [otpHandler.rejected]: (state) => ({
+            ...initialState,
+            otpStatus: REQUEST_STATUS.REJECTED,
+        }),
 
         //
         //
-        [getOTP.pending]: () => {
-            return { ...initialState, otpStatus: REQUEST_STATUS.PENDING };
-        },
+        [getOTP.pending]: () => ({
+            ...initialState,
+            otpStatus: REQUEST_STATUS.PENDING,
+        }),
         [getOTP.fulfilled]: (state, { payload }) => {
             if (payload.message === 'welcome') {
                 return {
@@ -72,17 +64,17 @@ const setOtp = createSlice({
                     otpData: payload,
                     otpStatus: REQUEST_STATUS.VERIFIED,
                 };
-            } else {
-                return {
-                    ...initialState,
-                    error2: payload,
-                    otpStatus: REQUEST_STATUS.FULFILLED,
-                };
             }
+            return {
+                ...initialState,
+                error2: payload,
+                otpStatus: REQUEST_STATUS.FULFILLED,
+            };
         },
-        [getOTP.rejected]: (state) => {
-            return { ...initialState, otpStatus: REQUEST_STATUS.REJECTED };
-        },
+        [getOTP.rejected]: (state) => ({
+            ...initialState,
+            otpStatus: REQUEST_STATUS.REJECTED,
+        }),
     },
 });
 

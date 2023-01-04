@@ -8,12 +8,8 @@ export const dashBoardLogin = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post('/dashboardLogin', payload.body, {})
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                return err.response;
-            });
+            .then((res) => res)
+            .catch((err) => err.response);
         return data;
     }
 );
@@ -22,7 +18,7 @@ export const dasboardLoginHandler = (payload, dispatch) => {
     dispatch(dashBoardLogin(payload))
         .then(unwrapResult)
         .then((res) => {
-            let payload2 = {
+            const payload2 = {
                 login: res.type,
                 otp: '08908',
                 shopID: payload.body.shopID,

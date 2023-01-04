@@ -28,7 +28,7 @@ const PasswordVerification = ({ id }) => {
     };
     const dispatch = useDispatch();
     const loginHandler = () => {
-        let payload = {
+        const payload = {
             body: {
                 data: {
                     ...formData,

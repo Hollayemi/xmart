@@ -10,7 +10,7 @@ import { fakeImages } from './Images';
 import { cartHandler } from '../../state/slices/home/cart';
 import SigninPop from '../../pages/auth/signin/Pop up';
 
-var settings = {
+const settings = {
     infinite: true,
     centerMode: true,
     variableWidth: true,
@@ -37,7 +37,7 @@ const HorizontalDisplay = (props) => {
         Products = products.map((each, index) => {
             let starSum = 0;
             each.rate.map((res) => {
-                starSum = starSum + parseInt(res);
+                starSum += parseInt(res);
             });
 
             return (
@@ -45,7 +45,7 @@ const HorizontalDisplay = (props) => {
                     key={index}
                     id={each._id}
                     userId={userId}
-                    img={fakeImages['fakeImg' + (index + 1)]}
+                    img={fakeImages[`fakeImg${index + 1}`]}
                     sellingPrice={each.prodPrice}
                     originalPrice={each.prodPrice}
                     store={each.store}
@@ -55,7 +55,7 @@ const HorizontalDisplay = (props) => {
                     totReview={each.rate.length}
                     star={parseInt(starSum / each.rate.length)}
                     distance={
-                        each.distance ? each.distance.toFixed(2) + ' km' : ''
+                        each.distance ? `${each.distance.toFixed(2)} km` : ''
                     }
                 />
             );
@@ -128,12 +128,12 @@ export const Product = (prop) => {
         distance,
     } = prop;
     const dispatch = useDispatch();
-    let payload = {
+    const payload = {
         body: {
             productId: id,
-            userId: userId,
+            userId,
             quantity: 1,
-            store: store,
+            store,
             color: ['As displayed'],
             size: ['As displayed'],
         },

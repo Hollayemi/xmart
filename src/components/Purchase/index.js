@@ -15,7 +15,7 @@ const Purchase = ({ x_name, price, xtra, gift, memory, shopData }) => {
             shopID: shopData.data._id,
         });
         alert('Thanks for doing business with us! Come back soon!!');
-        let sep = xtra.split(' ');
+        const sep = xtra.split(' ');
         if (sep[1].toLowerCase() === 'brand') {
             sep[1] = 'brands';
         }
@@ -64,7 +64,10 @@ const Purchase = ({ x_name, price, xtra, gift, memory, shopData }) => {
         <div className="shadow-sm text-center h-80 py-8 bg-slate-800 rounded-lg my-6 mx-3 min-w-[270px] sm:w-48 md:w-68 hover:shadow-lg px-4">
             <h2 className="font-black text-xl text-white">{x_name}</h2>
             <br />
-            <h3 className="text-slate-400">Only for &#x20A6; {price}</h3>
+            <h3 className="text-slate-400">
+                Only for &#x20A6;
+                {price}
+            </h3>
 
             <h4 className="text-slate-400">{xtra}</h4>
 

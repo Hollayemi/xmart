@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaLongArrowAltRight } from 'react-icons/fa';
 import Main1 from '../../assets/images/png/Landing/main3.png';
 import Main2 from '../../assets/images/png/features-1.svg';
 import Main3 from '../../assets/images/png/features-2.svg';
-import { FaLongArrowAltRight } from 'react-icons/fa';
 import TwoColFlexImgRight from '../../components/SellerComponents/FlexDisplay';
 import HeaderComp from '../../components/SellerComponents/headerComp';
 
@@ -82,7 +82,7 @@ const Agent = () => {
                             'confirm your referral',
                             'confirm your referral',
                         ]}
-                        reverse={true}
+                        reverse
                     />
                 </div>
             </div>
@@ -91,7 +91,6 @@ const Agent = () => {
                     <TwoColFlexImgRight
                         image={Main2}
                         more="A Referral Links is simply a unique combination of numbers, letters, or both attached to a link which are used as an identifier to identify the referral.
-
 
                             Referral codes, in this type of application, are used to track the origin of a referral. The reason a business uses a referral code is so they can connect the referrals to the people who sent them in."
                         title="What Is A Referral Link And How Does It Work?"

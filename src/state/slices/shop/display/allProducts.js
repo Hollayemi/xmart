@@ -6,12 +6,8 @@ const fetchProdList = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post('/shopProductsList', payload, {})
-            .then((e) => {
-                return e;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((e) => e)
+            .catch((e) => e.response);
         return data;
     }
 );

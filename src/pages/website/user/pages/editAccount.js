@@ -34,7 +34,7 @@ const EditAccount = () => {
             ...newValue,
         });
     };
-    let auth = userData._id + ' ' + userData.accessToken;
+    const auth = `${userData._id} ${userData.accessToken}`;
 
     const updateAccount = () => {
         updateUserAccount(formData, auth, dispatch, navigate);
@@ -57,7 +57,7 @@ const EditAccount = () => {
                                 name="fullName"
                                 placeholder=" "
                                 value={formData.fullname}
-                                required={true}
+                                required
                                 onChange={(e) =>
                                     updateValue(e.target.value, 'fullname')
                                 }
@@ -67,7 +67,7 @@ const EditAccount = () => {
                             <InputGroup
                                 label="Username"
                                 placeholder=" "
-                                required={true}
+                                required
                                 value={formData.username}
                                 tooltip={
                                     <ul className="p-1">
@@ -85,7 +85,7 @@ const EditAccount = () => {
                             <InputGroup
                                 label="Email"
                                 placeholder=" "
-                                required={true}
+                                required
                                 value={formData.email}
                                 onChange={(e) =>
                                     updateValue(e.target.value, 'email')
@@ -96,7 +96,7 @@ const EditAccount = () => {
                             <InputGroup
                                 label="Phone number"
                                 placeholder=" "
-                                required={true}
+                                required
                                 type="number"
                                 max={11}
                                 value={formData.phoneNumber}

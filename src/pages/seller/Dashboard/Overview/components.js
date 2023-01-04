@@ -2,19 +2,17 @@ import React from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 import { Placeholder } from 'rsuite';
 
-export const SmallCard = ({ total, icon, info }) => {
-    return (
-        <div className="w-1/2 md:w-56 md:mx-2 my-3 h-24 shadow-md rounded flex items-center justify-evenly cursor-pointer hover:bg-gray-50 bg-white">
-            <i className="w-10 h-10 text-2xl ll rounded-full flex items-center justify-center bg-blue-100 text-blue-400">
-                {icon}
-            </i>
-            <div className="flex flex-col ">
-                <h5 className="font-bold text-md text-slate-900">{total}</h5>
-                <h5 className="text-sm text-gray-400">{info}</h5>
-            </div>
+export const SmallCard = ({ total, icon, info }) => (
+    <div className="w-1/2 md:w-56 md:mx-2 my-3 h-24 shadow-md rounded flex items-center justify-evenly cursor-pointer hover:bg-gray-50 bg-white">
+        <i className="w-10 h-10 text-2xl ll rounded-full flex items-center justify-center bg-blue-100 text-blue-400">
+            {icon}
+        </i>
+        <div className="flex flex-col ">
+            <h5 className="font-bold text-md text-slate-900">{total}</h5>
+            <h5 className="text-sm text-gray-400">{info}</h5>
         </div>
-    );
-};
+    </div>
+);
 
 export const ChangeTime = ({ prevDate }) => {
     const at = prevDate.split('T')[1].split(':');
@@ -52,42 +50,40 @@ export const ChangeTime = ({ prevDate }) => {
 export const Activities = ({ activities, header, title, shopOwner }) => {
     let myActivities;
     if (activities) {
-        myActivities = activities.message.map((res, index) => {
-            return (
-                <div
-                    key={index}
-                    className="flex w-full px-4 hover:bg-gray-50 mx-2 items-center justify-between py-2 border-b-2"
-                >
-                    <div>
-                        {index === 0 && (
-                            <h5 className="font-bold text-md text-slate-900">
-                                Hello {shopOwner || 'there'},
-                            </h5>
-                        )}
-                        {res.name !== 'Login' ? (
-                            <h5
-                                className="text-md text-slate-500 text-md"
-                                title={res.info}
-                            >
-                                You {res.event}d a{' '}
-                                {res.event !== 'delete'
-                                    ? `new ${res.action}`
-                                    : res.action}{' '}
-                                <ChangeTime prevDate={res.createdAt} />
-                            </h5>
-                        ) : (
-                            <h5 className="text-md text-slate-500 text-md">
-                                Last Login was{' '}
-                                <ChangeTime prevDate={res.createdAt} />
-                            </h5>
-                        )}
-                    </div>
-                    <i>
-                        <FaAngleRight />
-                    </i>
+        myActivities = activities.message.map((res, index) => (
+            <div
+                key={index}
+                className="flex w-full px-4 hover:bg-gray-50 mx-2 items-center justify-between py-2 border-b-2"
+            >
+                <div>
+                    {index === 0 && (
+                        <h5 className="font-bold text-md text-slate-900">
+                            Hello {shopOwner || 'there'},
+                        </h5>
+                    )}
+                    {res.name !== 'Login' ? (
+                        <h5
+                            className="text-md text-slate-500 text-md"
+                            title={res.info}
+                        >
+                            You {res.event}d a{' '}
+                            {res.event !== 'delete'
+                                ? `new ${res.action}`
+                                : res.action}{' '}
+                            <ChangeTime prevDate={res.createdAt} />
+                        </h5>
+                    ) : (
+                        <h5 className="text-md text-slate-500 text-md">
+                            Last Login was{' '}
+                            <ChangeTime prevDate={res.createdAt} />
+                        </h5>
+                    )}
                 </div>
-            );
-        });
+                <i>
+                    <FaAngleRight />
+                </i>
+            </div>
+        ));
     } else {
         myActivities = <Placeholder />;
     }

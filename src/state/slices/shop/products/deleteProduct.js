@@ -7,8 +7,8 @@ export const deleteProd = (body, neededInfo, eventFunc, dispatch) => {
     const { otpData, shopData } = neededInfo;
     const payload = {
         shopID: neededInfo.shopData.id,
-        body: body,
-        auth: otpData.id + ' ' + otpData.accessToken,
+        body,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     const subPayload = {
         id: neededInfo.shopData.id,

@@ -6,35 +6,27 @@ const myActivities = createAsyncThunk('post/myActivities', async (payload) => {
         .post('/myActivities', payload.body, {
             headers: { auth: payload.auth },
         })
-        .then((res) => {
-            return res;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((res) => res)
+        .catch((e) => e.response);
     return data;
 });
 
 const myTools = createAsyncThunk('post/myTools', async (payload) => {
     const { data } = await martApi
-        .patch('/myTools/' + payload.body.shopId, payload.body, {
+        .patch(`/myTools/${payload.body.shopId}`, payload.body, {
             headers: { auth: payload.auth },
         })
-        .then((res) => {
-            return res;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((res) => res)
+        .catch((e) => e.response);
     return data;
 });
 
 export const getActivities = (dispatch, shopID, otpData, setState) => {
     const payload = {
         body: {
-            shopID: shopID,
+            shopID,
         },
-        auth: otpData.id + ' ' + otpData.accessToken,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     dispatch(myActivities(payload))
         .then(unwrapResult)
@@ -47,9 +39,9 @@ export const getActivities = (dispatch, shopID, otpData, setState) => {
 export const getMyTools = (dispatch, shopId, userData, setState) => {
     const payload = {
         body: {
-            shopId: shopId,
+            shopId,
         },
-        auth: userData._id + ' ' + userData.accessToken,
+        auth: `${userData._id} ${userData.accessToken}`,
     };
     dispatch(myTools(payload))
         .then(unwrapResult)
@@ -59,14 +51,6 @@ export const getMyTools = (dispatch, shopId, userData, setState) => {
         .catch((err) => {});
 };
 /*
-
-
-
-
-
-
-
-
 
 fetch notifications
 delet notifications
@@ -80,12 +64,8 @@ const notificationApi = createAsyncThunk(
             .post('/fetchNotification', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -93,9 +73,9 @@ const notificationApi = createAsyncThunk(
 export const myNotifications = (dispatch, store, otpData, setState) => {
     const payload = {
         body: {
-            store: store,
+            store,
         },
-        auth: otpData.id + ' ' + otpData.accessToken,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     dispatch(notificationApi(payload))
         .then(unwrapResult)
@@ -115,12 +95,8 @@ const deleteNotificationApi = createAsyncThunk(
             .post('/deleteNotification', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -128,9 +104,9 @@ const deleteNotificationApi = createAsyncThunk(
 export const deleteNotifications = (dispatch, otpData, store) => {
     const payload = {
         body: {
-            store: store,
+            store,
         },
-        auth: otpData.id + ' ' + otpData.accessToken,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     dispatch(deleteNotificationApi(payload));
 };
@@ -148,12 +124,8 @@ const storeCartsApi = createAsyncThunk(
             .post('/fetchStoreCarts', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -161,9 +133,9 @@ const storeCartsApi = createAsyncThunk(
 export const storeCarts = (dispatch, store, otpData, setState) => {
     const payload = {
         body: {
-            store: store,
+            store,
         },
-        auth: otpData.id + ' ' + otpData.accessToken,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     dispatch(storeCartsApi(payload))
         .then(unwrapResult)
@@ -184,12 +156,8 @@ const storeOrdersApi = createAsyncThunk(
             .post('/store/order-request', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -197,9 +165,9 @@ const storeOrdersApi = createAsyncThunk(
 export const OrderRequestsHandler = (dispatch, store, otpData, setState) => {
     const payload = {
         body: {
-            store: store,
+            store,
         },
-        auth: otpData.id + ' ' + otpData.accessToken,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     dispatch(storeOrdersApi(payload))
         .then(unwrapResult)
@@ -218,18 +186,14 @@ const listOrdersItemsApi = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post(
-                '/store/order/' + payload.orderId,
+                `/store/order/${payload.orderId}`,
                 {},
                 {
                     headers: { auth: payload.auth },
                 }
             )
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -237,7 +201,7 @@ const listOrdersItemsApi = createAsyncThunk(
 export const listOrdersItems = (dispatch, orderId, otpData, setState) => {
     const payload = {
         orderId,
-        auth: otpData.id + ' ' + otpData.accessToken,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     dispatch(listOrdersItemsApi(payload))
         .then(unwrapResult)

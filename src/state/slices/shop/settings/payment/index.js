@@ -7,12 +7,8 @@ export const myPaymentRef = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post('/saveShopPayment', payload, {})
-            .then((e) => {
-                return e;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((e) => e)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -38,22 +34,14 @@ export const handlePaymentSuccess = (dispatch, payload) => {
 };
 /*
 
-
-
-
-
 */
 export const getRefApi = createAsyncThunk(
     'post/paymentRef',
     async (payload) => {
         const { data } = await martApi
             .post('/getMyReference', payload, {})
-            .then((e) => {
-                return e;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((e) => e)
+            .catch((e) => e.response);
         console.log(data);
         return data;
     }

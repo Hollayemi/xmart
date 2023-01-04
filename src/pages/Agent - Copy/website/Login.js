@@ -11,8 +11,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     const formData = {
-        email: email,
-        password: password,
+        email,
+        password,
     };
     const loginHandler = (e) => {
         e.preventDefault();
@@ -42,7 +42,7 @@ const Login = () => {
                             >
                                 forgot password
                             </Link>
-                            <i className="fa fa-eye hover:text-teal-200 text-teal-100"></i>
+                            <i className="fa fa-eye hover:text-teal-200 text-teal-100" />
                         </div>
                         <input
                             value={password}

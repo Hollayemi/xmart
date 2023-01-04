@@ -5,12 +5,10 @@ export const deleteHandler = createAsyncThunk(
     'post/deleteHandler',
     async (payload) => {
         const { data } = await martApi
-            .post('/delete/' + payload.shopID, payload.body, {
+            .post(`/delete/${payload.shopID}`, payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
+            .then((res) => res)
             .catch((e) => {
                 console.log(e.response);
                 return e;

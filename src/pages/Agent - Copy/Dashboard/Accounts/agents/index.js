@@ -1,5 +1,9 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-underscore-dangle */
+import React, { useEffect, useState } from 'react';
 import { FaEllipsisH } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader, Table } from 'rsuite';
@@ -7,7 +11,10 @@ import DashboardWrapper from '../../../../../components/AdminComponents';
 import ActionBtn from '../../../../../components/elements/Button/actions';
 import AdminIconDropdown from '../../../../../components/elements/IconDropDown/adminIconDrop';
 import { TopTitle } from '../../../../../components/SellerComponents/Dashboard/topTitle';
-import { fetchAllAgent } from '../../../../../state/slices/admin/agents/adminActions';
+import {
+    fetchAllAgent,
+    updateAgent,
+} from '../../../../../state/slices/admin/agents/adminActions';
 
 const Stores = () => {
     const [data, setData] = useState(null);
@@ -37,7 +44,7 @@ const Stores = () => {
                 <div className="md:p-3 pt-5 w-full">
                     <TopTitle
                         header="agents"
-                        title={`Agents`}
+                        title="Agents"
                         info="Brief review on our agents"
                     />
                 </div>
@@ -74,19 +81,19 @@ const Stores = () => {
                                         Withdraw
                                     </Table.HeaderCell>
                                     <Table.Cell>
-                                        {(rowData) => {
-                                            return rowData.withdraw ? (
+                                        {(rowData) =>
+                                            rowData.withdraw ? (
                                                 <div className="text-green-500 font-bold flex items-center">
-                                                    <div className="w-3 h-3 rounded-full bg-green-500 mr-3"></div>
+                                                    <div className="w-3 h-3 rounded-full bg-green-500 mr-3" />
                                                     Ready
                                                 </div>
                                             ) : (
                                                 <div className="text-red-500 font-bold flex items-center">
-                                                    <div className="w-3 h-3 rounded-full bg-red-500 mr-3"></div>
+                                                    <div className="w-3 h-3 rounded-full bg-red-500 mr-3" />
                                                     Not yet
                                                 </div>
-                                            );
-                                        }}
+                                            )
+                                        }
                                     </Table.Cell>
                                 </Table.Column>
                                 <Table.Column width={100} resizable>
@@ -132,16 +139,14 @@ const Stores = () => {
                                 >
                                     <Table.HeaderCell>Action</Table.HeaderCell>
                                     <Table.Cell>
-                                        {(rowData) => {
-                                            return (
-                                                <DropDownAction
-                                                    setEventFunc={setEventFunc}
-                                                    id={rowData._id}
-                                                    isActive={rowData.isActive}
-                                                    name={rowData.username}
-                                                />
-                                            );
-                                        }}
+                                        {(rowData) => (
+                                            <DropDownAction
+                                                setEventFunc={setEventFunc}
+                                                id={rowData._id}
+                                                isActive={rowData.isActive}
+                                                name={rowData.username}
+                                            />
+                                        )}
                                     </Table.Cell>
                                 </Table.Column>
                             </Table>
@@ -189,19 +194,19 @@ const DropDownAction = ({ setEventFunc, id, name, isActive }) => (
 );
 
 const ConfirmAgentPayment = ({ data, setData }) => {
-    console.log(data);
     const dispatch = useDispatch();
     const { adminData } = useSelector((state) => state.reducer.adminReducer);
     const setContinue = (e) => {
-        let set = { ttp: e, withdraw: false, amount: 0 };
+        const set = { ttp: e, withdraw: false, amount: 0 };
         updateAgent(dispatch, setData, adminData, set, data._id);
         setData(false);
     };
     return (
         <section>
             <div>
-                You are about to set {data.username}'s Amount to 0, Beliving{' '}
-                {data.username}'s payment has been made.{' '}
+                You are about to set {data.username}
+                's Amount to 0, Beliving {data.username}
+                's payment has been made.{' '}
             </div>
             <div className="flex justify-end mt-5">
                 <button

@@ -14,6 +14,7 @@ const Activities = () => {
     useEffect(() => {
         getActivities(dispatch, shopId, adminData, setData);
     }, []);
+
     console.log(data);
     return (
         <DashboardWrapper>
@@ -21,10 +22,11 @@ const Activities = () => {
                 <div className="md:p-3 pt-5 w-full">
                     <TopTitle
                         header="Activities"
-                        title={`Welcome Back, xMart Admin`}
+                        title="Welcome Back, xMart Admin"
                         info="Brief review of xMart store"
                     />
                 </div>
+
                 <div className="flex flex-col justify-center mt-10 w-full bg-slate-50">
                     <div className="flex items-center justify-between sm:mr-3 w-full">
                         <h5 className="text-xs sm:text-md py-2 font-bold text-slat-800 sm:px-2 pt-3">
@@ -35,7 +37,7 @@ const Activities = () => {
                         <Table
                             height={700}
                             data={data.message}
-                            onRowClick={(info) => {}}
+                            onRowClick={() => {}}
                         >
                             <Table.Column width={50} fixed>
                                 <Table.HeaderCell>s/n</Table.HeaderCell>

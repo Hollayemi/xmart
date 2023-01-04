@@ -44,30 +44,28 @@ const Awaiting = () => {
             );
         }
     };
-    let fetchFrom = !upDatedData ? data : upDatedData;
+    const fetchFrom = !upDatedData ? data : upDatedData;
     return (
         <DashboardWrapper>
             <section className="px-4 mt-8 py-3 min-h-screen mt-2">
                 {fetchFrom &&
-                    fetchFrom.map((res, index) => {
-                        return (
-                            <div key={index}>
-                                <div className="Lucida flex items-center w-full  myScroll-x overflow-auto  my-2 mt-3 font-bold">
-                                    <h5 className="min-w-fit">
-                                        {res._id.title} ({res.total})
-                                    </h5>
-                                </div>
-                                {res.details && (
-                                    <OneProduct
-                                        subCate={res.details}
-                                        setShowing={null}
-                                        setShowingInfo={null}
-                                        setView={setView}
-                                    />
-                                )}
+                    fetchFrom.map((res, index) => (
+                        <div key={index}>
+                            <div className="Lucida flex items-center w-full  myScroll-x overflow-auto  my-2 mt-3 font-bold">
+                                <h5 className="min-w-fit">
+                                    {res._id.title} ({res.total})
+                                </h5>
                             </div>
-                        );
-                    })}
+                            {res.details && (
+                                <OneProduct
+                                    subCate={res.details}
+                                    setShowing={null}
+                                    setShowingInfo={null}
+                                    setView={setView}
+                                />
+                            )}
+                        </div>
+                    ))}
                 <DrawerPanel
                     placement="right"
                     title="Product Info"
@@ -75,7 +73,7 @@ const Awaiting = () => {
                     children={
                         <ViewProduct id={view} verify={verify && verify} />
                     }
-                    backdrop={true}
+                    backdrop
                     open={view && true}
                     handleClose={() => setView(false)}
                 />

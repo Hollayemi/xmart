@@ -12,7 +12,7 @@ instance.interceptors.request.use(
         const token = store.get('accesToken');
         if (typeof token !== 'undefined') {
             config.headers['Access-Token'] = `${token}`;
-            config.headers['Authorization'] = `Bearer ${token}`;
+            config.headers.Authorization = `Bearer ${token}`;
             config.headers['Content-Type'] = 'application/json';
         } else {
             config.headers['Content-Type'] = 'application/json';
@@ -21,19 +21,13 @@ instance.interceptors.request.use(
 
         return config;
     },
-    (error) => {
-        return Promise.reject(error);
-    }
+    (error) => Promise.reject(error)
 );
 
 // Response Interceptor
 instance.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
+    (response) => response,
+    (error) => Promise.reject(error)
 );
 
 export default instance;

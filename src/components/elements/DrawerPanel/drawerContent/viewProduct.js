@@ -15,7 +15,7 @@ const ViewProduct = ({ id, verify }) => {
     useEffect(() => {
         getOnebyId(dispatch, id, setInfo);
     }, []);
-    var settings = {
+    const settings = {
         infinite: false,
         variableWidth: true,
         slidesToScroll: 1,
@@ -132,15 +132,11 @@ const ViewProduct = ({ id, verify }) => {
 };
 export default ViewProduct;
 
-const About = ({ summary, details }) => {
-    return (
-        <div className="lucida flex border-b items-start my-1 w-full">
-            <h5 className="w-28 min-w-32 mr-3 my-1">{summary}</h5>
-            {details && (
-                <h5 className="my-1">
-                    {details.toString().split(',').join(', ')}
-                </h5>
-            )}
-        </div>
-    );
-};
+const About = ({ summary, details }) => (
+    <div className="lucida flex border-b items-start my-1 w-full">
+        <h5 className="w-28 min-w-32 mr-3 my-1">{summary}</h5>
+        {details && (
+            <h5 className="my-1">{details.toString().split(',').join(', ')}</h5>
+        )}
+    </div>
+);

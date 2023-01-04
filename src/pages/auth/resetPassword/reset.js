@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Row } from 'rsuite';
-import InputAddon from '../../../components/elements/Input/InputAddon';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import Button from '../../../components/elements/Button';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Button from '../../../components/elements/Button';
+import InputAddon from '../../../components/elements/Input/InputAddon';
 import { ResetPasswordHandler } from '../../../state/slices/auth/resetPassword';
 
 export const ResetForm = ({ going, popUp }) => {

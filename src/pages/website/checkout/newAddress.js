@@ -34,12 +34,12 @@ const CreateNewAddress = ({ userId, setOpenAdd, openAdd, withNew }) => {
         setFormData({
             ...formData,
             ...newValue,
-            userId: userId,
+            userId,
         });
     }
     const dispatch = useDispatch();
     const newAddressHandler = () => {
-        let payload = {
+        const payload = {
             body: formData,
         };
         newAddress(payload, dispatch);
@@ -54,7 +54,7 @@ const CreateNewAddress = ({ userId, setOpenAdd, openAdd, withNew }) => {
                 <div className="flex items-center">
                     <div className="w-1/2 px-2">
                         <FloatingLabelInput
-                            required={true}
+                            required
                             label="Surname"
                             onChange={(e) =>
                                 updateValue(e.target.value, 'surname')
@@ -63,7 +63,7 @@ const CreateNewAddress = ({ userId, setOpenAdd, openAdd, withNew }) => {
                     </div>
                     <div className="w-1/2 px-2">
                         <FloatingLabelInput
-                            required={true}
+                            required
                             label="First Name"
                             onChange={(e) =>
                                 updateValue(e.target.value, 'first_name')
@@ -74,7 +74,7 @@ const CreateNewAddress = ({ userId, setOpenAdd, openAdd, withNew }) => {
                 <div className="flex items-center">
                     <div className="w-1/2 px-2">
                         <FloatingLabelInput
-                            required={true}
+                            required
                             label="Last Name"
                             onChange={(e) =>
                                 updateValue(e.target.value, 'last_name')
@@ -83,7 +83,7 @@ const CreateNewAddress = ({ userId, setOpenAdd, openAdd, withNew }) => {
                     </div>
                     <div className="w-1/2 px-2">
                         <FloatingLabelInput
-                            required={true}
+                            required
                             label="Phone Number"
                             type="number"
                             onChange={(e) =>
@@ -97,14 +97,14 @@ const CreateNewAddress = ({ userId, setOpenAdd, openAdd, withNew }) => {
                 </p>
                 <div className="w-1/2 px-2">
                     <FloatingLabelInput
-                        required={true}
+                        required
                         label="Title"
                         onChange={(e) => updateValue(e.target.value, 'title')}
                     />
                 </div>
                 <div className="px-2">
                     <FloatingLabelInput
-                        required={true}
+                        required
                         label="Address"
                         onChange={(e) => updateValue(e.target.value, 'address')}
                     />
@@ -112,7 +112,7 @@ const CreateNewAddress = ({ userId, setOpenAdd, openAdd, withNew }) => {
                 <div className="flex items-center">
                     <div className="w-1/2 px-2">
                         <FloatingLabelInput
-                            required={true}
+                            required
                             type="number"
                             label="Zip-code"
                             onChange={(e) =>
@@ -122,7 +122,7 @@ const CreateNewAddress = ({ userId, setOpenAdd, openAdd, withNew }) => {
                     </div>
                     <div className="w-1/2 px-2">
                         <FloatingLabelInput
-                            required={true}
+                            required
                             label="City"
                             onChange={(e) =>
                                 updateValue(e.target.value, 'city')
@@ -133,7 +133,7 @@ const CreateNewAddress = ({ userId, setOpenAdd, openAdd, withNew }) => {
                 <div className="flex items-center">
                     <div className="w-1/2 px-2">
                         <FloatingLabelInput
-                            required={true}
+                            required
                             label="State"
                             onChange={(e) =>
                                 updateValue(e.target.value, 'state')

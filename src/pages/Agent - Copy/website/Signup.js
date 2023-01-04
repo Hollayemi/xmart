@@ -11,9 +11,9 @@ const Signup = () => {
     const [confPass, setConfPass] = useState('');
 
     const formData = {
-        name: name,
-        email: email,
-        password: password,
+        name,
+        email,
+        password,
     };
 
     const signupHandler = (e) => {
@@ -43,7 +43,7 @@ const Signup = () => {
                         />
 
                         <div className="w-full flex px-2 text-xs justify-end items-center">
-                            <i className="fa fa-eye hover:text-teal-200 text-teal-100"></i>
+                            <i className="fa fa-eye hover:text-teal-200 text-teal-100" />
                         </div>
                         <input
                             className="border focus:border-red-100 w-full m-2 mb-3 bg-transparent rounded-xl text-white px-5 py-1"
@@ -53,7 +53,7 @@ const Signup = () => {
                         />
 
                         <div className="w-full flex px-2 text-xs justify-end items-center">
-                            <i className="fa fa-eye hover:text-teal-200 text-teal-100"></i>
+                            <i className="fa fa-eye hover:text-teal-200 text-teal-100" />
                         </div>
                         <input
                             className="border focus:border-red-100 w-full m-2 mb-3 bg-transparent rounded-xl text-white px-5 py-1"

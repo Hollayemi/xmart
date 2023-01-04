@@ -14,7 +14,7 @@ const Account = ({ userId, email }) => {
         bank_name: '',
         account_number: '',
         account_name: '',
-        email: email,
+        email,
     });
 
     let newValue = {};
@@ -47,7 +47,7 @@ const Account = ({ userId, email }) => {
             <div>
                 <div className="w-full px-2">
                     <FloatingLabelInput
-                        required={true}
+                        required
                         label="Agent Name"
                         onChange={(e) =>
                             updateValue(e.target.value, 'username')
@@ -62,7 +62,7 @@ const Account = ({ userId, email }) => {
             <div className="flex items-center">
                 <div className="w-1/2 px-2">
                     <FloatingLabelInput
-                        required={true}
+                        required
                         label="Account Name"
                         onChange={(e) =>
                             updateValue(e.target.value, 'account_name')
@@ -73,7 +73,7 @@ const Account = ({ userId, email }) => {
             <div className="flex items-center">
                 <div className="w-1/2 px-2">
                     <FloatingLabelInput
-                        required={true}
+                        required
                         label="Account Number"
                         type="number"
                         onChange={(e) =>
@@ -83,7 +83,7 @@ const Account = ({ userId, email }) => {
                 </div>
                 <div className="w-1/2 px-2">
                     <FloatingLabelInput
-                        required={true}
+                        required
                         label="Bank"
                         onChange={(e) => updateValue(e.target.value, 'bank')}
                     />

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Tooltip, Whisper } from 'rsuite';
-import { InputFile } from '../elements/Input/InputFile';
 import { FaInfoCircle, FaPlus, FaTimes } from 'react-icons/fa';
+import { InputFile } from '../elements/Input/InputFile';
 
 const ImagePreview = ({ fileList, setFileList, whisper }) => {
     const [preview, setPreview] = useState({ images: [] });
     const imageHandler = (e) => {
         let preImg = null;
-        let exactType = e.target.files[0].type.split('/');
+        const exactType = e.target.files[0].type.split('/');
         if (exactType[0] === 'image') {
             for (let index = 0; index < e.target.files.length; index++) {
                 preImg = [URL.createObjectURL(e.target.files[index])];
@@ -27,31 +27,29 @@ const ImagePreview = ({ fileList, setFileList, whisper }) => {
     };
     let pictures = null;
     if (fileList.length !== 0) {
-        pictures = preview.images.map((res, index) => {
-            return (
-                <div
-                    className="flex items-center border px-2 m-1 py-1"
-                    key={index}
-                >
-                    <div>
-                        <img
-                            src={res}
-                            alt="img_here"
-                            className="h-12 w-12 rounded-md"
-                        />
-                    </div>
-                    <div className="flex items-center justify-between px-3 w-5/6">
-                        <p className="ml-12">Image {index + 1}</p>
-                        <p
-                            className="ml-12 font-light"
-                            onClick={() => setFileList(res, 'removeImg')}
-                        >
-                            <FaTimes />
-                        </p>
-                    </div>
+        pictures = preview.images.map((res, index) => (
+            <div className="flex items-center border px-2 m-1 py-1" key={index}>
+                <div>
+                    <img
+                        src={res}
+                        alt="img_here"
+                        className="h-12 w-12 rounded-md"
+                    />
                 </div>
-            );
-        });
+                <div className="flex items-center justify-between px-3 w-5/6">
+                    <p className="ml-12">
+                        Image
+                        {index + 1}
+                    </p>
+                    <p
+                        className="ml-12 font-light"
+                        onClick={() => setFileList(res, 'removeImg')}
+                    >
+                        <FaTimes />
+                    </p>
+                </div>
+            </div>
+        ));
     }
     return (
         <>
@@ -60,7 +58,7 @@ const ImagePreview = ({ fileList, setFileList, whisper }) => {
                     <InputFile
                         label="add picture"
                         icon={<FaPlus />}
-                        multiple={true}
+                        multiple
                         name="kemImage"
                         filename="kemImage"
                         value={[]}

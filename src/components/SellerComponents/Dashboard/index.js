@@ -28,25 +28,23 @@ import RecentInfo from './RecentInfo';
 import DrawerPanel from '../../elements/DrawerPanel';
 import { MartCategories } from '../Info/Categories';
 
-const NavToggle = ({ expand, onChange }) => {
-    return (
-        <Navbar appearance="subtle" className="nav-toggle bg-slate-900">
-            <Navbar className="bg-slate-900">
-                <Nav pullRight>
-                    <Nav.Item
-                        onClick={onChange}
-                        style={{
-                            width: 56,
-                            textAlign: 'center',
-                        }}
-                    >
-                        {expand ? <FaAngleLeft /> : <FaAngleRight />}
-                    </Nav.Item>
-                </Nav>
-            </Navbar>
+const NavToggle = ({ expand, onChange }) => (
+    <Navbar appearance="subtle" className="nav-toggle bg-slate-900">
+        <Navbar className="bg-slate-900">
+            <Nav pullRight>
+                <Nav.Item
+                    onClick={onChange}
+                    style={{
+                        width: 56,
+                        textAlign: 'center',
+                    }}
+                >
+                    {expand ? <FaAngleLeft /> : <FaAngleRight />}
+                </Nav.Item>
+            </Nav>
         </Navbar>
-    );
-};
+    </Navbar>
+);
 
 const DashboardHeader = ({ BreadcrumbList, setOpen, open }) => {
     const myBreadcrumb = BreadcrumbList.map((res, index) => {
@@ -88,8 +86,8 @@ const DashboardHeader = ({ BreadcrumbList, setOpen, open }) => {
 };
 
 const DashboardWrapper = ({ ...props }) => {
-    const setShowing = props.setShowing;
-    const showing = props.showing;
+    const { setShowing } = props;
+    const { showing } = props;
     const [expand, setExpand] = useState(true);
     const [open, setOpen] = useState(false);
     return (
@@ -555,7 +553,7 @@ const DashboardWrapper = ({ ...props }) => {
                         numOfProduct={props.prodNum}
                     />
                 }
-                backdrop={true}
+                backdrop
                 open={open}
                 handleClose={() => setOpen(!open)}
             />

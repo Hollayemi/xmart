@@ -10,12 +10,8 @@ const verifyProductApi = createAsyncThunk(
             .post('/verifyProduct', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -33,11 +29,11 @@ export const verifyAction = (
     const payload = {
         body: {
             store: store.toLowerCase(),
-            newStatus: newStatus,
-            name: name,
-            _id: _id,
+            newStatus,
+            name,
+            _id,
         },
-        auth: adminData._id + ' ' + adminData.accessToken,
+        auth: `${adminData._id} ${adminData.accessToken}`,
     };
     console.log(payload);
     dispatch(verifyProductApi(payload))

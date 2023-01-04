@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaDumpster, FaLongArrowAltRight } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import savePayment from '../../../assets/images/main/seo_secure-compressor.png';
 import Underline from '../../../assets/images/png/Landing/Vector 3.png';
 import Growth from '../../../assets/images/main/Growth.png';
@@ -10,12 +13,8 @@ import {
     ImageNote,
     StoreStep,
 } from '../../../components/SellerComponents/website/Components';
-import { useNavigate } from 'react-router-dom';
-import { FaDumpster, FaLongArrowAltRight } from 'react-icons/fa';
 import SearchWrapper from '../../../components/websiteCompoents/ReuseableFlex';
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchShopInfo, toDashboard } from '../../../state/slices/shop/addShop';
-import { useEffect } from 'react';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -24,7 +23,7 @@ const Home = () => {
     const [shopInfo, setshopInfo] = useState('new');
     const { userData } = useSelector((state) => state.reducer.loginReducer);
     const CreateWithBusinessName = () => {
-        navigate('/seller/create-account/' + name + '/0');
+        navigate(`/seller/create-account/${name}/0`);
     };
     useEffect(() => {
         fetchShopInfo(
@@ -149,20 +148,20 @@ const Home = () => {
                 <ImageNote
                     image={savePayment}
                     heading="Safe And Secure Payment Guarantee"
-                    backdrop={true}
-                    note="Here in xMart, we take your security and privacy very seriously and we carefully protect your information. 
-                            When you submit sensitive information via our website, your information is protected both 
-                            online and offline. To securely process your payment, we use industry leading payment 
-                            processors including paystack. When you send sensitive payment information 
-                            via our website, that information is encrypted using industry-standard encryption protocols 
-                            including SSL Certification. Wherever we collect sensitive information (such as credit card data), 
-                            that information is encrypted and transmitted to us securely. On our Pricing, Shopping Cart page or during 
-                            the checkout process, you can verify this by looking for a closed lock icon at the bottom of your 
+                    backdrop
+                    note="Here in xMart, we take your security and privacy very seriously and we carefully protect your information.
+                            When you submit sensitive information via our website, your information is protected both
+                            online and offline. To securely process your payment, we use industry leading payment
+                            processors including paystack. When you send sensitive payment information
+                            via our website, that information is encrypted using industry-standard encryption protocols
+                            including SSL Certification. Wherever we collect sensitive information (such as credit card data),
+                            that information is encrypted and transmitted to us securely. On our Pricing, Shopping Cart page or during
+                            the checkout process, you can verify this by looking for a closed lock icon at the bottom of your
                             web browser, or looking for 'https' at the beginning of the address of the web page.
-                             While we use encryption to protect sensitive information transmitted online, we also 
-                             protect your information offline. Only employees who need the information to perform a 
-                             specific job for example, billing or customer service) are granted access to personally 
-                             identifiable information. The computers/servers in which we store personally identifiable 
+                             While we use encryption to protect sensitive information transmitted online, we also
+                             protect your information offline. Only employees who need the information to perform a
+                             specific job for example, billing or customer service) are granted access to personally
+                             identifiable information. The computers/servers in which we store personally identifiable
                              information are kept in a secure environment."
                 />
             </div>

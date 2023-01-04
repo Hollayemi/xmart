@@ -9,12 +9,8 @@ const updateAccountApi = createAsyncThunk(
             .post('/updateUserAccount', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -22,7 +18,7 @@ const updateAccountApi = createAsyncThunk(
 export const updateUserAccount = (formData, auth, dispatch, navigate) => {
     const payload = {
         body: formData,
-        auth: auth,
+        auth,
     };
     dispatch(updateAccountApi(payload))
         .then(unwrapResult)

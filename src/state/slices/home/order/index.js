@@ -5,19 +5,15 @@ import martApi from '../../api/baseApi';
 const addOrderApi = createAsyncThunk('post/myOrder', async (payload) => {
     const { data } = await martApi
         .post('/newOrder', payload.body, { headers: { auth: payload.auth } })
-        .then((e) => {
-            return e;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((e) => e)
+        .catch((e) => e.response);
     return data;
 });
 
 export const addNewOrder = (body, auth, dispatch) => {
     const payload = {
-        body: body,
-        auth: auth,
+        body,
+        auth,
     };
     dispatch(addOrderApi(payload))
         .then(unwrapResult)
@@ -45,19 +41,15 @@ const fetchOrder = createAsyncThunk('post/fetchOrder', async (payload) => {
             {},
             { headers: { auth: payload.auth } }
         )
-        .then((e) => {
-            return e;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((e) => e)
+        .catch((e) => e.response);
     return data;
 });
 
 export const FetchOrderHandler = (id, auth, dispatch, setState) => {
     const payload = {
-        id: id,
-        auth: auth,
+        id,
+        auth,
     };
     console.log(payload);
     dispatch(fetchOrder(payload))
@@ -80,12 +72,8 @@ const continueOrderApi = createAsyncThunk(
                 {},
                 { headers: { auth: payload.auth } }
             )
-            .then((e) => {
-                return e;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((e) => e)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -93,7 +81,7 @@ const continueOrderApi = createAsyncThunk(
 export const continueOrder = (orderId, auth, dispatch) => {
     const payload = {
         orderId,
-        auth: auth,
+        auth,
     };
     dispatch(continueOrderApi(payload))
         .then(unwrapResult)
@@ -114,12 +102,8 @@ const cancelOrderApi = createAsyncThunk(
                 {},
                 { headers: { auth: payload.auth } }
             )
-            .then((e) => {
-                return e;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((e) => e)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -127,7 +111,7 @@ const cancelOrderApi = createAsyncThunk(
 export const cancelOrder = (orderId, auth, dispatch) => {
     const payload = {
         orderId,
-        auth: auth,
+        auth,
     };
     dispatch(cancelOrderApi(payload))
         .then(unwrapResult)

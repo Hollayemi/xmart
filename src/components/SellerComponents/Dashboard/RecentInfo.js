@@ -102,18 +102,16 @@ const RecentInfo = ({ otpData, numOfProduct }) => {
                 <div className="flex justify-center w-full">
                     <div className="w-full overflow-auto h-[300px] myScroll">
                         {cart &&
-                            cart.map((res, i) => {
-                                return (
-                                    <OrdersComponent
-                                        key={i}
-                                        amount={res.result.prodPrice}
-                                        image={Prod1}
-                                        qty={res.myCarts.quantity}
-                                        product={res.result.prodName}
-                                        time="2 days ago"
-                                    />
-                                );
-                            })}
+                            cart.map((res, i) => (
+                                <OrdersComponent
+                                    key={i}
+                                    amount={res.result.prodPrice}
+                                    image={Prod1}
+                                    qty={res.myCarts.quantity}
+                                    product={res.result.prodName}
+                                    time="2 days ago"
+                                />
+                            ))}
                     </div>
                 </div>
             </div>
@@ -139,45 +137,47 @@ const RecentInfo = ({ otpData, numOfProduct }) => {
 
 export default RecentInfo;
 
-const OrdersComponent = ({ image, product, time, amount, qty }) => {
-    return (
-        <div className="flex justify-center">
-            <div className="flex  justify-between py-4 border-b border-slate-100 items-center w-11/12 border px-3">
-                <div className="flex items-center">
-                    <div>
-                        <img src={image} alt="This is about me" width={30} />
-                    </div>
-                    <div className="flex ml-3 flex-col items-between">
-                        <h5 className="font-[600] text-xs text-blue-500">
-                            {product.length < 14
-                                ? product
-                                : `${product.substring(0, 14)}...`}
-                        </h5>
-                        <h5 className="text-[10px] text-slate-500">{time}</h5>
-                    </div>
+const OrdersComponent = ({ image, product, time, amount, qty }) => (
+    <div className="flex justify-center">
+        <div className="flex  justify-between py-4 border-b border-slate-100 items-center w-11/12 border px-3">
+            <div className="flex items-center">
+                <div>
+                    <img src={image} alt="This is about me" width={30} />
                 </div>
-                <div className="flex items-center">
-                    <h5 className="font-[700]">&#x20A6; {amount}</h5>
-                    <h5 className="ml-3">Qty: {qty}</h5>
+                <div className="flex ml-3 flex-col items-between">
+                    <h5 className="font-[600] text-xs text-blue-500">
+                        {product.length < 14
+                            ? product
+                            : `${product.substring(0, 14)}...`}
+                    </h5>
+                    <h5 className="text-[10px] text-slate-500">{time}</h5>
                 </div>
             </div>
+            <div className="flex items-center">
+                <h5 className="font-[700]">
+                    &#x20A6;
+                    {amount}
+                </h5>
+                <h5 className="ml-3">
+                    Qty:
+                    {qty}
+                </h5>
+            </div>
         </div>
-    );
-};
+    </div>
+);
 
-export const Verification = ({ check }) => {
-    return (
-        <div className="flex items-center pl-3 border-l">
-            <i
-                className={`text-2xl font-medium ${
-                    check === 'Verified' ? 'text-green-500' : 'text-red-400'
-                } `}
-            >
-                {check !== 'Verified' ? <FaTimes /> : <FaCheckCircle />}
-            </i>
-            <div className="flex flex-col ml-4">
-                <h5 className="text-xs font-bold text-gray-400">{check}</h5>
-            </div>
+export const Verification = ({ check }) => (
+    <div className="flex items-center pl-3 border-l">
+        <i
+            className={`text-2xl font-medium ${
+                check === 'Verified' ? 'text-green-500' : 'text-red-400'
+            } `}
+        >
+            {check !== 'Verified' ? <FaTimes /> : <FaCheckCircle />}
+        </i>
+        <div className="flex flex-col ml-4">
+            <h5 className="text-xs font-bold text-gray-400">{check}</h5>
         </div>
-    );
-};
+    </div>
+);

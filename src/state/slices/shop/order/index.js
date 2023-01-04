@@ -39,7 +39,7 @@ export const toWaiting = (
             user,
             store,
         },
-        auth: otpData.id + ' ' + otpData.accessToken,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     dispatch(toWaitingApi(payload))
         .then(unwrapResult)
@@ -56,12 +56,8 @@ const toProcessingApi = createAsyncThunk(
             .post('/store/order-processing', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -69,7 +65,7 @@ const toProcessingApi = createAsyncThunk(
 export const toProcessing = (dispatch, orderId, store, otpData, setState) => {
     const payload = {
         body: { orderId, store },
-        auth: otpData.id + ' ' + otpData.accessToken,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     dispatch(toProcessingApi(payload))
         .then(unwrapResult)

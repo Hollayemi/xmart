@@ -12,7 +12,7 @@ const Overview = () => {
     const navigate = useNavigate();
 
     const { message } = useSelector((state) => state.reducer.agentReducer.data);
-    const info = data ? data : message;
+    const info = data || message;
     const dispatch = useDispatch();
 
     return (
@@ -36,7 +36,10 @@ const Overview = () => {
                             <i className="w-8 h-8 rounded-full mx-1 text-blue-400 flex bg-slate-600 items-center justify-center">
                                 <FaWallet />
                             </i>
-                            <p>&#8358; {info.amount}</p>
+                            <p>
+                                &#8358;
+                                {info.amount}
+                            </p>
                         </h5>
                         <div className="relative" style={{ width: 80 }}>
                             <div className="w-full bg-tansparent h-[80px] text-white text-[50px] absolute rounded-full flex items-center justify-center">
@@ -71,7 +74,10 @@ const Overview = () => {
                             <i className="w-8 h-8 rounded-full mx-1 text-blue-400 flex bg-slate-600 items-center justify-center">
                                 <FaWallet />
                             </i>
-                            <p>&#8358; {info.amount}</p>
+                            <p>
+                                &#8358;
+                                {info.amount}
+                            </p>
                         </h5>
                         <div className="relative" style={{ width: 80 }}>
                             <div className="w-full bg-tansparent h-[80px] text-white text-[50px] absolute rounded-full flex items-center justify-center">

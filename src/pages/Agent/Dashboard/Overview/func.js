@@ -1,9 +1,9 @@
 import { withdraw } from '../../../../state/slices/agents/dispatches';
 
 export const hideAmount = (action, content, func) => {
-    var star = '*';
+    let star = '*';
     for (let i = 1; i < content.length; i++) {
-        star = star + '*';
+        star += '*';
         func(star);
     }
     if (action === true) {

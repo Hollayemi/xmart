@@ -20,7 +20,7 @@ export const Folders = ({ name, neededInfo, prodImage, price, id }) => {
     }
 
     const deleteProdHandler = () => {
-        let body = {
+        const body = {
             delCase: 'Product',
             _id: splited[2],
             name: splited[0],
@@ -55,11 +55,11 @@ export const Folders = ({ name, neededInfo, prodImage, price, id }) => {
                     Icon={<FaEllipsisH />}
                     Content={[
                         {
-                            value: name + '-delete-' + id + '-product',
+                            value: `${name}-delete-${id}-product`,
                             name: 'Delete',
                         },
                         {
-                            value: name + '-view-' + id + '-product',
+                            value: `${name}-view-${id}-product`,
                             name: 'View',
                         },
                     ]}
@@ -70,10 +70,11 @@ export const Folders = ({ name, neededInfo, prodImage, price, id }) => {
             <div className="h-full">
                 <h5 className="font-bold text-md">{name}</h5>
                 <p
-                    className="text-xs absolute px-3 h-10 text-white rounded-full flex items-center justify-center 
+                    className="text-xs absolute px-3 h-10 text-white rounded-full flex items-center justify-center
                             shadow-md shadow-slate-400 right-4 -bottom-3 bg-blue-500"
                 >
-                    &#x20A6;{price}
+                    &#x20A6;
+                    {price}
                 </p>
             </div>
             {splited[1] === 'delete' && (
@@ -96,8 +97,8 @@ export const Folders = ({ name, neededInfo, prodImage, price, id }) => {
                             </div>
                         </>
                     }
-                    hasBackdrop={true}
-                    keyboard={true}
+                    hasBackdrop
+                    keyboard
                     open={open}
                     closeButton
                     buttonName="Varify Code"

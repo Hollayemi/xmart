@@ -18,7 +18,7 @@ const Cart = () => {
     const { cartData, status } = useSelector(
         (state) => state.reducer.cartedProduct
     );
-    let prodState = status === 'FULFILLED' ? cartData[0] : [];
+    const prodState = status === 'FULFILLED' ? cartData[0] : [];
     return (
         <SearchWrapper>
             <section>
@@ -30,12 +30,12 @@ const Cart = () => {
                         <h5 className="w-full border-b border-slate-300 h-10 px-4 font-[800] text-lg leading-10">
                             Cart
                         </h5>
-                        {prodState.map((res, i) => {
-                            return (
+                        {prodState.map(
+                            (res, i) =>
                                 res.result && (
                                     <MyCheckoutItem
                                         image={fakeImg1}
-                                        key={i + 'sdsd5746'}
+                                        key={`${i}sdsd5746`}
                                         name={res.result.prodName}
                                         F_qty={res.quantity}
                                         amount={res.result.prodPrice}
@@ -45,8 +45,7 @@ const Cart = () => {
                                         userId={res.userId}
                                     />
                                 )
-                            );
-                        })}
+                        )}
                     </div>
                     <div className="w-full md:w-2/6 mt-6 md:mt-0 md:pl-5">
                         <div className="w-full rounded-t-md bg-slate-50 shadow-md">

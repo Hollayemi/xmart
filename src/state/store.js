@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { myReducers } from './combineReducers';
 import {
     persistReducer,
     FLUSH,
@@ -11,6 +10,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import expireIn from 'redux-persist-transform-expire-in';
+import { myReducers } from './combineReducers';
 
 const expirationKey = 'VAWAUFLENCE';
 

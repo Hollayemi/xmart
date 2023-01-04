@@ -31,11 +31,11 @@ const PhoneNumbers = () => {
             facebook: userData.comm.facebook,
             ...formData,
             language: lang,
-            prefMedium: prefMedium,
+            prefMedium,
         },
     };
     console.log(newPayLoad);
-    let auth = userData._id + ' ' + userData.accessToken;
+    const auth = `${userData._id} ${userData.accessToken}`;
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -178,7 +178,7 @@ const Medium = ({ icon, info, color, name, updateValue, formData }) => {
                 <FloatingLabelInput
                     label=" "
                     size="sm"
-                    placeholder={name + ' url'}
+                    placeholder={`${name} url`}
                     value={!formData[name] ? info : formData[name]}
                     disabled={!edit}
                     onChange={(e) => updateValue(e.target.value, name)}

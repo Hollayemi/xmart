@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Loader, Row } from 'rsuite';
-import InputGroup from '../../../components/elements/Input/InputGroup';
-import Button from '../../../components/elements/Button';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ForgotPasswordHandler } from '../../../state/slices/auth/forgotpassword';
 import { FaAngleLeft } from 'react-icons/fa';
+import InputGroup from '../../../components/elements/Input/InputGroup';
+import Button from '../../../components/elements/Button';
+import { ForgotPasswordHandler } from '../../../state/slices/auth/forgotpassword';
 import HelperText from '../../../components/elements/Input/HelperText';
 
 export const ForgotPassword = ({ going, popUp }) => {

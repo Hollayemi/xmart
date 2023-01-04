@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
+import { Message, toaster } from 'rsuite';
 import { REQUEST_STATUS } from '../constants';
 import martApi from '../api/baseApi';
-import { Message, toaster } from 'rsuite';
 
 const kem_signin = createAsyncThunk('post/kem_signin', async (payload) => {
     console.log(payload);
@@ -9,12 +9,8 @@ const kem_signin = createAsyncThunk('post/kem_signin', async (payload) => {
         .post('/user/login', {
             ...payload,
         })
-        .then((res) => {
-            return res;
-        })
-        .catch((err) => {
-            return err.response;
-        });
+        .then((res) => res)
+        .catch((err) => err.response);
 
     return data;
 });
@@ -32,37 +28,32 @@ const UserSlice = createSlice({
     initialState,
     // keepUnusedDataFor: 2,
     reducers: {
-        wasGoing: (state, { payload }) => {
-            return { ...initialState, wasGoing: payload };
-        },
+        wasGoing: (state, { payload }) => ({
+            ...initialState,
+            wasGoing: payload,
+        }),
         logout: () => {
             alert('here');
             return initialState;
         },
     },
     extraReducers: {
-        [kem_signin.pending]: (state) => {
-            return {
-                ...initialState,
-                status: REQUEST_STATUS.PENDING,
-                loading: true,
-            };
-        },
-        [kem_signin.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                userData: { ...payload.user },
-                status: REQUEST_STATUS.FULFILLED,
-                loading: false,
-            };
-        },
-        [kem_signin.rejected]: (state, error) => {
-            return {
-                ...initialState,
-                status: REQUEST_STATUS.REJECTED,
-                error: error,
-            };
-        },
+        [kem_signin.pending]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+            loading: true,
+        }),
+        [kem_signin.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            userData: { ...payload.user },
+            status: REQUEST_STATUS.FULFILLED,
+            loading: false,
+        }),
+        [kem_signin.rejected]: (state, error) => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+            error,
+        }),
     },
 });
 
@@ -73,10 +64,6 @@ export default UserSlice.reducer;
 export { kem_signin };
 
 /*
-
-
-
-
 
 */
 
@@ -103,7 +90,7 @@ export const myLogin = (formData, navigate, dispatch, wasGoing) => {
         })
         .catch((err) => {
             toaster.push(
-                <Message showIcon type={'error'}>
+                <Message showIcon type="error">
                     No Connection
                 </Message>,
                 {

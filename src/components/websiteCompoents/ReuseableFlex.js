@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     CountCart,
@@ -9,6 +8,7 @@ import RandomSearch from '../../pages/website/containers/randomSearch';
 import { sliderLinkHandler } from '../../state/slices/home';
 import Footer from './Footer';
 import Header from './Header';
+
 const SearchWrapper = (props) => {
     const [expandCate, setCategory] = useState(null);
     const [availableCate, setAvailableCate] = useState([]);
@@ -20,7 +20,7 @@ const SearchWrapper = (props) => {
     const [open, setOpen] = useState(false);
     return (
         <section className="bg-slate-50">
-            <div className="md:h-10"></div>
+            <div className="md:h-10" />
             <Header
                 expandCate={expandCate}
                 setCategory={setCategory}

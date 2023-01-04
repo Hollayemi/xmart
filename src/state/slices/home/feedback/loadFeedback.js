@@ -6,12 +6,8 @@ import { REQUEST_STATUS } from '../../constants';
 const loadFeedback = createAsyncThunk('post/loadFeedback', async (payload) => {
     const { data } = await martApi
         .post('/loadFeedback', payload.body, {})
-        .then((e) => {
-            return e;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((e) => e)
+        .catch((e) => e.response);
     return data;
 });
 
@@ -26,19 +22,19 @@ const loadAllFeedback = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [loadFeedback.pending]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.PENDING };
-        },
-        [loadFeedback.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                message: payload.message,
-                status: REQUEST_STATUS.FULFILLED,
-            };
-        },
-        [loadFeedback.rejected]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.REJECTED };
-        },
+        [loadFeedback.pending]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [loadFeedback.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            message: payload.message,
+            status: REQUEST_STATUS.FULFILLED,
+        }),
+        [loadFeedback.rejected]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+        }),
     },
 });
 

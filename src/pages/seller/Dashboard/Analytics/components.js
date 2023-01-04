@@ -3,21 +3,20 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 
 ChartJS.register(...registerables);
 
-export const TransacChart = ({ chartLoader, title, all, left }) => {
-    return (
-        <div className="bg-white sm:m-2 rounded mt-2 py-1 shadow w-1/2 sm:w-60 h-16 flex justify-between items-center px-3">
-            <div className="w-32">
-                <p className="text-gray-300 text-xs">{title}</p>
-                <h5>
-                    {left} of {all}
-                </h5>
-            </div>
-            <div className="w-32 max-w-[60px] md:max-w-[100px]  h-full">
-                {chartLoader}
-            </div>
+export const TransacChart = ({ chartLoader, title, all, left }) => (
+    <div className="bg-white sm:m-2 rounded mt-2 py-1 shadow w-1/2 sm:w-60 h-16 flex justify-between items-center px-3">
+        <div className="w-32">
+            <p className="text-gray-300 text-xs">{title}</p>
+            <h5>
+                {left} of
+                {all}
+            </h5>
         </div>
-    );
-};
+        <div className="w-32 max-w-[60px] md:max-w-[100px]  h-full">
+            {chartLoader}
+        </div>
+    </div>
+);
 
 // export const ChartGraph = ({ ctx }) => {
 //     //
@@ -63,22 +62,10 @@ export const TransacChart = ({ chartLoader, title, all, left }) => {
 
 /*
 
-
-
-
-
-
-
-
-
-
-
-
-
 */
 export const Graph2 = ({ myData, labels, legend }) => {
-    let data = {
-        labels: labels,
+    const data = {
+        labels,
         datasets: [
             {
                 label: '# of Votes',
@@ -99,7 +86,7 @@ export const Graph2 = ({ myData, labels, legend }) => {
             },
         ],
     };
-    let options = {
+    const options = {
         maintainAspectRatio: false,
         options: {
             scales: {
@@ -109,7 +96,7 @@ export const Graph2 = ({ myData, labels, legend }) => {
             },
         },
         plugins: {
-            legend: legend, // Hide legend
+            legend, // Hide legend
         },
         scales: {
             y: {

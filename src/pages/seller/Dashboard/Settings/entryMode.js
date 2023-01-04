@@ -25,14 +25,14 @@ const EntryMode = ({ neededInfo }) => {
     };
     const dispatch = useDispatch();
     const editModeHandler = (getMode) => {
-        let payload = {
+        const payload = {
             body: {
                 data: {
                     ...formData,
                     entryMode: getMode,
                 },
                 shopID: neededInfo.shopData.id,
-                message: 'switched to ' + getMode + ' entry mode',
+                message: `switched to ${getMode} entry mode`,
             },
         };
 
@@ -48,7 +48,7 @@ const EntryMode = ({ neededInfo }) => {
             />
             <div className="bg-slate-50 rounded-md mt-6 p-3">
                 <div className="mt-5 w-full min-w-[250px] font-bold flex justify-between text-md">
-                    Mode of entry <span>( {mode.toUpperCase()} )</span>
+                    Mode of entry <span>({mode.toUpperCase()} )</span>
                 </div>
                 <div className="mt-10 w-full min-w-[140px]">
                     <div className="flex items-center -mt-4">

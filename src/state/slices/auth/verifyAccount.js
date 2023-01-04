@@ -1,7 +1,7 @@
 import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
 
-import martApi from '../api/baseApi';
 import { Message, toaster } from 'rsuite';
+import martApi from '../api/baseApi';
 
 const verifyApi = createAsyncThunk('post/VA', async (payload) => {
     console.log(payload);
@@ -11,12 +11,8 @@ const verifyApi = createAsyncThunk('post/VA', async (payload) => {
             {},
             {}
         )
-        .then((res) => {
-            return res;
-        })
-        .catch((err) => {
-            return err.response;
-        });
+        .then((res) => res)
+        .catch((err) => err.response);
 
     return data;
 });
@@ -40,7 +36,7 @@ export const VerifyHandler = (email, token, navigate, dispatch) => {
         })
         .catch((err) => {
             toaster.push(
-                <Message showIcon type={'error'}>
+                <Message showIcon type="error">
                     No Connection
                 </Message>,
                 {

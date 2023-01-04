@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaFile } from 'react-icons/fa';
 import InputGroup from '../../../components/elements/Input/InputGroup';
 import { imageHandler } from '../../../components/websiteCompoents/UploadFile/uploadProfilePic';
@@ -6,7 +6,6 @@ import { KemonCategories } from '../../../components/SellerComponents/ProfiePrev
 import { InputFile } from '../../../components/elements/Input/InputFile';
 import DividerPanel from '../../../components/elements/DividerPanel';
 import DrawerPanel from '../../../components/elements/DrawerPanel';
-import { useState } from 'react';
 
 export const Step2 = ({ updateValue, formData, Category, setCategory }) => {
     const [open, setOpen] = useState(false);
@@ -20,7 +19,7 @@ export const Step2 = ({ updateValue, formData, Category, setCategory }) => {
                         label="CAC Registration Number"
                         value={formData.cacNum}
                         placeholder="44033434"
-                        required={true}
+                        required
                         onChange={(e) =>
                             updateValue({ key: e.target.value }, 'CAC')
                         }
@@ -51,7 +50,7 @@ export const Step2 = ({ updateValue, formData, Category, setCategory }) => {
                         label="Tax Identification Number"
                         value={formData.tinNum}
                         placeholder="44033434"
-                        required={true}
+                        required
                         onChange={(e) =>
                             updateValue({ key: e.target.value }, 'TIN')
                         }
@@ -89,7 +88,7 @@ export const Step2 = ({ updateValue, formData, Category, setCategory }) => {
             </div>
             <DrawerPanel
                 placement="right"
-                light={true}
+                light
                 title="Select Category"
                 size="xs"
                 children={
@@ -99,7 +98,7 @@ export const Step2 = ({ updateValue, formData, Category, setCategory }) => {
                         max={3}
                     />
                 }
-                backdrop={true}
+                backdrop
                 open={open && true}
                 handleClose={() => setOpen(false)}
             />

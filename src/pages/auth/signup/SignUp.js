@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Steps, Panel, Loader, Message, toaster } from 'rsuite';
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
-import Button from '../../../components/elements/Button/index';
 import { Link } from 'react-router-dom';
-import UploadProfilePic from '../../../components/websiteCompoents/UploadFile/uploadProfilePic';
 import { useDispatch, useSelector } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
+import Button from '../../../components/elements/Button/index';
+import UploadProfilePic from '../../../components/websiteCompoents/UploadFile/uploadProfilePic';
 import { RegNewUser } from '../../../state/slices/auth/Signup';
 import { REQUEST_STATUS } from '../../../state/slices/constants';
-import { unwrapResult } from '@reduxjs/toolkit';
 import Step0 from './step0';
 import Step1 from './step1';
 import Step3 from './step3';
@@ -74,8 +74,8 @@ const KemSignUp = () => {
     return (
         <section className="h-80 min-h-screen overflow-x-hidden">
             <div className="w-full h-full flex">
-                <div className="fixed left-0 top-0 hidden md:block sm-w-40 md:w-2/5 bg-slate-800 h-full"></div>
-                <div className="hidden md:block sm-w-40 md:w-2/5 bg-slate-800 h-full"></div>
+                <div className="fixed left-0 top-0 hidden md:block sm-w-40 md:w-2/5 bg-slate-800 h-full" />
+                <div className="hidden md:block sm-w-40 md:w-2/5 bg-slate-800 h-full" />
                 <div className="flex justify-center w-full md:w-3/5">
                     <div className="w-full sm:max-w-[600px] px-1 md:px-4 flex flex-col items-center">
                         <div className="flex justify-between items-center w-full p-3 ">
@@ -109,10 +109,10 @@ const KemSignUp = () => {
                         </div>
                         <div className="w-full md:w-4/5 my-3 h-80 sm:min-w-[450px] lg:min-w-[550px] min-h-[450px] md:min-h-[430px] relative">
                             <Steps current={step}>
-                                <Steps.Item title={''} />
                                 <Steps.Item title="" />
-                                <Steps.Item title={''} />
-                                <Steps.Item title={''} />
+                                <Steps.Item title="" />
+                                <Steps.Item title="" />
+                                <Steps.Item title="" />
                             </Steps>
                             <Panel header={`Step: ${step + 1}`}>
                                 {step === 0 && (

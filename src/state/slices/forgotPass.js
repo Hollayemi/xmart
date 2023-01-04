@@ -1,16 +1,12 @@
 import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
-import martApi from '../api/baseApi';
 import { Message, toaster } from 'rsuite';
+import martApi from '../api/baseApi';
 
 const forgotPass = createAsyncThunk('post/forgotPassword', async (payload) => {
     const { data } = await martApi
         .post('/forgot-pass/', payload, {})
-        .then((res) => {
-            return res;
-        })
-        .catch((err) => {
-            return err.response;
-        });
+        .then((res) => res)
+        .catch((err) => err.response);
 
     return data;
 });

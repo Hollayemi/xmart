@@ -170,7 +170,7 @@ const Overview = ({ neededInfo }) => {
                                             }
                                             function activities() {
                                                 navigate(
-                                                    'activities/' + rowData._id
+                                                    `activities/${rowData._id}`
                                                 );
                                             }
                                             return (
@@ -204,9 +204,9 @@ const Overview = ({ neededInfo }) => {
             </div>
             <DrawerPanel
                 placement="left"
-                light={true}
+                light
                 title="View Order Reques"
-                size={'xs'}
+                size="xs"
                 children={
                     <ListOrdersItems
                         orderId={viewRequest}
@@ -214,8 +214,8 @@ const Overview = ({ neededInfo }) => {
                         updateOrders={setOrders}
                     />
                 }
-                backdrop={true}
-                open={viewRequest ? true : false}
+                backdrop
+                open={!!viewRequest}
                 handleClose={() => setViewRequest(false)}
             />
         </section>

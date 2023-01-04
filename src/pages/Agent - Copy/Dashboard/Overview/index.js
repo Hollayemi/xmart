@@ -35,7 +35,7 @@ const Overview = () => {
                 <div className="md:p-3 pt-5 w-full">
                     <TopTitle
                         header="Dashboard"
-                        title={`Welcome Back, xMart Admin`}
+                        title="Welcome Back, xMart Admin"
                         info="We showcase products and locate store"
                     />
                 </div>
@@ -86,7 +86,7 @@ const Overview = () => {
                                     setShowing={() => {}}
                                     setShowingInfo={() => {}}
                                     setView={() => {}}
-                                    hideFuncs={true}
+                                    hideFuncs
                                 />
                             )}
 

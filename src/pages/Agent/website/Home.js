@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Image3 from '../../../assets/images/png/features-2.svg';
-import SearchWrapper from '../../../components/websiteCompoents/ReuseableFlex';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAgentInfo } from '../../../state/slices/agents/dispatches';
 import { FaLongArrowAltRight, FaWpforms } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import Image3 from '../../../assets/images/png/features-2.svg';
+import SearchWrapper from '../../../components/websiteCompoents/ReuseableFlex';
+import { getAgentInfo } from '../../../state/slices/agents/dispatches';
 import ModalPanel from '../../../components/elements/ModalPanel';
 import Account from './account';
 
@@ -72,13 +72,13 @@ const Home = () => {
                 </div>
             </div>
             <ModalPanel
-                closeButton={true}
+                closeButton
                 title=" "
                 children={
                     <Account userId={userData._id} email={userData.email} />
                 }
-                hasBackdrop={true}
-                keyboard={true}
+                hasBackdrop
+                keyboard
                 open={openAdd}
                 buttonName="Varify Code"
                 handleClose={() => setOpenAdd(!openAdd)}

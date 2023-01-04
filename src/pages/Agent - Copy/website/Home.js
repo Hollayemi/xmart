@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaLongArrowAltRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import HomeWrapper from '../../../components/SellerComponents/website/HomeWrapper';
 import Image1 from '../../../assets/images/png/Landing/main-noBg.png';
 import Image2 from '../../../assets/images/png/features-1.svg';
@@ -12,10 +15,7 @@ import {
     Testimonials,
 } from '../../../components/SellerComponents/website/Components';
 import Footer from '../../../components/websiteCompoents/Footer';
-import { useDispatch, useSelector } from 'react-redux';
 import { getAgentInfo } from '../../../state/slices/agents/agentInfo';
-import { FaLongArrowAltRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [info, setInfo] = useState({ message: '', type: '' });
@@ -74,7 +74,7 @@ const Home = () => {
             <ImageNote
                 image={Image2}
                 heading="Share your link across social media"
-                backdrop={true}
+                backdrop
                 note="I had the best experience shopping with vasiti. Usability of the website was great, very good customer service, an all round great experience. I would definately be coming back! I had the best experience shopping with vasiti. Usability of the website was great, very good customer service, an all round great experience. I would definately be coming back!"
             />
             <div className="flex items-center justify-center pt-5 flex-wrap">
@@ -136,7 +136,7 @@ const Home = () => {
             <ImageNote
                 image={Image2}
                 heading="Tolu & Joy’s Experience"
-                second={true}
+                second
                 note="I had the best experience shopping with vasiti. Usability of the website was great, very good customer service, an all round great experience. I would definately be coming back! I had the best experience shopping with vasiti. Usability of the website was great, very good customer service, an all round great experience. I would definately be coming back!"
             />
             <div className="flex items-center justify-center pt-5 flex-wrap">

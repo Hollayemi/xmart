@@ -16,19 +16,15 @@ const listOrdersItemsApi = createAsyncThunk(
                     headers: { auth: payload.auth },
                 }
             )
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
 
 export const AllOrdersItems = (dispatch, adminData, setState) => {
     const payload = {
-        auth: adminData._id + ' ' + adminData.accessToken,
+        auth: `${adminData._id} ${adminData.accessToken}`,
     };
     dispatch(listOrdersItemsApi(payload))
         .then(unwrapResult)

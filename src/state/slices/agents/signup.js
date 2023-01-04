@@ -26,19 +26,19 @@ const new_agent = createSlice({
     name: 'agentSignup',
     initialState,
     extraReducers: {
-        [agent_signup.pending]: (state, payload) => {
-            return { ...initialState, status: REQUEST_STATUS.PENDING };
-        },
-        [agent_signup.fulfilled]: (state, payload) => {
-            return {
-                ...initialState,
-                status: REQUEST_STATUS.FULFILLED,
-                data: payload,
-            };
-        },
-        [agent_signup.pending]: (state, payload) => {
-            return { ...initialState, status: REQUEST_STATUS.REJECTED };
-        },
+        [agent_signup.pending]: (state, payload) => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [agent_signup.fulfilled]: (state, payload) => ({
+            ...initialState,
+            status: REQUEST_STATUS.FULFILLED,
+            data: payload,
+        }),
+        [agent_signup.pending]: (state, payload) => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+        }),
     },
 });
 
@@ -46,16 +46,13 @@ export const { addNewAdmin } = new_agent.actions;
 export default new_agent.reducer;
 /*
 
-
-
-
 */
 
 export const completeAgentReg = (formData, dispatch, userID, navigate) => {
     const payload = {
         body: {
             ...formData,
-            userID: userID,
+            userID,
         },
     };
 

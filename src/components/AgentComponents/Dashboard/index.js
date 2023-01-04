@@ -23,53 +23,49 @@ import {
 } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-const NavToggle = ({ expand, onChange }) => {
-    return (
-        <Navbar appearance="subtle" className="nav-toggle bg-slate-900">
-            <Navbar className="bg-slate-900">
-                <Nav pullRight>
-                    <Nav.Item
-                        onClick={onChange}
-                        style={{
-                            width: 56,
-                            textAlign: 'center',
-                        }}
-                    >
-                        {expand ? <FaAngleLeft /> : <FaAngleRight />}
-                    </Nav.Item>
-                </Nav>
-            </Navbar>
+const NavToggle = ({ expand, onChange }) => (
+    <Navbar appearance="subtle" className="nav-toggle bg-slate-900">
+        <Navbar className="bg-slate-900">
+            <Nav pullRight>
+                <Nav.Item
+                    onClick={onChange}
+                    style={{
+                        width: 56,
+                        textAlign: 'center',
+                    }}
+                >
+                    {expand ? <FaAngleLeft /> : <FaAngleRight />}
+                </Nav.Item>
+            </Nav>
         </Navbar>
-    );
-};
+    </Navbar>
+);
 
-const DashboardHeader = ({ agentDetails }) => {
-    return (
-        <section className="w-full fixed z-50 top-0 bg-slate-50 flex items-center justify-between border-b">
-            <div className="flex items-center h-18 pt-2 w-full px-2">
-                <img
-                    src={agentDetails.profPic}
-                    alt="pics"
-                    className="w-[60px] h-[60px] rounded-full"
-                />
-                <div className="flex flex-col items-start">
-                    <h5 className="ml-2 font-[500] text-md text-slate-800">
-                        {agentDetails.username}
-                    </h5>
-                    <h5 className="text-gray-300 ml-2 -mt-1">
-                        {agentDetails.email}
-                    </h5>
-                </div>
+const DashboardHeader = ({ agentDetails }) => (
+    <section className="w-full fixed z-50 top-0 bg-slate-50 flex items-center justify-between border-b">
+        <div className="flex items-center h-18 pt-2 w-full px-2">
+            <img
+                src={agentDetails.profPic}
+                alt="pics"
+                className="w-[60px] h-[60px] rounded-full"
+            />
+            <div className="flex flex-col items-start">
+                <h5 className="ml-2 font-[500] text-md text-slate-800">
+                    {agentDetails.username}
+                </h5>
+                <h5 className="text-gray-300 ml-2 -mt-1">
+                    {agentDetails.email}
+                </h5>
             </div>
-            <i className="text-lg mr-5">
-                <FaSignOutAlt />
-            </i>
-        </section>
-    );
-};
+        </div>
+        <i className="text-lg mr-5">
+            <FaSignOutAlt />
+        </i>
+    </section>
+);
 
 const DashboardWrapper = ({ ...props }) => {
-    const showing = props.showing;
+    const { showing } = props;
     const navigate = useNavigate();
     const [expand, setExpand] = useState(true);
     return (
@@ -250,7 +246,7 @@ const DashboardWrapper = ({ ...props }) => {
                                 : 'w-[calc(100%-56px)] ml-[56px]'
                         }`}
                     >
-                        <Header></Header>
+                        <Header />
                         <Content>
                             <div className="bg-white mt-14 shadow flex items-center">
                                 <DashboardHeader

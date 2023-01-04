@@ -8,13 +8,9 @@ export const allCollections = createAsyncThunk(
     'post/allCollections',
     async (payload) => {
         const { data } = martApi
-            .post('/newCollection/' + payload.id, {}, { auth: payload.auth })
-            .then((res) => {
-                return res.response;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .post(`/newCollection/${payload.id}`, {}, { auth: payload.auth })
+            .then((res) => res.response)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -23,15 +19,11 @@ export const createCollection = createAsyncThunk(
     'post/createCollection',
     async (payload) => {
         const { data } = await martApi
-            .post('/newCollection/' + payload.id, payload.body, {
+            .post(`/newCollection/${payload.id}`, payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -58,7 +50,7 @@ export const createHandler = (
                 category: selectedCate,
                 collectionInfo: formData.collectionInfo,
             },
-            auth: otpData.id + ' ' + otpData.accessToken,
+            auth: `${otpData.id} ${otpData.accessToken}`,
         };
         dispatch(createCollection(payload))
             .then(unwrapResult)
@@ -100,7 +92,7 @@ export const deleteCol = (
             _id: splited[2],
             name: splited[3],
         },
-        auth: otpData.id + ' ' + otpData.accessToken,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     // setOpen(true);
     dispatch(deleteHandler(payload))

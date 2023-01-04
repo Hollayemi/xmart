@@ -118,7 +118,7 @@ const Stores = () => {
                                                     setEventFunc={setEventFunc}
                                                     id={rowData._id}
                                                     store={rowData.store.toLowerCase()}
-                                                    isActive = {rowData.isActive}
+                                                    isActive={rowData.isActive}
                                                 />
                                             );
                                         }}
@@ -162,7 +162,9 @@ const DropDownAction = ({ setEventFunc, id, store, isActive }) => (
                         value: `/admin/dashboard/activation?id=${id}&name=${store}&account=store`,
                         name: (
                             <ActionBtn
-                                label={`${isActive ? 'Deactivate' : 'Activate'} Store`}
+                                label={`${
+                                    isActive ? 'Deactivate' : 'Activate'
+                                } Store`}
                                 className="rounded-md"
                                 type={`${isActive ? 'error' : 'success'}`}
                             />

@@ -106,7 +106,7 @@ const Analytics = ({ neededInfo }) => {
                 <div className="w-full md:w-3/5 py-2 shadow-md my-4 mx-1 h-80 bg-white rounded">
                     {tools !== '' ? (
                         <Graph2
-                            legend={true}
+                            legend
                             myData={[
                                 tools.message[0].Total_brands -
                                     tools.message[0].brands,

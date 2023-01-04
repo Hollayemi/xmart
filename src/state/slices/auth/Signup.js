@@ -32,19 +32,19 @@ const UserSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [RegNewUser.pending]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.PENDING };
-        },
-        [RegNewUser.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                regAuth: payload,
-                status: REQUEST_STATUS.FULFILLED,
-            };
-        },
-        [RegNewUser.rejected]: (state, error) => {
-            return { ...initialState, status: REQUEST_STATUS.REJECTED };
-        },
+        [RegNewUser.pending]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [RegNewUser.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            regAuth: payload,
+            status: REQUEST_STATUS.FULFILLED,
+        }),
+        [RegNewUser.rejected]: (state, error) => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+        }),
     },
 });
 

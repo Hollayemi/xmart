@@ -3,19 +3,18 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 
 ChartJS.register(...registerables);
 
-export const TransacChart = ({ chartLoader, title, all, left }) => {
-    return (
-        <div className="bg-white m-2 rounded py-1 shadow w-64 h-16 flex items-center px-3">
-            <div className="w-32">
-                <p className="text-gray-300 text-xs">{title}</p>
-                <h5>
-                    {left} of {all}
-                </h5>
-            </div>
-            <div className="w-36 max-w-[100px] h-full">{chartLoader}</div>
+export const TransacChart = ({ chartLoader, title, all, left }) => (
+    <div className="bg-white m-2 rounded py-1 shadow w-64 h-16 flex items-center px-3">
+        <div className="w-32">
+            <p className="text-gray-300 text-xs">{title}</p>
+            <h5>
+                {left} of
+                {all}
+            </h5>
         </div>
-    );
-};
+        <div className="w-36 max-w-[100px] h-full">{chartLoader}</div>
+    </div>
+);
 
 // export const ChartGraph = ({ ctx }) => {
 //     //
@@ -61,22 +60,10 @@ export const TransacChart = ({ chartLoader, title, all, left }) => {
 
 /*
 
-
-
-
-
-
-
-
-
-
-
-
-
 */
 export const Graph2 = ({ myData, labels, legend }) => {
-    let data = {
-        labels: labels,
+    const data = {
+        labels,
         datasets: [
             {
                 label: '# of Votes',
@@ -97,7 +84,7 @@ export const Graph2 = ({ myData, labels, legend }) => {
             },
         ],
     };
-    let options = {
+    const options = {
         maintainAspectRatio: false,
         options: {
             scales: {
@@ -107,7 +94,7 @@ export const Graph2 = ({ myData, labels, legend }) => {
             },
         },
         plugins: {
-            legend: legend, // Hide legend
+            legend, // Hide legend
         },
         scales: {
             y: {

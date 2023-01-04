@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Steps, Panel } from 'rsuite';
+import { FaAngleLeft } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../../components/elements/Button';
 import { ProfiePreview } from '../../../components/SellerComponents/ProfiePreview';
-import { FaAngleLeft } from 'react-icons/fa';
 import ModalPanel from '../../../components/elements/ModalPanel';
-//stateManagement
+// stateManagement
 import { createHandler } from '../../../state/slices/shop/addShop';
-import { useDispatch, useSelector } from 'react-redux';
 import { Step0 } from './step0';
 import { Step1 } from './step1';
 import { Step2 } from './step2';
@@ -20,11 +20,11 @@ import { Step3 } from './step3';
 //
 
 const NewPage = () => {
-    let { store } = useParams();
+    const { store } = useParams();
     let storeName;
 
     store === 'new' ? (storeName = '') : (storeName = store);
-    let agent = localStorage.getItem('agentName') || '';
+    const agent = localStorage.getItem('agentName') || '';
 
     const [formData, setFormData] = useState({
         store: storeName.toLowerCase(),
@@ -94,7 +94,7 @@ const NewPage = () => {
             ...formData,
             id: _id,
             isSelle: true,
-            Category: Category,
+            Category,
         };
         createHandler(payload, dispatch, navigate);
     };
@@ -118,10 +118,10 @@ const NewPage = () => {
                                     Category={Category}
                                 />
                             }
-                            hasBackdrop={true}
-                            keyboard={true}
+                            hasBackdrop
+                            keyboard
                             open={agreedToTerms}
-                            closeButton={true}
+                            closeButton
                             buttonName="Nice!"
                             handleClose={setCloseModal}
                         />

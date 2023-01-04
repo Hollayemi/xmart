@@ -1,24 +1,20 @@
 import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
 
-import martApi from '../api/baseApi';
 import { Message, toaster } from 'rsuite';
+import martApi from '../api/baseApi';
 
 const forgotPasswordApi = createAsyncThunk('post/FP', async (payload) => {
     console.log(payload);
     const { data } = await martApi
         .post('/user/forgot-password', payload, {})
-        .then((res) => {
-            return res;
-        })
-        .catch((err) => {
-            return err.response;
-        });
+        .then((res) => res)
+        .catch((err) => err.response);
 
     return data;
 });
 
 export const ForgotPasswordHandler = (email, navigate, dispatch) => {
-    dispatch(forgotPasswordApi({ email: email }))
+    dispatch(forgotPasswordApi({ email }))
         .then(unwrapResult)
         .then((res) => {
             console.log(res);
@@ -29,7 +25,7 @@ export const ForgotPasswordHandler = (email, navigate, dispatch) => {
         })
         .catch((err) => {
             toaster.push(
-                <Message showIcon type={'error'}>
+                <Message showIcon type="error">
                     No Connection
                 </Message>,
                 {

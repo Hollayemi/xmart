@@ -1,17 +1,13 @@
 import { createSlice, createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
+import { Message, toaster } from 'rsuite';
 import { REQUEST_STATUS } from '../constants';
 import martApi from '../api/baseApi';
-import { Message, toaster } from 'rsuite';
 
 const admin_signup = createAsyncThunk('post/admin_signup', async (payload) => {
     const { data } = await martApi
         .post('/addAdmin/', payload, {})
-        .then((res) => {
-            return res;
-        })
-        .catch((err) => {
-            return err.response;
-        });
+        .then((res) => res)
+        .catch((err) => err.response);
 
     return data;
 });
@@ -28,9 +24,10 @@ const adminSlice = createSlice({
     name: 'xMartAdminsignup',
     initialState,
     reducers: {
-        wasGoing: (state, { payload }) => {
-            return { ...initialState, wasGoing: payload };
-        },
+        wasGoing: (state, { payload }) => ({
+            ...initialState,
+            wasGoing: payload,
+        }),
     },
     extraReducers: {
         [admin_signup.pending]: (state) => {
@@ -55,10 +52,6 @@ export const { setUsers, wasGoing } = adminSlice.actions;
 export default adminSlice.reducer;
 
 /*
-
-
-
-
 
 */
 

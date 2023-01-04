@@ -8,12 +8,8 @@ const addNewAddress = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post('/newAddress', payload.body, {})
-            .then((e) => {
-                return e;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((e) => e)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -23,12 +19,8 @@ const deleteAddHandler = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post('/deleteAddress', payload.body, {})
-            .then((e) => {
-                return e;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((e) => e)
+            .catch((e) => e.response);
         return data;
     }
 );

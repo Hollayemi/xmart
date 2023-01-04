@@ -7,9 +7,7 @@ export const agent_info = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post('/agentInfo', payload.body, {})
-            .then((res) => {
-                return res;
-            })
+            .then((res) => res)
             .catch((err) => {
                 console.log(err.response);
                 return err.response;
@@ -24,9 +22,7 @@ export const withdrawApi = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post('/withdraw', payload.body, {})
-            .then((res) => {
-                return res;
-            })
+            .then((res) => res)
             .catch((err) => {
                 console.log(err.response);
                 return err.response;
@@ -44,19 +40,19 @@ const agentInfo = createSlice({
     name: 'myAgentInfo',
     initialState,
     extraReducers: {
-        [agent_info.pending]: (state, payload) => {
-            return { ...initialState, status: REQUEST_STATUS.PENDING };
-        },
-        [agent_info.fulfilled]: (state, payload) => {
-            return {
-                ...initialState,
-                status: REQUEST_STATUS.FULFILLED,
-                data: payload.payload,
-            };
-        },
-        [agent_info.pending]: (state, payload) => {
-            return { ...initialState, status: REQUEST_STATUS.REJECTED };
-        },
+        [agent_info.pending]: (state, payload) => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [agent_info.fulfilled]: (state, payload) => ({
+            ...initialState,
+            status: REQUEST_STATUS.FULFILLED,
+            data: payload.payload,
+        }),
+        [agent_info.pending]: (state, payload) => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+        }),
 
         //
         //
@@ -66,8 +62,5 @@ const agentInfo = createSlice({
 export const { agentInformation } = agentInfo.actions;
 export default agentInfo.reducer;
 /*
-
-
-
 
 */

@@ -1,17 +1,13 @@
 import { createSlice, createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
+import { Message, toaster } from 'rsuite';
 import { REQUEST_STATUS } from '../constants';
 import martApi from '../api/baseApi';
-import { Message, toaster } from 'rsuite';
 
 const admin_signin = createAsyncThunk('post/admin_signin', async (payload) => {
     const { data } = await martApi
         .post('/adminLogin', payload, {})
-        .then((res) => {
-            return res;
-        })
-        .catch((err) => {
-            return err.response;
-        });
+        .then((res) => res)
+        .catch((err) => err.response);
     return data;
 });
 
@@ -27,33 +23,28 @@ const adminSlice = createSlice({
     name: 'xMartAdminLogin',
     initialState,
     reducers: {
-        wasGoing: (state, { payload }) => {
-            return { ...initialState, wasGoing: payload };
-        },
+        wasGoing: (state, { payload }) => ({
+            ...initialState,
+            wasGoing: payload,
+        }),
     },
     extraReducers: {
-        [admin_signin.pending]: (state) => {
-            return {
-                ...initialState,
-                loading: true,
-                status: REQUEST_STATUS.PENDING,
-            };
-        },
-        [admin_signin.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                loading: false,
-                adminData: payload,
-                status: REQUEST_STATUS.FULFILLED,
-            };
-        },
-        [admin_signin.rejected]: (state, error) => {
-            return {
-                ...initialState,
-                loading: false,
-                status: REQUEST_STATUS.REJECTED,
-            };
-        },
+        [admin_signin.pending]: (state) => ({
+            ...initialState,
+            loading: true,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [admin_signin.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            loading: false,
+            adminData: payload,
+            status: REQUEST_STATUS.FULFILLED,
+        }),
+        [admin_signin.rejected]: (state, error) => ({
+            ...initialState,
+            loading: false,
+            status: REQUEST_STATUS.REJECTED,
+        }),
     },
 });
 
@@ -63,10 +54,6 @@ export const { Admin, wasGoing } = adminSlice.actions;
 export default adminSlice.reducer;
 
 /*
-
-
-
-
 
 */
 

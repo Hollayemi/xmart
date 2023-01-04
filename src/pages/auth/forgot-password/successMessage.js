@@ -3,23 +3,21 @@ import { FaAngleLeft, FaTelegramPlane } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { ForgotPassword } from './ForgotPassword';
 
-const EmailSent = () => {
-    return (
-        <section className="h-80 min-h-screen overflow-x-hidden">
-            <div className="w-full h-full flex relative">
-                <h5
-                    className="text-blue-500 absolute cursor-pointer top-4 left-4 flex items-center justify-center"
-                    onClick={() => window.history.back()}
-                >
-                    <FaAngleLeft className=" -mt-1 mr-3" /> Back to Home
-                </h5>
-                <div className="w-full  px-5 md:px-4 flex flex-col items-center justify-center">
-                    <SuccessMessage />
-                </div>
+const EmailSent = () => (
+    <section className="h-80 min-h-screen overflow-x-hidden">
+        <div className="w-full h-full flex relative">
+            <h5
+                className="text-blue-500 absolute cursor-pointer top-4 left-4 flex items-center justify-center"
+                onClick={() => window.history.back()}
+            >
+                <FaAngleLeft className=" -mt-1 mr-3" /> Back to Home
+            </h5>
+            <div className="w-full  px-5 md:px-4 flex flex-col items-center justify-center">
+                <SuccessMessage />
             </div>
-        </section>
-    );
-};
+        </div>
+    </section>
+);
 
 export default EmailSent;
 

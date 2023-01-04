@@ -8,12 +8,8 @@ import { editShopInfo } from './settings/editShop';
 export const addShop = createAsyncThunk('post/addNewShop', async (payload) => {
     const { data } = await martApi
         .post('/newBusiness', payload, {})
-        .then((e) => {
-            return e;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((e) => e)
+        .catch((e) => e.response);
     return data;
 });
 
@@ -22,12 +18,8 @@ export const shopConfig = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post('/default', { payload }, {})
-            .then((e) => {
-                return e;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((e) => e)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -37,7 +29,7 @@ export const getShopInfo = createAsyncThunk(
     async (payload) => {
         const { data } = await martApi
             .post(
-                '/getShopInfo/' + payload.id,
+                `/getShopInfo/${payload.id}`,
                 {},
                 {
                     headers: {
@@ -45,12 +37,8 @@ export const getShopInfo = createAsyncThunk(
                     },
                 }
             )
-            .then((e) => {
-                return e;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((e) => e)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -66,51 +54,51 @@ const editExistingShop = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [addShop.pending]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.PENDING };
-        },
-        [addShop.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                shopData: payload,
-                status: REQUEST_STATUS.FULFILLED,
-            };
-        },
-        [addShop.rejected]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.REJECTED };
-        },
+        [addShop.pending]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [addShop.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            shopData: payload,
+            status: REQUEST_STATUS.FULFILLED,
+        }),
+        [addShop.rejected]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+        }),
         //
         //
         //
-        [getShopInfo.pending]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.PENDING };
-        },
-        [getShopInfo.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                shopData: payload,
-                status: REQUEST_STATUS.FULFILLED,
-            };
-        },
-        [getShopInfo.rejected]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.REJECTED };
-        },
+        [getShopInfo.pending]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [getShopInfo.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            shopData: payload,
+            status: REQUEST_STATUS.FULFILLED,
+        }),
+        [getShopInfo.rejected]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+        }),
         //
         //
         //
-        [editShopInfo.pending]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.PENDING };
-        },
-        [editShopInfo.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                shopData: payload,
-                status: REQUEST_STATUS.FULFILLED,
-            };
-        },
-        [editShopInfo.rejected]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.REJECTED };
-        },
+        [editShopInfo.pending]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [editShopInfo.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            shopData: payload,
+            status: REQUEST_STATUS.FULFILLED,
+        }),
+        [editShopInfo.rejected]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+        }),
     },
 });
 
@@ -118,7 +106,6 @@ export const { setShop } = editExistingShop.actions;
 export default editExistingShop.reducer;
 
 /*
-
 
 */
 
@@ -161,9 +148,9 @@ export const createHandler = (payload, dispatch, navigate) => {
 };
 
 export const fetchShopInfo = (dispatch, id, otpData, setState) => {
-    let payload = {
-        id: id,
-        auth: id + ' ' + otpData,
+    const payload = {
+        id,
+        auth: `${id} ${otpData}`,
     };
     dispatch(getShopInfo(payload))
         .then(unwrapResult)
@@ -175,7 +162,7 @@ export const fetchShopInfo = (dispatch, id, otpData, setState) => {
 export const toDashboard = (userData, dispatch, navigate) => {
     const payload = {
         id: userData._id,
-        auth: userData._id + ' ' + userData.accessToken,
+        auth: `${userData._id} ${userData.accessToken}`,
     };
     dispatch(getShopInfo(payload))
         .then(unwrapResult)

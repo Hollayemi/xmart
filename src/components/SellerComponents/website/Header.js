@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Logo from '../../../assets/images/png/logo2x_2.png';
+
 const Header = () => {
     const [open, setOpen] = useState('-mr-48');
     return (

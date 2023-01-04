@@ -11,12 +11,8 @@ export const editProduct = createAsyncThunk(
             .put('/editProduct', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -29,7 +25,7 @@ export const editProductHandler = (formData, dispatch, neededInfo) => {
                 ...formData,
                 shopID: neededInfo.shopData.id,
             },
-            auth: neededInfo.otpData.id + ' ' + neededInfo.otpData.accessToken,
+            auth: `${neededInfo.otpData.id} ${neededInfo.otpData.accessToken}`,
         };
         dispatch(editProduct(payload))
             .then(unwrapResult)

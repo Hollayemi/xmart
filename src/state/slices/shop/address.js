@@ -11,12 +11,8 @@ const getAddressApi = createAsyncThunk(
                 {},
                 {}
             )
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                return err.response;
-            });
+            .then((res) => res)
+            .catch((err) => err.response);
         return data;
     }
 );

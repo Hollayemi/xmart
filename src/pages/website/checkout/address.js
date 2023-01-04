@@ -13,9 +13,9 @@ const AddressBook = ({ userId, setAddress, openAdd, setOpenAdd, withNew }) => {
     const [selectedAdd, setSeletedAdd] = useState(null);
     const [newAdd, setNewAdd] = useState(false);
     useEffect(() => {
-        let payload = {
+        const payload = {
             body: {
-                userId: userId,
+                userId,
             },
         };
         getAllAddress(payload, dispatch, setMessages);
@@ -25,30 +25,22 @@ const AddressBook = ({ userId, setAddress, openAdd, setOpenAdd, withNew }) => {
         <section>
             <div className="grid grid-cols-1 sm:grid-cols-2">
                 {allMessages.length > 0 ? (
-                    allMessages.map((res, index) => {
-                        return (
-                            <Address
-                                key={index}
-                                selectedAdd={selectedAdd}
-                                setSeletedAdd={setSeletedAdd}
-                                name={
-                                    res.surname +
-                                    ' ' +
-                                    res.first_name +
-                                    ' ' +
-                                    res.last_name
-                                }
-                                address={res.address}
-                                phone={res.phone_number}
-                                index={index}
-                                title={res.title}
-                                id={res._id}
-                                userId={userId}
-                                setAddress={setAddress}
-                                res={res}
-                            />
-                        );
-                    })
+                    allMessages.map((res, index) => (
+                        <Address
+                            key={index}
+                            selectedAdd={selectedAdd}
+                            setSeletedAdd={setSeletedAdd}
+                            name={`${res.surname} ${res.first_name} ${res.last_name}`}
+                            address={res.address}
+                            phone={res.phone_number}
+                            index={index}
+                            title={res.title}
+                            id={res._id}
+                            userId={userId}
+                            setAddress={setAddress}
+                            res={res}
+                        />
+                    ))
                 ) : (
                     <div className="h-60 flex flex-col items-center sm:items-end sm:-mr-10 justify-center">
                         <h5 className="">No Address available</h5>
@@ -81,7 +73,7 @@ const AddressBook = ({ userId, setAddress, openAdd, setOpenAdd, withNew }) => {
                 />
             )}
             <ModalPanel
-                closeButton={true}
+                closeButton
                 title="Address Details"
                 children={
                     <CreateNewAddress
@@ -90,8 +82,8 @@ const AddressBook = ({ userId, setAddress, openAdd, setOpenAdd, withNew }) => {
                         setOpenAdd={setOpenAdd}
                     />
                 }
-                hasBackdrop={true}
-                keyboard={true}
+                hasBackdrop
+                keyboard
                 open={newAdd}
                 buttonName="Varify Code"
                 handleClose={() => setNewAdd(!newAdd)}
@@ -119,7 +111,7 @@ export const Address = ({
     const payload = {
         body: {
             _id: id,
-            userId: userId,
+            userId,
         },
     };
     const setAll = () => {
@@ -160,7 +152,7 @@ export const Address = ({
                                 ? 'bg-slate-800'
                                 : 'bg-slate-300'
                         } bg-gray-300 border`}
-                    ></div>
+                    />
                     <h5>Choose</h5>
                 </div>
             </div>

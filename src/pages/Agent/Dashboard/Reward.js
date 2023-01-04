@@ -4,6 +4,7 @@ import onlinePayment from '../../../assets/images/png/onlinePayment.png';
 import InputGroup from '../../../components/elements/Input/InputGroup';
 import { TopTitle } from '../../../components/SellerComponents/Dashboard/topTitle';
 import Footer from '../../../components/websiteCompoents/Footer';
+
 const Reward = ({ data }) => {
     console.log(data);
     const [edit, setEdit] = useState(false);
@@ -34,7 +35,7 @@ const Reward = ({ data }) => {
             />
             <div className="flex bg-slate-50 mt-4 flex-col min-w-[270px] md:flex-row mx-1 py-4 y-6 rounded-md">
                 <div className="flex justify-center w-full mb-6 md:mb-2 md:w-2/5">
-                    <img src={onlinePayment} alt={'nairaImage'} />
+                    <img src={onlinePayment} alt="nairaImage" />
                 </div>
                 <div className="w-full md:w-3/5 max-w-[450px]">
                     <h3 className="border-b w-full leading-10 text-md px-3 flex justify-between items-center px-5 text-sm">

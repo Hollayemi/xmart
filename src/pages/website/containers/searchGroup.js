@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import SearchWrapper from '../../../components/websiteCompoents/ReuseableFlex';
-import { websiteImages } from '../../../components/websiteCompoents/Images';
 import { Loader } from 'rsuite';
-import { Product } from '../../../components/websiteCompoents/HorizontalDisplay';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
+import SearchWrapper from '../../../components/websiteCompoents/ReuseableFlex';
+import { websiteImages } from '../../../components/websiteCompoents/Images';
+import { Product } from '../../../components/websiteCompoents/HorizontalDisplay';
 import SigninPop from '../../auth/signin/Pop up';
 import { sliderLinkHandler } from '../../../state/slices/home';
 import { fetcher } from '../../../state/slices/home/search/aggrSearch';
@@ -21,14 +21,12 @@ const BrandSearch = () => {
     const { userData } = useSelector((state) => state.reducer.loginReducer);
     const { cartData } = useSelector((state) => state.reducer.cartedProduct);
 
-    let prodState = ['0'];
+    const prodState = ['0'];
     if (cartData && cartData.type === 'success') {
-        cartData.message.map((x) => {
-            return prodState.push(x.productId);
-        });
+        cartData.message.map((x) => prodState.push(x.productId));
     }
     useEffect(() => {
-        let query = {
+        const query = {
             prodCategory: param.category.replaceAll('-', ' '),
             prodSub_Category: param.brand.replaceAll('-', ' '),
             state: 'Lagos State',
@@ -36,7 +34,7 @@ const BrandSearch = () => {
         fetcher(dispatch, query, 'prodGroup', setGroup);
         sliderLinkHandler(dispatch, setAvailableCate);
     }, []);
-    let Products = (
+    const Products = (
         <div className="relative h-60">
             <Loader
                 backdrop
@@ -77,33 +75,29 @@ const BrandSearch = () => {
             </div>
             <section className="px-2 md:px-6">
                 {Group.length === 0 && Products}
-                {Group.map((res, index) => {
-                    return (
-                        <section key={index} className="shadow my-3">
-                            <div className="flex justify-between w-full items-center px-4 md:px-6 h-16 font-[600] bg-white border-b-2 border-slate-800 text-slate-700">
-                                {res._id.name}
-                                <Link
-                                    to={`/s/${param.category}/${res._id.name}`}
-                                >
-                                    <button className="h-8 px-3 py-1 text-[15px] border mr-2">
-                                        EXPAND
-                                    </button>
-                                </Link>
-                            </div>
-                            <div className="h-[550px] bg-slate-50">
-                                <div className="w-full flex justify-center">
-                                    <div className="w-full mt-3 sm:w-10/12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                                        <ProductList
-                                            res={res}
-                                            userData={userData}
-                                            prodState={prodState}
-                                        />
-                                    </div>
+                {Group.map((res, index) => (
+                    <section key={index} className="shadow my-3">
+                        <div className="flex justify-between w-full items-center px-4 md:px-6 h-16 font-[600] bg-white border-b-2 border-slate-800 text-slate-700">
+                            {res._id.name}
+                            <Link to={`/s/${param.category}/${res._id.name}`}>
+                                <button className="h-8 px-3 py-1 text-[15px] border mr-2">
+                                    EXPAND
+                                </button>
+                            </Link>
+                        </div>
+                        <div className="h-[550px] bg-slate-50">
+                            <div className="w-full flex justify-center">
+                                <div className="w-full mt-3 sm:w-10/12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                                    <ProductList
+                                        res={res}
+                                        userData={userData}
+                                        prodState={prodState}
+                                    />
                                 </div>
                             </div>
-                        </section>
-                    );
-                })}
+                        </div>
+                    </section>
+                ))}
                 <SigninPop
                     setOpenAdd={setOpenAdd}
                     going={window.location.pathname}

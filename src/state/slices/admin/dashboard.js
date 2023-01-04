@@ -7,23 +7,19 @@ const Overview = createAsyncThunk('post/xmartOverview', async (payload) => {
         .post('/xmartOverview/', payload.body, {
             headers: { auth: payload.auth },
         })
-        .then((res) => {
-            return res;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((res) => res)
+        .catch((e) => e.response);
     return data;
 });
 
 export const xmartOverview = (dispatch, setTargetInfo, adminData, query) => {
-    //fetch
+    // fetch
     const payload = {
         body: {
             shopQuary: query,
         },
 
-        auth: adminData._id + ' ' + adminData.accessToken,
+        auth: `${adminData._id} ${adminData.accessToken}`,
     };
     dispatch(Overview(payload))
         .then(unwrapResult)
@@ -34,10 +30,6 @@ export const xmartOverview = (dispatch, setTargetInfo, adminData, query) => {
 };
 /*
 
-
-
-
-
 */
 const awaitingProducts = createAsyncThunk(
     'post/xmartOverview',
@@ -46,12 +38,8 @@ const awaitingProducts = createAsyncThunk(
             .post('/awaitingProducts', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -66,31 +54,31 @@ const waitingProducts = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [awaitingProducts.pending]: () => {
-            return { ...initialState, status: REQUEST_STATUS.PENDING };
-        },
-        [awaitingProducts.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                data: payload.type !== 'error' ? payload.message : null,
-                status: REQUEST_STATUS.FULFILLED,
-            };
-        },
-        [awaitingProducts.rejected]: () => {
-            return { ...initialState, status: REQUEST_STATUS.REJECTED };
-        },
+        [awaitingProducts.pending]: () => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [awaitingProducts.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            data: payload.type !== 'error' ? payload.message : null,
+            status: REQUEST_STATUS.FULFILLED,
+        }),
+        [awaitingProducts.rejected]: () => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+        }),
     },
 });
 
 export default waitingProducts.reducer;
 
 export const getAwaitingProducts = (dispatch, setData, adminData, query) => {
-    //fetch
+    // fetch
     const payload = {
         body: {
             limit: query,
         },
-        auth: adminData._id + ' ' + adminData.accessToken,
+        auth: `${adminData._id} ${adminData.accessToken}`,
     };
     dispatch(awaitingProducts(payload))
         .then(unwrapResult)

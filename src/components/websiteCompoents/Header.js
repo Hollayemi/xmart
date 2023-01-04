@@ -18,21 +18,17 @@ import {
     FaPhone,
     FaMailBulk,
 } from 'react-icons/fa';
-import Categories from './Categories';
 import { Link, useNavigate } from 'react-router-dom';
+import Categories from './Categories';
 import myLogo from '../../assets/images/png/logo2x.png';
 
 export const BigHeader = ({ sideBarState, cartItems, setSearch, search }) => {
     const navigate = useNavigate();
     const newSearch = () => {
-        navigate('/search/' + search);
+        navigate(`/search/${search}`);
     };
     return (
-        <div
-            className={
-                'container-fluid fixed top-0 z-50 w-full top-0 bg-slate-700 shadow-sm h-28'
-            }
-        >
+        <div className="container-fluid fixed top-0 z-50 w-full top-0 bg-slate-700 shadow-sm h-28">
             <div className="flex justify-between py-2 border-b border-slate-600 px-10 text-white items-center h-12">
                 <Link to="/">
                     <div className="hidden md:block">
@@ -169,160 +165,154 @@ export const SmallHeader = ({
     availableCate,
     search,
     setSearch,
-}) => {
-    return (
-        <div className="bg-slate-800 pb-2 fixed top-0 w-full z-50">
-            <div className="flex justify-end px-4 text-slate-300 border-b border-slate-700 py-3 items-center h-6">
-                <Link to="/seller">
-                    <h5 className="mx-2">Sell on Kemon</h5>
-                </Link>
-                <Link to="/agent">
-                    <h5 className="mx-2">Earn on Kemon</h5>
-                </Link>
-            </div>
-            <div
-                className={
-                    'block md:hidden sticky top-0 flex justify-between items-center py-1  px-4 sm:px-10 w-full'
-                }
-            >
-                <div>
-                    <i
-                        className={'text-2xl text-slate-400'}
-                        onClick={() => setOpen(!open)}
-                    >
-                        {!open ? <FaBars /> : <FaTimes />}
-                    </i>
-                </div>
-                <div className={''}>
-                    <img src={myLogo} alt="logo" width={80} />
-                    {/* <h3 className="font-bold text-xl text-slate-400">xMart</h3> */}
-                </div>
-            </div>
-            <div className="flex items-center sticky top justify-center my-2">
-                <input
-                    type="text"
-                    onChange={(e) => setSearch(e.target.value)}
-                    name="searchBar"
-                    value={search}
-                    placeholder="Search products, brand and categories"
-                    className="border border-gray-400 h-10 pl-4 -ml-5 pr-9 w-11/12 min-w-[290px] rounded-2xl outline-none font-medium "
-                />
-                <i className="text-lg -ml-8 ">
-                    <FaSearch />
+}) => (
+    <div className="bg-slate-800 pb-2 fixed top-0 w-full z-50">
+        <div className="flex justify-end px-4 text-slate-300 border-b border-slate-700 py-3 items-center h-6">
+            <Link to="/seller">
+                <h5 className="mx-2">Sell on Kemon</h5>
+            </Link>
+            <Link to="/agent">
+                <h5 className="mx-2">Earn on Kemon</h5>
+            </Link>
+        </div>
+        <div className="block md:hidden sticky top-0 flex justify-between items-center py-1  px-4 sm:px-10 w-full">
+            <div>
+                <i
+                    className="text-2xl text-slate-400"
+                    onClick={() => setOpen(!open)}
+                >
+                    {!open ? <FaBars /> : <FaTimes />}
                 </i>
             </div>
-            <div className="w-[10%] max-w-[20px]">
-                <Drawer
-                    backdrop={true}
-                    open={open}
-                    onClose={() => setOpen(false)}
-                    placement="left"
-                    size="xs"
-                >
-                    <div className="h-full bg-slate-50">
-                        <Drawer.Header className="bg-white shadow mb-4">
-                            <div className="w-full flex items-center justify-between px-5">
-                                <h5 className="font-black text-2xl ">xMart</h5>
-
-                                <div className="flex items-center text-[30px] w-20 justify-between">
-                                    <Link to="/cart">
-                                        <Badge content={3}>
-                                            <i className="">
-                                                <FaShoppingCart />
-                                            </i>
-                                        </Badge>
-                                    </Link>
-                                    <Link to="/wishList">
-                                        <Badge content={3}>
-                                            <i className="text-blue-500">
-                                                <FaHeart />
-                                            </i>
-                                        </Badge>
-                                    </Link>
-                                </div>
-                            </div>
-                        </Drawer.Header>
-                        <div className="overflow-y-auto h-[calc(100%_-_180px)] mb-20">
-                            <ul className="bg-white shadow mb-4">
-                                <Link to="/">
-                                    <li className="h-14 px-6 border-b flex items-center text-xl text-gray-500">
-                                        <i className="pr-3">
-                                            <FaHome />
-                                        </i>
-                                        Home
-                                    </li>
-                                </Link>
-                                <Link to="/my-orders">
-                                    <li className="h-14 px-6 border-b flex items-center text-xl text-gray-500">
-                                        <i className="pr-3">
-                                            <FaShoppingBasket />
-                                        </i>
-                                        Orders
-                                    </li>
-                                </Link>
-                                <Link to="/seller">
-                                    <li className="h-14 px-6 border-b flex items-center text-xl text-gray-500">
-                                        <i className="pr-3">
-                                            <FaDumpster />
-                                        </i>
-                                        Sell
-                                    </li>
-                                </Link>
-                                <Link to="/agent">
-                                    <li className="h-14 px-6 border-b flex items-center text-xl text-gray-500">
-                                        <i className="pr-3">
-                                            <FaRegUser />
-                                        </i>
-                                        Agent
-                                    </li>
-                                </Link>
-                            </ul>
-                            <div className="shadow w-full mb-4">
-                                <Categories
-                                    setCategory={setCategory}
-                                    expandCate={expandCate}
-                                    allCate={availableCate}
-                                />
-                            </div>
-                            <ul className="bg-white shadow mb-4">
-                                <h4 className="font-bold pt-5 text-md text-blue-600 pl-8">
-                                    OUR SERVICES
-                                </h4>
-                                <li className="h-14 px-6 flex items-center text-xl text-gray-500">
-                                    <i className="pr-3">
-                                        <FaPhone />
-                                    </i>
-                                    08101889892
-                                </li>
-                                <li className="h-14 px-6 flex items-center text-xl text-gray-500">
-                                    <i className="pr-3">
-                                        <FaMailBulk />
-                                    </i>
-                                    services@xmart.com
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="flex items-center fixed bottom-0 h-16 w-full bg-white pl-5">
-                            <Link to="/signin">
-                                <button className="w-28 h-10 rounded-full text-md flex items-center justify-center text-bold text-white mr-5 bg-slate-800 p-0">
-                                    <i className="mr-2">
-                                        <FaUser />
-                                    </i>{' '}
-                                    Login
-                                </button>
-                            </Link>
-                            <Link to="/signup">
-                                <button className="w-28 h-10 rounded-full text-md text-bold text-slate-800 border border-slate-800  hover:bg-slate-100 p-0">
-                                    Register
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
-                </Drawer>
+            <div className="">
+                <img src={myLogo} alt="logo" width={80} />
+                {/* <h3 className="font-bold text-xl text-slate-400">xMart</h3> */}
             </div>
         </div>
-    );
-};
+        <div className="flex items-center sticky top justify-center my-2">
+            <input
+                type="text"
+                onChange={(e) => setSearch(e.target.value)}
+                name="searchBar"
+                value={search}
+                placeholder="Search products, brand and categories"
+                className="border border-gray-400 h-10 pl-4 -ml-5 pr-9 w-11/12 min-w-[290px] rounded-2xl outline-none font-medium "
+            />
+            <i className="text-lg -ml-8 ">
+                <FaSearch />
+            </i>
+        </div>
+        <div className="w-[10%] max-w-[20px]">
+            <Drawer
+                backdrop
+                open={open}
+                onClose={() => setOpen(false)}
+                placement="left"
+                size="xs"
+            >
+                <div className="h-full bg-slate-50">
+                    <Drawer.Header className="bg-white shadow mb-4">
+                        <div className="w-full flex items-center justify-between px-5">
+                            <h5 className="font-black text-2xl ">xMart</h5>
+
+                            <div className="flex items-center text-[30px] w-20 justify-between">
+                                <Link to="/cart">
+                                    <Badge content={3}>
+                                        <i className="">
+                                            <FaShoppingCart />
+                                        </i>
+                                    </Badge>
+                                </Link>
+                                <Link to="/wishList">
+                                    <Badge content={3}>
+                                        <i className="text-blue-500">
+                                            <FaHeart />
+                                        </i>
+                                    </Badge>
+                                </Link>
+                            </div>
+                        </div>
+                    </Drawer.Header>
+                    <div className="overflow-y-auto h-[calc(100%_-_180px)] mb-20">
+                        <ul className="bg-white shadow mb-4">
+                            <Link to="/">
+                                <li className="h-14 px-6 border-b flex items-center text-xl text-gray-500">
+                                    <i className="pr-3">
+                                        <FaHome />
+                                    </i>
+                                    Home
+                                </li>
+                            </Link>
+                            <Link to="/my-orders">
+                                <li className="h-14 px-6 border-b flex items-center text-xl text-gray-500">
+                                    <i className="pr-3">
+                                        <FaShoppingBasket />
+                                    </i>
+                                    Orders
+                                </li>
+                            </Link>
+                            <Link to="/seller">
+                                <li className="h-14 px-6 border-b flex items-center text-xl text-gray-500">
+                                    <i className="pr-3">
+                                        <FaDumpster />
+                                    </i>
+                                    Sell
+                                </li>
+                            </Link>
+                            <Link to="/agent">
+                                <li className="h-14 px-6 border-b flex items-center text-xl text-gray-500">
+                                    <i className="pr-3">
+                                        <FaRegUser />
+                                    </i>
+                                    Agent
+                                </li>
+                            </Link>
+                        </ul>
+                        <div className="shadow w-full mb-4">
+                            <Categories
+                                setCategory={setCategory}
+                                expandCate={expandCate}
+                                allCate={availableCate}
+                            />
+                        </div>
+                        <ul className="bg-white shadow mb-4">
+                            <h4 className="font-bold pt-5 text-md text-blue-600 pl-8">
+                                OUR SERVICES
+                            </h4>
+                            <li className="h-14 px-6 flex items-center text-xl text-gray-500">
+                                <i className="pr-3">
+                                    <FaPhone />
+                                </i>
+                                08101889892
+                            </li>
+                            <li className="h-14 px-6 flex items-center text-xl text-gray-500">
+                                <i className="pr-3">
+                                    <FaMailBulk />
+                                </i>
+                                services@xmart.com
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="flex items-center fixed bottom-0 h-16 w-full bg-white pl-5">
+                        <Link to="/signin">
+                            <button className="w-28 h-10 rounded-full text-md flex items-center justify-center text-bold text-white mr-5 bg-slate-800 p-0">
+                                <i className="mr-2">
+                                    <FaUser />
+                                </i>{' '}
+                                Login
+                            </button>
+                        </Link>
+                        <Link to="/signup">
+                            <button className="w-28 h-10 rounded-full text-md text-bold text-slate-800 border border-slate-800  hover:bg-slate-100 p-0">
+                                Register
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </Drawer>
+        </div>
+    </div>
+);
 
 const Header = ({
     expandCate,
@@ -333,30 +323,28 @@ const Header = ({
     availableCate,
     search,
     setSearch,
-}) => {
-    return (
-        <>
-            <div className="hidden md:block">
-                <div className="mt-[90px]"></div>
-                <BigHeader
-                    cartItems={cartItems}
-                    search={search}
-                    setSearch={setSearch}
-                />
-            </div>
-            <div className="block md:hidden">
-                <div className="h-36"></div>
-                <SmallHeader
-                    expandCate={expandCate}
-                    setCategory={setCategory}
-                    open={open}
-                    setOpen={setOpen}
-                    availableCate={availableCate}
-                    search={search}
-                    setSearch={setSearch}
-                />
-            </div>
-        </>
-    );
-};
+}) => (
+    <>
+        <div className="hidden md:block">
+            <div className="mt-[90px]" />
+            <BigHeader
+                cartItems={cartItems}
+                search={search}
+                setSearch={setSearch}
+            />
+        </div>
+        <div className="block md:hidden">
+            <div className="h-36" />
+            <SmallHeader
+                expandCate={expandCate}
+                setCategory={setCategory}
+                open={open}
+                setOpen={setOpen}
+                availableCate={availableCate}
+                search={search}
+                setSearch={setSearch}
+            />
+        </div>
+    </>
+);
 export default Header;

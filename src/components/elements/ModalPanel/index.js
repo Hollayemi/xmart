@@ -30,9 +30,7 @@ const ModalPanel = ({
                 </Modal.Header>
             )}
             <Modal.Body>
-                {children ? (
-                    children
-                ) : (
+                {children || (
                     <div style={{ textAlign: 'center' }}>
                         <Loading size="md" />
                     </div>

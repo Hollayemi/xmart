@@ -7,12 +7,8 @@ import { FetchCartHandler } from './fetchCart';
 export const addCart = createAsyncThunk('post/myCart', async (payload) => {
     const { data } = await martApi
         .post('/cartProduct', payload.body, {})
-        .then((e) => {
-            return e;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((e) => e)
+        .catch((e) => e.response);
     return data;
 });
 
@@ -27,26 +23,25 @@ const addNewCart = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [addCart.pending]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.PENDING };
-        },
-        [addCart.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                cartData: payload,
-                status: REQUEST_STATUS.FULFILLED,
-            };
-        },
-        [addCart.rejected]: (state) => {
-            return { ...initialState, status: REQUEST_STATUS.REJECTED };
-        },
+        [addCart.pending]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [addCart.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            cartData: payload,
+            status: REQUEST_STATUS.FULFILLED,
+        }),
+        [addCart.rejected]: (state) => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+        }),
     },
 });
 
 export default addNewCart.reducer;
 
 /*
-
 
 */
 

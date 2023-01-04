@@ -9,12 +9,8 @@ const addPickupAgent = createAsyncThunk(
             .post('/addPickup', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -22,7 +18,7 @@ const addPickupAgent = createAsyncThunk(
 export const addPickupPerson = (formData, auth, dispatch, setData) => {
     const payload = {
         body: formData,
-        auth: auth,
+        auth,
     };
     dispatch(addPickupAgent(payload))
         .then(unwrapResult)
@@ -41,25 +37,21 @@ export const addPickupPerson = (formData, auth, dispatch, setData) => {
 };
 
 //
-//delete pickup agent
+// delete pickup agent
 const myPickupsApi = createAsyncThunk('post/deletePickup', async (payload) => {
     const { data } = await martApi
         .post(`myPickups/${payload.id}`, '', {
             headers: { auth: payload.auth },
         })
-        .then((res) => {
-            return res;
-        })
-        .catch((e) => {
-            return e;
-        });
+        .then((res) => res)
+        .catch((e) => e);
     return data;
 });
 
 export const getPickupPerson = (formData, auth, dispatch, setData) => {
     const payload = {
         id: formData,
-        auth: auth,
+        auth,
     };
     dispatch(myPickupsApi(payload))
         .then(unwrapResult)
@@ -80,7 +72,7 @@ export const getPickupPerson = (formData, auth, dispatch, setData) => {
 //
 //
 //
-//delete pickup agent
+// delete pickup agent
 const deletePickupAgent = createAsyncThunk(
     'post/deletePickup',
     async (payload) => {
@@ -88,12 +80,8 @@ const deletePickupAgent = createAsyncThunk(
             .post(`deletePickup/${payload.id}`, '', {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e;
-            });
+            .then((res) => res)
+            .catch((e) => e);
         return data;
     }
 );
@@ -101,7 +89,7 @@ const deletePickupAgent = createAsyncThunk(
 export const deletePickupPerson = (formData, auth, dispatch, setData) => {
     const payload = {
         id: formData,
-        auth: auth,
+        auth,
     };
     dispatch(deletePickupAgent(payload))
         .then(unwrapResult)

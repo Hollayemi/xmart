@@ -1,7 +1,7 @@
 import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
 import martApi from '../api/baseApi';
 
-//Api to get all Business for admin
+// Api to get all Business for admin
 export const getAllBusinesses = createAsyncThunk(
     'post/allBuzz',
     async (payload) => {
@@ -9,24 +9,20 @@ export const getAllBusinesses = createAsyncThunk(
             .post('/allBusinesses', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
 
 export const fetchAllStore = (dispatch, setTargetInfo, adminData, query) => {
-    //fetch
+    // fetch
     const payload = {
         body: {
             shopQuary: query,
         },
 
-        auth: adminData._id + ' ' + adminData.accessToken,
+        auth: `${adminData._id} ${adminData.accessToken}`,
     };
     dispatch(getAllBusinesses(payload))
         .then(unwrapResult)
@@ -41,34 +37,30 @@ export const fetchAllStore = (dispatch, setTargetInfo, adminData, query) => {
 //
 //
 //
-//Api to get all Business for admin
+// Api to get all Business for admin
 export const getStoreInfoApi = createAsyncThunk(
     'post/allBuzz',
     async (payload) => {
         console.log(payload);
         const { data } = await martApi
             .patch(
-                '/getStoreByStoreName/' + payload.store,
+                `/getStoreByStoreName/${payload.store}`,
                 {},
                 {
                     headers: { auth: payload.auth },
                 }
             )
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
 
 export const getStoreInfo = (dispatch, setInfo, setFiles, adminData, store) => {
-    //fetch
+    // fetch
     const payload = {
         store,
-        auth: adminData._id + ' ' + adminData.accessToken,
+        auth: `${adminData._id} ${adminData.accessToken}`,
     };
     dispatch(getStoreInfoApi(payload))
         .then(unwrapResult)

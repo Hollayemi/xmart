@@ -102,8 +102,12 @@ const CreateAccount = LazyLoading(() =>
     import('../pages/seller/CreateAccount')
 );
 const SellerDashboard = LazyLoading(() => import('../pages/seller/Dashboard'));
-const Activation = LazyLoading(() => import('../pages/Agent - Copy/Dashboard/activation'));
-const Confirmation = LazyLoading(() => import('../pages/Agent - Copy/Dashboard/Accounts/agents/confirmation'));
+const Activation = LazyLoading(() =>
+    import('../pages/Agent - Copy/Dashboard/activation')
+);
+const Confirmation = LazyLoading(() =>
+    import('../pages/Agent - Copy/Dashboard/Accounts/agents/confirmation')
+);
 // Agent Page
 const NewAgent = LazyLoading(() => import('../pages/Agent/newAgent.js'));
 const AgentDashboard = LazyLoading(() => import('../pages/Agent/Dashboard'));
@@ -258,7 +262,7 @@ const AppRoutes = () => {
                         },
                         {
                             path: '/admin/dashboard/confirmation',
-                            element: <Confirmation />
+                            element: <Confirmation />,
                         },
                         {
                             path: '/admin/dashboard/:section',

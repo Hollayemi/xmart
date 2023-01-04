@@ -62,23 +62,21 @@ const Agents = ({ myNeededInfo }) => {
                                 <Table.HeaderCell>Action</Table.HeaderCell>
 
                                 <Table.Cell>
-                                    {() => {
-                                        return (
-                                            <span className="flex">
-                                                <h5
-                                                    className="cursor-pointer"
-                                                    onClick={() => {
-                                                        setViewing({
-                                                            view: 'asUser',
-                                                            id: targetInfo.id,
-                                                        });
-                                                    }}
-                                                >
-                                                    View as user
-                                                </h5>
-                                            </span>
-                                        );
-                                    }}
+                                    {() => (
+                                        <span className="flex">
+                                            <h5
+                                                className="cursor-pointer"
+                                                onClick={() => {
+                                                    setViewing({
+                                                        view: 'asUser',
+                                                        id: targetInfo.id,
+                                                    });
+                                                }}
+                                            >
+                                                View as user
+                                            </h5>
+                                        </span>
+                                    )}
                                 </Table.Cell>
                             </Table.Column>
                         </Table>
@@ -100,7 +98,10 @@ const Agents = ({ myNeededInfo }) => {
                             View activities
                         </button>
                     </div>
-                    <h5>Busineses name: {targetInfo.shopInfo.shopName}</h5>
+                    <h5>
+                        Busineses name:
+                        {targetInfo.shopInfo.shopName}
+                    </h5>
                     <GetAllCateAndBrands
                         category={targetInfo.collection}
                         brands={targetInfo.brand}

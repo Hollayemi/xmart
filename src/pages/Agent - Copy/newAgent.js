@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Steps, Panel } from 'rsuite';
+import { FaAngleLeft } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/elements/Button';
 import InputGroup from '../../components/elements/Input/InputGroup';
-import { FaAngleLeft } from 'react-icons/fa';
 import UploadProfilePic from '../../components/websiteCompoents/UploadFile/uploadProfilePic';
 import { registerAgentHandler } from '../../state/slices/agents/signup';
-import { useDispatch, useSelector } from 'react-redux';
 
-export const FieldAdded = ({ title, value }) => {
-    return (
-        <h5 className="my-1">
-            {title}:<p className="my-1 ml-2 text-orange-500">{value}</p>
-        </h5>
-    );
-};
+export const FieldAdded = ({ title, value }) => (
+    <h5 className="my-1">
+        {title}:<p className="my-1 ml-2 text-orange-500">{value}</p>
+    </h5>
+);
 const NewAgent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -98,7 +96,7 @@ const NewAgent = () => {
                                                     name="name"
                                                     value={formData.name}
                                                     placeholder=" "
-                                                    required={true}
+                                                    required
                                                     onChange={(e) =>
                                                         updateValue(
                                                             e.target.value,
@@ -112,7 +110,7 @@ const NewAgent = () => {
                                                     label="Your Email"
                                                     value={formData.email}
                                                     placeholder=" "
-                                                    required={true}
+                                                    required
                                                     onChange={(e) =>
                                                         updateValue(
                                                             e.target.value,
@@ -128,7 +126,7 @@ const NewAgent = () => {
                                                     label="Username"
                                                     placeholder=" "
                                                     value={formData.username}
-                                                    required={true}
+                                                    required
                                                     onChange={(e) =>
                                                         updateValue(
                                                             e.target.value,
@@ -142,7 +140,7 @@ const NewAgent = () => {
                                                     label="Phone Number"
                                                     value={formData.phone}
                                                     placeholder=" "
-                                                    required={true}
+                                                    required
                                                     type="number"
                                                     onChange={(e) =>
                                                         updateValue(
@@ -162,7 +160,7 @@ const NewAgent = () => {
                                                 label="Account Name"
                                                 value={formData.acc_name}
                                                 placeholder=" "
-                                                required={true}
+                                                required
                                                 onChange={(e) =>
                                                     updateValue(
                                                         e.target.value,
@@ -178,7 +176,7 @@ const NewAgent = () => {
                                                     name="acc_no"
                                                     value={formData.acc_no}
                                                     placeholder=" "
-                                                    required={true}
+                                                    required
                                                     onChange={(e) =>
                                                         updateValue(
                                                             e.target.value,
@@ -192,7 +190,7 @@ const NewAgent = () => {
                                                     label="Bank"
                                                     value={formData.acc_bnk}
                                                     placeholder=" "
-                                                    required={true}
+                                                    required
                                                     onChange={(e) =>
                                                         updateValue(
                                                             e.target.value,

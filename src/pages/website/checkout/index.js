@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     FaAddressBook,
     FaAngleDown,
@@ -8,15 +7,15 @@ import {
     FaUser,
 } from 'react-icons/fa';
 // import { Loading } from 'rsuite';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { Loader } from 'rsuite';
 import ModalPanel from '../../../components/elements/ModalPanel';
 import AddressBook from './address';
-import { useDispatch, useSelector } from 'react-redux';
 import SearchWrapper from '../../../components/websiteCompoents/ReuseableFlex';
 import { getPickupPerson } from '../../../state/slices/users/pickup';
 import { FetchCartHandler } from '../../../state/slices/home/cart/fetchCart';
 import { GroupCart } from './components';
-import { useNavigate } from 'react-router-dom';
-import { Loader } from 'rsuite';
 
 const Checkout = () => {
     const [openAdd, setOpenAdd] = useState(false);
@@ -28,10 +27,10 @@ const Checkout = () => {
         (state) => state.reducer.cartedProduct
     );
     const dispatch = useDispatch();
-    let prodState = status === 'FULFILLED' ? cartData[1] : [];
+    const prodState = status === 'FULFILLED' ? cartData[1] : [];
     useEffect(() => {
         if (userData) {
-            let auth = userData._id + ' ' + userData.accessToken;
+            const auth = `${userData._id} ${userData.accessToken}`;
             getPickupPerson(userData._id, auth, dispatch, setPickers);
             FetchCartHandler(userData._id, dispatch, () => {});
         } else {
@@ -47,14 +46,14 @@ const Checkout = () => {
           }))
         : [];
     myPickers.push({ value: userData._id, label: 'You' });
-    let auth = userData ? userData._id + ' ' + userData.accessToken : '';
+    const auth = userData ? `${userData._id} ${userData.accessToken}` : '';
     return (
         <SearchWrapper>
             <section>
                 <div className="mt-8 md:mt-12 pb-10 mx-2 sm:mx-5 md:flex">
                     {openAdd && (
                         <ModalPanel
-                            closeButton={true}
+                            closeButton
                             title="Address Details"
                             children={
                                 <AddressBook
@@ -62,11 +61,11 @@ const Checkout = () => {
                                     userId={userData._id}
                                     setOpenAdd={setOpenAdd}
                                     openAdd={openAdd}
-                                    withNew={true}
+                                    withNew
                                 />
                             }
-                            hasBackdrop={true}
-                            keyboard={true}
+                            hasBackdrop
+                            keyboard
                             open={openAdd}
                             buttonName="Varify Code"
                             handleClose={() => setOpenAdd(!openAdd)}
@@ -94,11 +93,7 @@ const Checkout = () => {
                                                 <FaUser />{' '}
                                                 <span className="ml-4">
                                                     {address
-                                                        ? address.surname +
-                                                          ' ' +
-                                                          address.first_name +
-                                                          ' ' +
-                                                          address.last_name
+                                                        ? `${address.surname} ${address.first_name} ${address.last_name}`
                                                         : '(No subject)'}
                                                 </span>
                                             </h5>
@@ -157,18 +152,16 @@ const Checkout = () => {
                                 </h5>
                             </div>
                             <div className="w-full rounded-t-md">
-                                {prodState.map((res, i) => {
-                                    return (
-                                        <GroupCart
-                                            key={i}
-                                            eachStore={res}
-                                            myPickers={myPickers}
-                                            userId={userData._id}
-                                            auth={auth}
-                                            shippingAddress={address}
-                                        />
-                                    );
-                                })}
+                                {prodState.map((res, i) => (
+                                    <GroupCart
+                                        key={i}
+                                        eachStore={res}
+                                        myPickers={myPickers}
+                                        userId={userData._id}
+                                        auth={auth}
+                                        shippingAddress={address}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </div>

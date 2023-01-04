@@ -26,49 +26,45 @@ import {
 import { useNavigate } from 'react-router-dom';
 import profPic from '../../assets/images/avatar/avatar2.png';
 
-const NavToggle = ({ expand, onChange }) => {
-    return (
-        <Navbar appearance="subtle" className="nav-toggle bg-slate-900">
-            <Navbar className="bg-slate-900">
-                <Nav pullRight>
-                    <Nav.Item
-                        onClick={onChange}
-                        style={{
-                            width: 56,
-                            textAlign: 'center',
-                        }}
-                    >
-                        {expand ? <FaAngleLeft /> : <FaAngleRight />}
-                    </Nav.Item>
-                </Nav>
-            </Navbar>
+const NavToggle = ({ expand, onChange }) => (
+    <Navbar appearance="subtle" className="nav-toggle bg-slate-900">
+        <Navbar className="bg-slate-900">
+            <Nav pullRight>
+                <Nav.Item
+                    onClick={onChange}
+                    style={{
+                        width: 56,
+                        textAlign: 'center',
+                    }}
+                >
+                    {expand ? <FaAngleLeft /> : <FaAngleRight />}
+                </Nav.Item>
+            </Nav>
         </Navbar>
-    );
-};
+    </Navbar>
+);
 
-const DashboardHeader = ({ agentDetails }) => {
-    return (
-        <section className="w-full flex overflow-auth md:overflow-hidden myScroll-x min-w-[250px] items-center justify-between border-b-2 px-3">
-            <div className="flex items-center h-14 w-full md:px-10">
-                <img
-                    src={profPic}
-                    alt="pics"
-                    className="w-[60px] h-[60px] rounded-full"
-                />
-                <h2 className="leading-7 ml-2 md:ml-5 font-[600] Lucida text-md text-slate-800">
-                    Admin Hollayemi
-                </h2>
-            </div>
-            <i className="text-xl mr-5 cursor-pointer" title="Logout">
-                <FaSignOutAlt />
-            </i>
-        </section>
-    );
-};
+const DashboardHeader = ({ agentDetails }) => (
+    <section className="w-full flex overflow-auth md:overflow-hidden myScroll-x min-w-[250px] items-center justify-between border-b-2 px-3">
+        <div className="flex items-center h-14 w-full md:px-10">
+            <img
+                src={profPic}
+                alt="pics"
+                className="w-[60px] h-[60px] rounded-full"
+            />
+            <h2 className="leading-7 ml-2 md:ml-5 font-[600] Lucida text-md text-slate-800">
+                Admin Hollayemi
+            </h2>
+        </div>
+        <i className="text-xl mr-5 cursor-pointer" title="Logout">
+            <FaSignOutAlt />
+        </i>
+    </section>
+);
 
 const DashboardWrapper = ({ ...props }) => {
     const navigate = useNavigate();
-    const showing = props.showing;
+    const { showing } = props;
     const [expand, setExpand] = useState(true);
     return (
         <div className="show-fake-browser sidebar-page bg-slate-100">
@@ -296,12 +292,10 @@ const DashboardWrapper = ({ ...props }) => {
                                 : 'w-[calc(100%-56px)] ml-[56px]'
                         }`}
                     >
-                        <Header></Header>
+                        <Header />
                         <Content>
                             <div className="bg-slate-100 shadow flex items-center">
-                                <DashboardHeader
-                                // agentDetails={props.agentDetails}
-                                />
+                                <DashboardHeader />
                             </div>
                             <div className="w-full bg-slate-100">
                                 {props.children}

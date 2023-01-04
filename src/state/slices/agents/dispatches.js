@@ -4,7 +4,7 @@ import { agent_info, withdrawApi } from './agentInfo';
 export const getAgentInfo = (dispatch, userID, setInfo) => {
     const payload = {
         body: {
-            userID: userID,
+            userID,
         },
     };
 
@@ -19,7 +19,7 @@ export const getAgentInfo = (dispatch, userID, setInfo) => {
 export const withdraw = (dispatch, id, setState, navigate) => {
     const payload = {
         body: {
-            id: id,
+            id,
         },
     };
 

@@ -13,16 +13,14 @@ export const GroupCart = (prop) => {
     const { eachStore, myPickers, userId, auth, shippingAddress } = prop;
     const [picker, setPicker] = useState(null);
     const dispatch = useDispatch();
-    let storeProducts = eachStore.group.map((eachCart) => {
-        return {
-            name: eachCart.result.prodName,
-            id: eachCart.productId,
-            quantity: eachCart.quantity,
-            color: eachCart.color,
-            size: eachCart.size,
-            variations: eachCart.variations,
-        };
-    });
+    const storeProducts = eachStore.group.map((eachCart) => ({
+        name: eachCart.result.prodName,
+        id: eachCart.productId,
+        quantity: eachCart.quantity,
+        color: eachCart.color,
+        size: eachCart.size,
+        variations: eachCart.variations,
+    }));
     console.log('eachStore', eachStore);
     console.log('address', shippingAddress);
     console.log(picker);
@@ -33,7 +31,7 @@ export const GroupCart = (prop) => {
     };
 
     const body = {
-        storeProducts: storeProducts,
+        storeProducts,
         paymentInfo,
         userId,
         picker,
@@ -101,18 +99,18 @@ export const MyCheckoutItem = (props) => {
     const [qty, setQty] = useState(F_qty);
     const dispatch = useDispatch();
     const changeQuantity = (operator) => {
-        let query = {
+        const query = {
             cartID: id,
-            operator: operator,
+            operator,
             prevQty: qty,
-            userId: userId,
+            userId,
         };
         changeQty(query, dispatch);
         operator === '+' ? setQty(qty + 1) : setQty(qty > 1 ? qty - 1 : qty);
     };
     const removeCart = () => {
         const payload = {
-            userId: userId,
+            userId,
             cartID: id,
         };
         removeCartHandler(payload, dispatch);
@@ -168,7 +166,8 @@ export const MyCheckoutItem = (props) => {
                     </div>
                     <div className="w-1/2">
                         <h5 className="font-bold tracking-wildest text-[15]">
-                            &#x20A6;{qty * amount}
+                            &#x20A6;
+                            {qty * amount}
                         </h5>
                     </div>
                 </div>

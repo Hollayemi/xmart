@@ -10,15 +10,11 @@ export const createBrandApi = createAsyncThunk(
     'post/createBrand',
     async (payload) => {
         const { data } = await martApi
-            .post('/newBrand/' + payload.id, payload.body, {
+            .post(`/newBrand/${payload.id}`, payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -50,7 +46,7 @@ export const createBrand = (formData, neededInfo, dispatch) => {
             body: {
                 ...formData,
             },
-            auth: neededInfo.otpData.id + ' ' + neededInfo.otpData.accessToken,
+            auth: `${neededInfo.otpData.id} ${neededInfo.otpData.accessToken}`,
         };
         dispatch(createBrandApi(payload))
             .then(unwrapResult)
@@ -91,7 +87,7 @@ export const deleteBrand = (
             _id: splited[2],
             name: splited[0],
         },
-        auth: otpData.id + ' ' + otpData.accessToken,
+        auth: `${otpData.id} ${otpData.accessToken}`,
     };
     dispatch(deleteHandler(payload))
         .then(unwrapResult)
@@ -115,7 +111,7 @@ export const deleteBrand = (
 };
 
 export const loadChildren = (cate) => {
-    let theArray = [];
+    const theArray = [];
     const forArr = (array) => {
         for (let i = 0; i < array.length; i++) {
             const holl = {
@@ -138,7 +134,7 @@ export const loadChildren = (cate) => {
 };
 
 export const loadCategories = (cate) => {
-    let theArray = [];
+    const theArray = [];
     const forArr = (array) => {
         for (let i = 0; i < array.length; i++) {
             const holl = {
@@ -158,7 +154,7 @@ export const loadCategories = (cate) => {
 };
 
 export const loadSubCategories = (cate, subCategory) => {
-    let theArray = [];
+    const theArray = [];
     const forArr = (array) => {
         for (let i = 0; i < array.length; i++) {
             const holl = {

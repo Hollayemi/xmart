@@ -1,9 +1,9 @@
 import React from 'react';
-import { InputFile } from '../../elements/Input/InputFile';
 import { FaPlus, FaUser } from 'react-icons/fa';
+import { Message, toaster } from 'rsuite';
+import { InputFile } from '../../elements/Input/InputFile';
 import { Avatar } from './avatar';
 import DividerPanel from '../../elements/DividerPanel';
-import { Message, toaster } from 'rsuite';
 
 //
 export const imageHandler = (
@@ -14,8 +14,8 @@ export const imageHandler = (
     setLabel = null
 ) => {
     let preImg = null;
-    let exactType = e.target.files[0].type.split('/');
-    let getName = e.target.files[0].name.split('.');
+    const exactType = e.target.files[0].type.split('/');
+    const getName = e.target.files[0].name.split('.');
     if (accept.includes(exactType[0])) {
         preImg = [URL.createObjectURL(e.target.files[0])];
         const reader = new FileReader();
@@ -45,52 +45,48 @@ export const imageHandler = (
     }
 };
 
-const UploadProfilePic = ({ formData, updateValue }) => {
-    return (
-        <div>
-            {formData.avatar && (
-                <img
-                    src={formData.avatar.display}
-                    alt="imageHere"
-                    className="w-32 h-32 ml-5 rounded-full bg-slate-50"
-                />
-            )}
-            {!formData.avatar && (
-                <>
-                    <h5 className="w-32 h-32 ml-5 relative rounded-full bg-slate-100 flex items-center justify-center text-5xl text-gray-400">
-                        <FaUser />
-                    </h5>
-                </>
-            )}
-            <InputFile
-                label="add picture"
-                icon={<FaPlus />}
-                name="uploadProfilePic2"
-                onChange={(e) =>
-                    imageHandler(e, updateValue, ['image'], 'avatar')
-                }
+const UploadProfilePic = ({ formData, updateValue }) => (
+    <div>
+        {formData.avatar && (
+            <img
+                src={formData.avatar.display}
+                alt="imageHere"
+                className="w-32 h-32 ml-5 rounded-full bg-slate-50"
             />
-            <DividerPanel text="OR" />
-            <div className="flex w-full justify-center items-center">
-                {Avatar.map((res, index) => {
-                    let displayData = {
-                        display: res,
-                        file: `avatar${index + 1}`,
-                        isAvatar: true,
-                    };
-                    return (
-                        <img
-                            src={res}
-                            key={index}
-                            alt="Avatar"
-                            className="w-14 h-14 rounded-full mx-1"
-                            onClick={() => updateValue(displayData, 'avatar')}
-                        />
-                    );
-                })}
-            </div>
+        )}
+        {!formData.avatar && (
+            <>
+                <h5 className="w-32 h-32 ml-5 relative rounded-full bg-slate-100 flex items-center justify-center text-5xl text-gray-400">
+                    <FaUser />
+                </h5>
+            </>
+        )}
+        <InputFile
+            label="add picture"
+            icon={<FaPlus />}
+            name="uploadProfilePic2"
+            onChange={(e) => imageHandler(e, updateValue, ['image'], 'avatar')}
+        />
+        <DividerPanel text="OR" />
+        <div className="flex w-full justify-center items-center">
+            {Avatar.map((res, index) => {
+                const displayData = {
+                    display: res,
+                    file: `avatar${index + 1}`,
+                    isAvatar: true,
+                };
+                return (
+                    <img
+                        src={res}
+                        key={index}
+                        alt="Avatar"
+                        className="w-14 h-14 rounded-full mx-1"
+                        onClick={() => updateValue(displayData, 'avatar')}
+                    />
+                );
+            })}
         </div>
-    );
-};
+    </div>
+);
 
 export default UploadProfilePic;

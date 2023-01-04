@@ -30,13 +30,7 @@ const Busineses = () => {
                 </button>
             </div>
             <div className="w-full md:w-11/12 shadow-lg">
-                <Table
-                    height={400}
-                    data={data}
-                    // onRowClick={(info) => {
-                    //     navigate(info.store);
-                    // }}
-                >
+                <Table height={400} data={data}>
                     <Table.Column width={120} fixed>
                         <Table.HeaderCell>Store Name</Table.HeaderCell>
                         <Table.Cell dataKey="store" />
@@ -62,7 +56,7 @@ const Busineses = () => {
                                     navigate(rowData.store.toLowerCase());
                                 }
                                 function activities() {
-                                    navigate('activities/' + rowData._id);
+                                    navigate(`activities/${rowData._id}`);
                                 }
                                 return (
                                     <span className="flex items-center ">

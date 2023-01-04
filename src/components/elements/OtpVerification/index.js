@@ -75,7 +75,7 @@ const OtpInput = ({ func, num, id2, id }) => (
     <input
         type="number"
         className="w-10 hideArrow h-12 p-2 m-2 text-center text-2xl font-bold text-slate-600 border rounded-md focus:outline-none border-slate-600"
-        placeholder={'*'}
+        placeholder="*"
         id={id}
         value={num}
         onChange={(e) => func(!num.length && e.target.value)}

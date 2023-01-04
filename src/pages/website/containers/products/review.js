@@ -31,12 +31,12 @@ const SetFeedback = ({ username, userId, setFeedbackState, productId }) => {
         }
         const payload = {
             body: {
-                rate: rate,
-                review: review,
-                tag: tag,
-                username: username,
-                productId: productId,
-                userId: userId,
+                rate,
+                review,
+                tag,
+                username,
+                productId,
+                userId,
             },
         };
         userId &&
@@ -48,7 +48,7 @@ const SetFeedback = ({ username, userId, setFeedbackState, productId }) => {
         <div className="w-full px-2 max-h-[500px] shadow-md my-5 py-3 max-w-[450px] mt-3 rounded-md">
             <h5 className="Lucida font-[500]">Rate this product</h5>
             <Rate defaultValue={0} size="md" onChangeActive={setRate} />{' '}
-            <span>( {texts[rate]} )</span>
+            <span>({texts[rate]} )</span>
             <div className="flex items-center justify-between">
                 <h5 className="mt-4 mb-2 Lucida font[500]">Feedback</h5>
                 <h5
@@ -80,11 +80,11 @@ const SetFeedback = ({ username, userId, setFeedbackState, productId }) => {
                 </button>
             </div>
             <ModalPanel
-                closeButton={true}
+                closeButton
                 title=" "
                 children={<SignInForm going="/" />}
-                hasBackdrop={true}
-                keyboard={true}
+                hasBackdrop
+                keyboard
                 open={signin}
                 buttonName="Varify Code"
                 handleClose={() => openSignin(!signin)}
@@ -113,9 +113,9 @@ export const LoadReviews = (productId) => {
             <div>
                 <ReviewBars arr={message[0]} />
                 <section className="mb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                    {message[1].map((res, i) => {
-                        return <EachFeedback key={i} feedback={res} />;
-                    })}
+                    {message[1].map((res, i) => (
+                        <EachFeedback key={i} feedback={res} />
+                    ))}
                 </section>
             </div>
         ) : (
@@ -125,44 +125,39 @@ export const LoadReviews = (productId) => {
                 </div>
             </section>
         );
-    } else {
-        return (
-            <section className="w-full h-full flex items-center justify-center">
-                <Loading speed="fast" content="Loading..." />
-            </section>
-        );
     }
-};
-
-const EachFeedback = ({ feedback }) => {
     return (
-        <div className="flex w-full">
-            <img
-                src={Avatar[feedback.rate]}
-                alt="avatar"
-                className="w-20 h-16 border border-blue-100 rounded-full p-2"
-            />
-            <div>
-                <div className="flex flex-col">
-                    <h5 className="font-[600]">{feedback.username}</h5>
-                    <Rate
-                        readOnly
-                        defaultValue={parseInt(feedback.rate)}
-                        size="xs"
-                    />
-                </div>
-                <p className="mb-6 py-2 text-gray-500 px-2">
-                    {feedback.review}
-                </p>
-            </div>
-        </div>
+        <section className="w-full h-full flex items-center justify-center">
+            <Loading speed="fast" content="Loading..." />
+        </section>
     );
 };
 
+const EachFeedback = ({ feedback }) => (
+    <div className="flex w-full">
+        <img
+            src={Avatar[feedback.rate]}
+            alt="avatar"
+            className="w-20 h-16 border border-blue-100 rounded-full p-2"
+        />
+        <div>
+            <div className="flex flex-col">
+                <h5 className="font-[600]">{feedback.username}</h5>
+                <Rate
+                    readOnly
+                    defaultValue={parseInt(feedback.rate)}
+                    size="xs"
+                />
+            </div>
+            <p className="mb-6 py-2 text-gray-500 px-2">{feedback.review}</p>
+        </div>
+    </div>
+);
+
 const ReviewBars = ({ arr }) => {
     const count = (num) => {
-        let percentage = arr.filter((curr) => parseInt(curr) === num);
-        let nume = percentage.length / arr.length;
+        const percentage = arr.filter((curr) => parseInt(curr) === num);
+        const nume = percentage.length / arr.length;
 
         return parseInt(nume * 100);
     };

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Loader, Row } from 'rsuite';
+import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import InputGroup from '../../../components/elements/Input/InputGroup';
 import InputAddon from '../../../components/elements/Input/InputAddon';
-import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from 'react-icons/fa';
 import HelperText from '../../../components/elements/Input/HelperText';
 import Button from '../../../components/elements/Button';
-import { Link, useNavigate } from 'react-router-dom';
 import DividerPanel from '../../../components/elements/DividerPanel';
-import { useDispatch, useSelector } from 'react-redux';
 import { myLogin } from '../../../state/slices/auth/Login';
 import { REQUEST_STATUS } from '../../../state/slices/constants';
 import { defaultOTP } from '../../../state/slices/shop/setOtp';

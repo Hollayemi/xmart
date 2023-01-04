@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaDumpster } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
 import Main1 from '../../assets/images/png/Landing/main-noBg.png';
 import Main2 from '../../assets/images/png/features-1.svg';
-import { FaDumpster } from 'react-icons/fa';
 import TwoColFlexImgRight, {
     IconNoteFlex,
 } from '../../components/SellerComponents/FlexDisplay';
-import { useDispatch, useSelector } from 'react-redux';
 import { otpHandler } from '../../state/slices/shop/setOtp';
 import { getShopInfo } from '../../state/slices/shop/addShop';
-import { unwrapResult } from '@reduxjs/toolkit';
 import HeaderComp from '../../components/SellerComponents/headerComp';
 import Footer from '../../components/websiteCompoents/Footer';
 
@@ -17,7 +17,7 @@ const NewPage = () => {
     const navigate = useNavigate();
     const [name, setName] = useState('new');
     const CreateWithBusinessName = () => {
-        navigate('/seller/create-account/' + name);
+        navigate(`/seller/create-account/${name}`);
     };
 
     //
@@ -26,7 +26,7 @@ const NewPage = () => {
     const payload = {
         id: userData._id,
         auth: {
-            token: 'Holla ' + userData.accessToken,
+            token: `Holla ${userData.accessToken}`,
         },
     };
     const toDashboard = () => {
@@ -48,8 +48,8 @@ const NewPage = () => {
 
     return (
         <section>
-            <HeaderComp active={'seller'} />
-            <div className="intro-bg min-h-screen absolute w-full h-full -mt-10 overflow-hidden"></div>
+            <HeaderComp active="seller" />
+            <div className="intro-bg min-h-screen absolute w-full h-full -mt-10 overflow-hidden" />
             <div className="bg-slate-600 bg-opacity-75 pt-16 overflow-hidden sm:pt-0 absolute flex -mt-10 flex-col md:flex-row justify-between md:justify-evenly items-center h-full w-full px-4">
                 <div className="w-full mx-3 sm:mx-0 sm:w-4/5 md:w-2/5 text-white">
                     <h1 className="text-4xl md:text-4xl xl:text-5xl  leading-20 topLine-height font-medium text-white mb-5">
@@ -157,7 +157,6 @@ const NewPage = () => {
                     <TwoColFlexImgRight
                         image={Main2}
                         more="A Referral Links is simply a unique combination of numbers, letters, or both attached to a link which are used as an identifier to identify the referral.
-
 
                             Referral codes, in this type of application, are used to track the origin of a referral. The reason a business uses a referral code is so they can connect the referrals to the people who sent them in."
                         title="What Is A Referral Link And How Does It Work?"

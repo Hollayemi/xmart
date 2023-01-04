@@ -1,5 +1,5 @@
-import martApi from '../../api/baseApi';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import martApi from '../../api/baseApi';
 
 export const addNewShop = createAsyncThunk(
     'post/addNewShop',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import DashboardWrapper from '../../../components/AdminComponents';
 import { useParams } from 'react-router-dom';
+import DashboardWrapper from '../../../components/AdminComponents';
 import './index.css';
 import Busineses from './Business';
 import Overview from './Overview';

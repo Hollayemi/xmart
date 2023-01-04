@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { FaMapPin } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import fakeImg1 from '../../../../assets/images/png/_supreme4.png';
 import fakeImg2 from '../../../../assets/images/png/_supreme.png';
 import fakeImg3 from '../../../../assets/images/png/_supreme3.png';
 import { cartHandler } from '../../../../state/slices/home/cart';
 import fakeImg6 from '../../../../assets/images/png/_supreme5.png';
 import { CartButton, LoadCart, PreviewImg } from './components';
-import { useDispatch, useSelector } from 'react-redux';
 import ModalPanel from '../../../../components/elements/ModalPanel';
 import { SignInForm } from '../../../auth/signin/Signin';
 import { REQUEST_STATUS } from '../../../../state/slices/constants';
@@ -71,7 +71,8 @@ export const ProductDisplay = ({ productInfo, availableSize, payload }) => {
                     </div>
                     <div className="my-6 flex items-center">
                         <h5 className="bg-slate-600 tracking-widest w-18 font-bold text-gray-100 text-md max-w-fit p-1 px-2 rounded-md shadow-md border border-gray-400 ">
-                            &#x20A6;{productInfo && productInfo.prodPrice}
+                            &#x20A6;
+                            {productInfo && productInfo.prodPrice}
                         </h5>
                         <div className="flex flex-col ml-4">
                             <h5 className="text-sm font-bold text-blue-300">
@@ -142,11 +143,11 @@ export const ProductDisplay = ({ productInfo, availableSize, payload }) => {
                 </div>
             </div>
             <ModalPanel
-                closeButton={true}
+                closeButton
                 title=" "
                 children={<SignInForm going="/" />}
-                hasBackdrop={true}
-                keyboard={true}
+                hasBackdrop
+                keyboard
                 open={openAdd}
                 buttonName="Varify Code"
                 handleClose={() => setOpenAdd(!openAdd)}

@@ -1,18 +1,14 @@
 import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
 
-import martApi from '../api/baseApi';
 import { Message, toaster } from 'rsuite';
+import martApi from '../api/baseApi';
 
 const resetPasswordApi = createAsyncThunk('post/RP', async (payload) => {
     console.log(payload);
     const { data } = await martApi
         .patch('/user/reset-password', payload, {})
-        .then((res) => {
-            return res;
-        })
-        .catch((err) => {
-            return err.response;
-        });
+        .then((res) => res)
+        .catch((err) => err.response);
 
     return data;
 });
@@ -28,7 +24,7 @@ export const ResetPasswordHandler = (formData, navigate, dispatch) => {
         })
         .catch((err) => {
             toaster.push(
-                <Message showIcon type={'error'}>
+                <Message showIcon type="error">
                     No Connection
                 </Message>,
                 {

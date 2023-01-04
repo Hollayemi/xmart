@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FaUser, FaUserEdit } from 'react-icons/fa';
-import { TopTitle } from '../../../components/SellerComponents/Dashboard/topTitle';
 import {
     DatePicker,
     IconButton,
@@ -9,8 +8,10 @@ import {
     RadioGroup,
     SelectPicker,
 } from 'rsuite';
+import { TopTitle } from '../../../components/SellerComponents/Dashboard/topTitle';
 import PickupImage from '../../../assets/images/png/Pickup.png';
 import InputGroup from '../../../components/elements/Input/InputGroup';
+
 const Pickup = () => {
     const [edit, setEdit] = useState(false);
     const [formData, setFormData] = useState({
@@ -53,7 +54,7 @@ const Pickup = () => {
             />
             <div className="flex bg-slate-50 mt-4 flex-col min-w-[270px] md:justify-center md:justify-evenly md:flex-row mx-1 py-8 my-6 rounded-md">
                 <div className="flex justify-center w-full mb-6 md:mb-2 md:w-2/5">
-                    <img src={PickupImage} alt={'nairaImage'} width="h-auto" />
+                    <img src={PickupImage} alt="nairaImage" width="h-auto" />
                 </div>
                 <div className="w-full md:w-3/5 max-w-[450px] min-h-[500px]">
                     <h3 className="border-b w-full leading-10 text-md px-3 flex justify-between items-center px-5 text-sm">
@@ -101,10 +102,10 @@ const Pickup = () => {
                                     <div className="fle flex-col sm:flex-rowfull">
                                         <div className="w-full mt-4">
                                             <InputGroup
-                                                label={'BVN'}
+                                                label="BVN"
                                                 value={formData.buzz_email}
                                                 placeholder=" "
-                                                required={true}
+                                                required
                                                 onChange={(e) =>
                                                     updateValue(
                                                         e.target.value,

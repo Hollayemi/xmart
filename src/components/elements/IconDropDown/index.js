@@ -7,16 +7,14 @@ import ViewProduct from '../DrawerPanel/drawerContent/viewProduct';
 const IconDropdown = ({ Icon, Content, onSelect, className, ref }) => {
     const [prodId, prodDrawer] = useState(null);
     const [colId, colDrawer] = useState(null);
-    const myContent = Content.map((res, index) => {
-        return (
-            <Dropdown.Item eventKey={res.value} key={index}>
-                {res.name}
-            </Dropdown.Item>
-        );
-    });
+    const myContent = Content.map((res, index) => (
+        <Dropdown.Item eventKey={res.value} key={index}>
+            {res.name}
+        </Dropdown.Item>
+    ));
     const handleSelect = async (eventKey) => {
         console.log(eventKey);
-        let exp = eventKey.split('-');
+        const exp = eventKey.split('-');
         if (exp[1] === 'view' && exp[3] && exp[3] === 'product') {
             prodDrawer(exp[2]);
         }
@@ -52,7 +50,7 @@ const IconDropdown = ({ Icon, Content, onSelect, className, ref }) => {
                 title="Product Info"
                 size="xs"
                 children={<CollectionDetails id={colId} />}
-                backdrop={true}
+                backdrop
                 open={colId && true}
                 handleClose={() => colDrawer(false)}
             />
@@ -61,7 +59,7 @@ const IconDropdown = ({ Icon, Content, onSelect, className, ref }) => {
                 title="Collection Details"
                 size="xs"
                 children={<ViewProduct id={prodId} />}
-                backdrop={true}
+                backdrop
                 open={prodId && true}
                 handleClose={() => prodDrawer(false)}
             />

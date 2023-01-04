@@ -1,3 +1,4 @@
+import Slider from 'react-slick';
 import LadiesImage from '../../../assets/images/png/purchase.png';
 import MenImage from '../../../assets/images/png/Landing/main5.jpg';
 import FootImage from '../../../assets/images/png/Landing/main2.png';
@@ -7,7 +8,6 @@ import fakeImg3 from '../../../assets/images/png/_supreme3.png';
 import fakeImg4 from '../../../assets/images/png/_supreme4.png';
 import { MySlickSlide } from '../../../pages/website/Home';
 import { websiteImages } from '../../websiteCompoents/Images';
-import Slider from 'react-slick';
 
 export const MartCategories = [
     'Men',
@@ -31,7 +31,7 @@ export const MartCategories = [
     'Health & Person',
 ];
 
-var settings2 = {
+const settings2 = {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -40,23 +40,19 @@ var settings2 = {
     pauseOnHover: true,
 };
 
-const SliderImages = ({ images }) => {
-    return (
-        <div className="h-32 md:h-48 relative md:-mt-6">
-            <Slider {...settings2}>
-                {images.map((img, i) => {
-                    return (
-                        <MySlickSlide
-                            key={i}
-                            h="h-32 md:h-48"
-                            image={websiteImages[img]}
-                        />
-                    );
-                })}
-            </Slider>
-        </div>
-    );
-};
+const SliderImages = ({ images }) => (
+    <div className="h-32 md:h-48 relative md:-mt-6">
+        <Slider {...settings2}>
+            {images.map((img, i) => (
+                <MySlickSlide
+                    key={i}
+                    h="h-32 md:h-48"
+                    image={websiteImages[img]}
+                />
+            ))}
+        </Slider>
+    </div>
+);
 
 export const HomeDisplay = {
     Men: [
@@ -1875,7 +1871,7 @@ export const productInformation = {
     ],
 };
 
-export let myProducts2 = {
+export const myProducts2 = {
     message: [
         { images: [{ image: fakeImg1 }], prodPrice: 200, prodName: 'sweater' },
         { images: [{ image: fakeImg2 }], prodPrice: 200, prodName: 'sweater' },

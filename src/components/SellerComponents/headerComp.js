@@ -39,29 +39,25 @@ const HeaderComp = ({ active }) => {
                     close
                 </p>
                 <MyLi
-                    name={'My store'}
+                    name="My store"
                     link="/seller"
-                    active={active === 'seller' ? true : false}
+                    active={active === 'seller'}
                 />
+                <MyLi name="Agent" link="/agent" active={active === 'agent'} />
                 <MyLi
-                    name={'Agent'}
-                    link="/agent"
-                    active={active === 'agent' ? true : false}
-                />
-                <MyLi
-                    name={'Services'}
+                    name="Services"
                     link="/services"
-                    active={active === 'services' ? true : false}
+                    active={active === 'services'}
                 />
                 <MyLi
-                    name={'Contant us'}
+                    name="Contant us"
                     link="/contact"
-                    active={active === 'contact' ? true : false}
+                    active={active === 'contact'}
                 />
                 <MyLi
-                    name={'About us'}
+                    name="About us"
                     link="/about"
-                    active={active === 'about' ? true : false}
+                    active={active === 'about'}
                 />
             </ul>
         </div>

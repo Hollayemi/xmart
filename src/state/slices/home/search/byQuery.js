@@ -4,19 +4,15 @@ import martApi from '../../api/baseApi';
 const homeSearch = createAsyncThunk('post/aggrSearch', async (payload) => {
     const { data } = await martApi
         .post('/searchByQuery', payload, {})
-        .then((res) => {
-            return res;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((res) => res)
+        .catch((e) => e.response);
     return data;
 });
 
 export const fetchByQuery = (dispatch, query, groupBy, setData) => {
-    let payload = {
-        query: query,
-        groupBy: groupBy,
+    const payload = {
+        query,
+        groupBy,
     };
     dispatch(homeSearch(payload))
         .then(unwrapResult)
@@ -25,7 +21,5 @@ export const fetchByQuery = (dispatch, query, groupBy, setData) => {
                 setData(res.message);
             }
         })
-        .catch((err) => {
-            return err.response;
-        });
+        .catch((err) => err.response);
 };

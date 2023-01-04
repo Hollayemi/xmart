@@ -6,12 +6,8 @@ const changeCartApi = createAsyncThunk('post/changeQty', async (payload) => {
     console.log(payload);
     const { data } = await martApi
         .patch('/changeCart/Qty', payload, {})
-        .then((e) => {
-            return e;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((e) => e)
+        .catch((e) => e.response);
     return data;
 });
 
@@ -31,12 +27,8 @@ const removeCartApi = createAsyncThunk('post/changeCart', async (payload) => {
     console.log(payload);
     const { data } = await martApi
         .patch('/changeCart/remove', payload, {})
-        .then((e) => {
-            return e;
-        })
-        .catch((e) => {
-            return e.response;
-        });
+        .then((e) => e)
+        .catch((e) => e.response);
     return data;
 });
 

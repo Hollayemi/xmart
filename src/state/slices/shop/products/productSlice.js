@@ -4,7 +4,7 @@ import { Message, toaster } from 'rsuite';
 import martApi from '../../api/baseApi';
 import { REQUEST_STATUS } from '../../constants';
 import { updateInstance } from '../settings/genApi';
-//add product
+// add product
 export const createNewProduct = createAsyncThunk(
     'post/newProductkk',
     async (payload) => {
@@ -12,12 +12,8 @@ export const createNewProduct = createAsyncThunk(
             .post('/addProduct', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
@@ -50,19 +46,19 @@ const myNewProduct = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [createNewProduct.pending]: () => {
-            return { ...initialState, status: REQUEST_STATUS.PENDING };
-        },
-        [createNewProduct.fulfilled]: (state, { payload }) => {
-            return {
-                ...initialState,
-                status: REQUEST_STATUS.FULFILLED,
-                colData: payload,
-            };
-        },
-        [createNewProduct.rejected]: () => {
-            return { ...initialState, status: REQUEST_STATUS.REJECTED };
-        },
+        [createNewProduct.pending]: () => ({
+            ...initialState,
+            status: REQUEST_STATUS.PENDING,
+        }),
+        [createNewProduct.fulfilled]: (state, { payload }) => ({
+            ...initialState,
+            status: REQUEST_STATUS.FULFILLED,
+            colData: payload,
+        }),
+        [createNewProduct.rejected]: () => ({
+            ...initialState,
+            status: REQUEST_STATUS.REJECTED,
+        }),
     },
 });
 
@@ -81,7 +77,7 @@ export const createProductHandler = (formData, dispatch, neededInfo) => {
                 ...formData,
                 shopID: neededInfo.shopData.id,
             },
-            auth: neededInfo.otpData.id + ' ' + neededInfo.otpData.accessToken,
+            auth: `${neededInfo.otpData.id} ${neededInfo.otpData.accessToken}`,
         };
         const subPayload = {
             id: neededInfo.shopData.id,
@@ -117,10 +113,6 @@ export const createProductHandler = (formData, dispatch, neededInfo) => {
     }
 };
 /*
-
-
-
-
 
 */
 

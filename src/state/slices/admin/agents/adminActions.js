@@ -1,7 +1,7 @@
 import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
 import martApi from '../../api/baseApi';
 
-//Api to get all agents for admin
+// Api to get all agents for admin
 export const getAllAgents = createAsyncThunk(
     'post/allBuzz',
     async (payload) => {
@@ -9,24 +9,20 @@ export const getAllAgents = createAsyncThunk(
             .post('/allAgents', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
 
 export const fetchAllAgent = (dispatch, setTargetInfo, adminData, query) => {
-    //fetch
+    // fetch
     const payload = {
         body: {
             shopQuary: query,
         },
 
-        auth: adminData._id + ' ' + adminData.accessToken,
+        auth: `${adminData._id} ${adminData.accessToken}`,
     };
 
     dispatch(getAllAgents(payload))
@@ -42,7 +38,7 @@ export const fetchAllAgent = (dispatch, setTargetInfo, adminData, query) => {
 //
 //
 
-//Api to get all agents for admin
+// Api to get all agents for admin
 export const updateAgentApi = createAsyncThunk(
     'post/adminUpdateAgents',
     async (payload) => {
@@ -50,25 +46,21 @@ export const updateAgentApi = createAsyncThunk(
             .post('/adminUpdateAgents', payload.body, {
                 headers: { auth: payload.auth },
             })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
 
 export const updateAgent = (dispatch, setTargetInfo, adminData, query, id) => {
-    //fetch
+    // fetch
     const payload = {
         body: {
-            query: query,
-            id: id,
+            query,
+            id,
         },
 
-        auth: adminData._id + ' ' + adminData.accessToken,
+        auth: `${adminData._id} ${adminData.accessToken}`,
     };
 
     dispatch(updateAgentApi(payload))
@@ -84,35 +76,35 @@ export const updateAgent = (dispatch, setTargetInfo, adminData, query, id) => {
 //
 //
 
-//Api to get all agents for admin
+// Api to get all agents for admin
 export const acceptWithdrawApi = createAsyncThunk(
     'post/acceptWithdraw',
     async (payload) => {
         const { data } = await martApi
-            .post('/acceptWithdraw', {id: payload.id}, {
-                headers: { auth: payload.auth },
-            })
-            .then((res) => {
-                return res;
-            })
-            .catch((e) => {
-                return e.response;
-            });
+            .post(
+                '/acceptWithdraw',
+                { id: payload.id },
+                {
+                    headers: { auth: payload.auth },
+                }
+            )
+            .then((res) => res)
+            .catch((e) => e.response);
         return data;
     }
 );
 
 export const acceptWithdraw = (dispatch, adminData, id) => {
-    //fetch
+    // fetch
     const payload = {
         id,
-        auth: adminData._id + ' ' + adminData.accessToken,
+        auth: `${adminData._id} ${adminData.accessToken}`,
     };
 
     dispatch(acceptWithdrawApi(payload))
         .then(unwrapResult)
         .then((res) => {
-            res.type === 'success' && window.history.back()
+            res.type === 'success' && window.history.back();
         })
         .catch((err) => {
             console.log(err.response);
